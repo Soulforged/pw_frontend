@@ -1,0 +1,51 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Jan 17, 2018, 2:59:29 PM
+    Author     : leonard
+*/
+body {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+table, .modal-content{
+    color: #333;
+}
+.form-control{
+    background: transparent;
+    color: #f5f5f5;
+}
+.form-control option{background: #2d3033;color: #f5f5f5;}
+.edit-pnl-cnt .form-control, .form-control[disabled], .modal-body .form-control {
+    color: #555;
+}
+.edit-pnl-cnt .form-header{
+    color: inherit;
+    border-bottom-color: #ccc;
+}
+#search-pnl{
+    background-color: #2d3033;
+}
+.toggle-filter{
+    color: #666666;
+}
+.tnx, .pnls{background-color: #2d3033;}
+.tnx p {color: #fff;}
+.tnx-sm, .Rectangle-9{background-color: #1a1a1a;}
+.tnx-sm p:last-child, .form-header, #pagination, #pagination span a{color: #ffffff;}
+.tnx-footer{background-color: #eeeeee;}
+.table>thead tr{background-color: #1a1a1a;}
+.form-header, .pnls{border-color: transparent;}
+#trans-new .form-header {border-bottom: 1px solid #ccc;}
+/*#wrapper_top .menu-nav>li, #wrapper_top .menu-nav li a{color: #333;}*/
+#wrapper_top .menu-nav li:hover, #wrapper_top .menu-nav li.active,
+#wrapper_top .menu-nav li a:hover, #wrapper_top .menu-nav li.active a {color: #f05323;}
+#chartjs-tooltip table{color: #fff;}
+#wrapper_top, .menu-slide{
+    background: rgba(26, 26, 26, 0.98);
+    border-bottom-color: transparent;
+}
+#welcome p{color: #fff;}

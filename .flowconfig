@@ -1,0 +1,17 @@
+[ignore]
+
+[include]
+
+[libs]
+<PROJECT_ROOT>/flow-typed
+
+[lints]
+
+[options]
+module.name_mapper='^src' -> '<PROJECT_ROOT>/src'
+module.name_mapper='^assets' -> '<PROJECT_ROOT>/src/assets'
+module.name_mapper='^test' -> '<PROJECT_ROOT>/__tests__'
+
+suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
+
+[strict]

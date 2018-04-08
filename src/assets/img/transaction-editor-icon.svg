@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>Transaction Editor icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Transaction-Editor" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-28.000000, -515.000000)">
+        <g id="NAV">
+            <g id="MENU" transform="translate(0.000000, 203.000000)">
+                <g id="TRANSACTION-EDITOR" transform="translate(0.000000, 312.000000)">
+                    <g id="MAIN" transform="translate(28.000000, 0.000000)">
+                        <g id="Transaction-Editor-icon">
+                            <path d="M0,13 C0,5.82026144 5.82026144,0 13,0 C20.1797386,0 26,5.82026144 26,13 C26,20.1797386 20.1797386,26 13,26 C5.82026144,26 0,20.1797386 0,13" id="Fill-1-Copy" fill="#F05323"></path>
+                            <path d="M12.0693362,15.4927993 C12.7043718,14.8577636 12.7043718,13.8282432 12.0693362,13.1933252 L7.75260003,17.5100614 L12.0693362,21.8266798 C12.7043718,21.1917618 12.7043718,20.1622415 12.0693362,19.5272058 L10.8651692,18.3230388 L16.621445,18.3230388 C17.5193921,18.3230388 18.2474,17.5950309 18.2474,16.6969662 L10.8651692,16.6969662 L12.0693362,15.4927993 Z M13.9306638,11.3338806 C13.2956282,11.9689162 13.2956282,12.9984366 13.9306638,13.6333546 L18.2474,9.31673614 L13.9306638,5 C13.2956282,5.63491798 13.2956282,6.66443836 13.9306638,7.29947403 L15.1348308,8.50364099 L9.37855495,8.50364099 C8.48060793,8.50364099 7.75260003,9.23164889 7.75260003,10.1297136 L15.1348308,10.1297136 L13.9306638,11.3338806 Z" id="Fill-1" fill="#FFFFFF"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
