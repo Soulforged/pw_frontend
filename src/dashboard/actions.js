@@ -1,6 +1,7 @@
 //@flow
 import { CALL_API } from "src/constants";
 import moment from "moment";
+import mocks from "src/mocks";
 
 export const DASHBOARD_SUMMARY_SUCCESS = "DASHBOARD_SUMMARY_SUCCESS";
 export const DASHBOARD_TRENDS_BY_DATE_SUCCESS = "DASHBOARD_TRENDS_BY_DATE_SUCCESS";
@@ -17,21 +18,25 @@ const params = prms => ({ ...defaultParams, ...prms });
 export const fetchSummary = prms => ({
   [CALL_API]: {
     types: ["DASHBOARD_SUMMARY_REQUEST", DASHBOARD_SUMMARY_SUCCESS, "DASHBOARD_SUMMARY_FAILURE"],
-    endpoint: `/bi/totals/transactions?date_from=${params(prms).dateFrom}&date_to=${params(prms).dateTo}&distinct=sender_account_number`
+    endpoint: `/bi/totals/transactions?date_from=${params(prms).dateFrom}&date_to=${params(prms).dateTo}&distinct=sender_account_number`,
+    //FIXME remove this mock
+    mock: mocks.summary
   }
 });
 
 export const fetchTrendsByDate = prms => ({
   [CALL_API]: {
     types: ["DASHBOARD_TRENDS_BY_DATE_REQUEST", DASHBOARD_TRENDS_BY_DATE_SUCCESS, "DASHBOARD_TRENDS_BY_DATE_FAILURE"],
-    endpoint: `/bi/totals/transactions?date_from=${params(prms).dateFrom}&date_to=${params(prms).dateTo}&group_by=date`
+    endpoint: `/bi/totals/transactions?date_from=${params(prms).dateFrom}&date_to=${params(prms).dateTo}&group_by=date`,
+    mock: mocks.trendsByDate
   }
 });
 
 export const fetchTrendsByInstitution = prms => ({
   [CALL_API]: {
     types: ["DASHBOARD_TRENDS_BY_INST_REQUEST", DASHBOARD_TRENDS_BY_INST_SUCCESS, "DASHBOARD_TRENDS_BY_INST_FAILURE"],
-    endpoint: `/bi/totals/transactions?date_from=${params(prms).dateFrom}&date_to=${params(prms).dateTo}&group_by=institution_name`
+    endpoint: `/bi/totals/transactions?date_from=${params(prms).dateFrom}&date_to=${params(prms).dateTo}&group_by=institution_name`,
+    mock: mocks.trendsByInstitution
   }
 });
 

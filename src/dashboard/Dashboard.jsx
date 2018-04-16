@@ -16,34 +16,34 @@ const Dashboard = ({ onSubmit }: Props) => (
     <div id="search-pnl" className="dash-search-pnl text-left">
       <div id="filter-row">
         <form onSubmit={onSubmit} className="row">
-          <div className="col-md-3 col-sm-3">
-            <span>Date from</span>
-            <input
-              name="dateFrom"
-              className="form-control"
-              placeholder="Date From"
-              style={{ maxWidth: 120 }}
-            />
+          <div className="col-md-4 col-sm-4">
+            <label htmlFor="dateFrom">
+              Date from
+              <input
+                name="dateFrom"
+                className="form-control"
+                placeholder="Date From"
+                type="date"
+              />
+            </label>
           </div>
-          <div className="col-md-3 col-sm-3">
-            <span>Date to</span>
-            <input
-              name="dateTo"
-              className="form-control"
-              placeholder="Date To"
-              style={{ maxWidth: 120 }}
-            />
+          <div className="col-md-4 col-sm-4">
+            <label htmlFor="dateTo">
+              Date to
+              <input
+                name="dateTo"
+                className="form-control"
+                placeholder="Date To"
+                type="date"
+              />
+            </label>
           </div>
-          <div className="col-md-5 col-sm-5" />
+          <div className="col-md-3 col-sm-3" />
           <div className="col-md-1 col-sm-1">
             <button className="btn filter-btn" type="submit">G0</button>
           </div>
         </form>
       </div>
-
-      <a href="/" className="toggle-filter">
-        <i className="fa fa-chevron-up" />
-      </a>
     </div>
 
     <div className="tnx-flex">
@@ -53,14 +53,14 @@ const Dashboard = ({ onSubmit }: Props) => (
         <div className="tnx-ema">
           <ul className="nav nav-tabs">
             <li className="active">
-              <a href="/">Transaction Amount</a>
+              <span>Transaction Amount</span>
             </li>
             <li>
-              <a href="/">Transaction Count</a>
+              <span>Transaction Count</span>
             </li>
           </ul>
           <div className="tab-content">
-            <div id="trend-amount" className="tab-pane fade in active">
+            <div id="trend-amount" className="tab-pane active">
               <div className="tnx">
                 <TrendsAmountChart />
                 <div id="trendAmountChartLegend" className="tnx-footer" />

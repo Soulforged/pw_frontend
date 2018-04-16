@@ -1,6 +1,6 @@
 //@flow
 import React from "react";
-import { Redirect } from "react-router";
+import { Redirect } from "react-router-dom";
 import { compose, withState, withHandlers } from "recompose";
 
 import type { Session } from "src/types";

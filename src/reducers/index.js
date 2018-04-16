@@ -9,6 +9,8 @@ import entities from "./EntitiesReducer";
 
 const {
   LOGIN_SUCCESS,
+  LOGIN_REQUEST,
+  LOGIN_FAILURE,
   setLoading,
   logout,
   toggleTheme,
@@ -34,6 +36,8 @@ const session = handleActions({
     localStorage.setItem("user", JSON.stringify(user));
     return { ...state, user };
   },
+  [LOGIN_REQUEST]: state => ({ ...state, loading: true }),
+  [LOGIN_FAILURE]: state => ({ ...state, loading: false }),
   [logout]: (state) => {
     localStorage.removeItem("user");
     return { ...state, user: null };

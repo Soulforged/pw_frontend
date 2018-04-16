@@ -11,18 +11,23 @@ const Chart = ({ trendsByInstitution }: { trendsByInstitution: Array<Object> }) 
   const options = {
     responsive: true,
     maintainAspectRatio: true,
+    title: {
+      display: true,
+      text: "Cash-In Count By Institutions",
+      fontColor: "#f7f7f7",
+      fontFamily: "robotolight"
+    },
   };
-  const chartData = trendsByInstitution.reduce((acc, trend) => (
-    [
-      ...acc,
-      {
-        value: trend.cashInCount,
-        color: allColors[acc.length],
-        highlight: "#FF5A5E",
-        label: trend.institutionName
-      }
-    ]
-  ), []);
+  const chartData = trendsByInstitution.reduce(({ labels, datasets }, trend) => (
+    {
+      labels: [...labels, trend.institutionName],
+      datasets: [{
+        ...datasets[0],
+        data: [...datasets[0].data, trend.cashInCount],
+        backgroundColor: allColors[datasets[0].data.length]
+      }]
+    }
+  ), { labels: [], datasets: [{ data: [] }] });
   return <DoughnutChart data={chartData} options={options} />;
 };
 

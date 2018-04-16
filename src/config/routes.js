@@ -1,5 +1,6 @@
 //@flow
 import { Dashboard } from "src/dashboard";
+import { Users } from "src/users";
 
 export default [
   {
@@ -14,5 +15,11 @@ export default [
     name: "dashboard",
     title: "Dashboard",
     component: Dashboard
+  },
+  {
+    path: "/users",
+    name: "users",
+    title: "Users",
+    component: Users
   }
 ];

@@ -5,10 +5,12 @@ import { User } from "src/schemas";
 import type { UserInfo, AppError } from "src/types";
 
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+const LOGIN_REQUEST = "LOGIN_REQUEST";
+const LOGIN_FAILURE = "LOGIN_FAILURE";
 
 const login = ({ username, password }: UserInfo) => ({ // eslint-disable-line
   [CALL_API]: {
-    types: ["LOGIN_REQUEST", LOGIN_SUCCESS, "LOGIN_FAILURE"],
+    types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
     endpoint: "/authenticate/generate-token",
     body: { user: username, password },
     schema: User
@@ -24,4 +26,10 @@ const syncActions = createActions({
   TOGGLE_USER_MENU: () => ({})
 });
 
-export default { LOGIN_SUCCESS, login, ...syncActions };
+export default {
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  login,
+  ...syncActions
+};

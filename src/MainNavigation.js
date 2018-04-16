@@ -1,6 +1,6 @@
 //@flow
 import React from "react";
-import { Route } from "react-router";
+import { Route, Switch, withRouter } from "react-router-dom";
 import type { FeatureRoute } from "src/types";
 import { connect } from "react-redux";
 
@@ -9,11 +9,15 @@ type Props = {
 };
 
 const component = ({ routes }: Props) => (
-  routes.map(route => <Route key={route.name} {...route} />)
+  <Switch>
+    {routes.map(route => (
+      <Route key={route.name} {...route} exact />
+    ))}
+  </Switch>
 );
 
 const mapStateToProps = ({ session }) => session;
 
 const mapDispatchToProps = () => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(component);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(component));

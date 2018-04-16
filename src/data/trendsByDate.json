@@ -1,0 +1,21 @@
+{
+  "total": 2,
+  "results": [
+    {
+      "date": "2018-02-25",
+      "cash_in_amount": 1.0,
+      "cash_in_count": 1,
+      "cash_out_amount": 1173.4,
+      "cash_out_count": 4,
+      "net_cash_in_amount": -1173.4
+    },
+    {
+      "date": "2018-02-27",
+      "cash_in_amount": 1.0,
+      "cash_in_count": 1,
+      "cash_out_amount": 1674.2,
+      "cash_out_count": 4,
+      "net_cash_in_amount": -1674.2
+    }
+  ]
+}

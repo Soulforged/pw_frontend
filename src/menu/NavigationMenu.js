@@ -83,10 +83,12 @@ const Component = (props: Props) => (
     <div className="left-down">
       <ul className="menu-nav">
         {props.routes.filter(route => !route.hidden).map(route => (
-          <NavLink to={route.path} key={route.name}>
-            <img src={images[route.name]} alt={route.name} />
-            <span style={{ display: props.menuCollapsed ? "none" : "inline" }}>{route.title}</span>
-          </NavLink>
+          <li key={route.name}>
+            <NavLink to={route.path}>
+              <img src={images[route.name]} alt={route.name} />
+              <span style={{ display: props.menuCollapsed ? "none" : "inline" }}>{route.title}</span>
+            </NavLink>
+          </li>
         ))}
       </ul>
     </div>

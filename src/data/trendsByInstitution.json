@@ -1,0 +1,25 @@
+{
+  "total": 2,
+  "results": [
+    {
+      "institution_name": "PESALINK",
+      "institution_type": "LOTTERY",
+      "date": "2018-02-25",
+      "cash_in_amount": 2323,
+      "cash_in_count": 200,
+      "cash_out_amount": 1173.4,
+      "cash_out_count": 4,
+      "net_cash_in_amount": -1173.4
+    },
+    {
+      "institution_name": "AIRTEL",
+      "institution_type": "LOTTERY",
+      "date": "2018-02-27",
+      "cash_in_amount": 504.55,
+      "cash_in_count": 100,
+      "cash_out_amount": 1674.2,
+      "cash_out_count": 4,
+      "net_cash_in_amount": -1674.2
+    }
+  ]
+}

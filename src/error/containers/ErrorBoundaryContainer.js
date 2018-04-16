@@ -10,7 +10,7 @@ const mapStateToProps = ({ error }) => (error);
 
 const mapDispatchToProps = (dispatch: Dispatch) => (
   {
-    setError: error => dispatch(setError(error))
+    setError: () => dispatch(setError(false))
   }
 );
 

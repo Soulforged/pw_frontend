@@ -1,6 +1,6 @@
 //@flow
 import React from "react";
-import { Route, Redirect } from "react-router";
+import { Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import type { Session } from "src/types";
 
@@ -25,4 +25,4 @@ const mapStateToProps = ({ session }: { session: Session }) => ({ session });
 
 const mapDispatchToProps = () => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Comp);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Comp));

@@ -8,7 +8,7 @@ type ErrorState = Error | false;
 type Props = {
   children: React.Node,
   error: ErrorState,
-  resetError: () => void
+  setError: () => void
 };
 
 const onCatch = (error: Error, info: string, { setError }: Props) => {
@@ -16,22 +16,22 @@ const onCatch = (error: Error, info: string, { setError }: Props) => {
   setError(error);
 };
 
-const renderError = (error, resetError) => {
+const renderError = (error, setError) => {
   if (error) {
     return (
       <div id="alertdiv2" className="text-center error">
         <span>{error.message}</span>
-        <button title="Close" onClick={resetError} className="fa fa-close alert2-x" style={{ margin: 5 }} />
+        <button title="Close" onClick={setError} className="fa fa-close alert2-x" style={{ margin: 5 }} />
       </div>
     );
   }
   return false;
 };
 
-const component = ({ error, resetError, children }: Props) => (
+const component = ({ error, setError, children }: Props) => (
   <div>
     { { ...children } }
-    {renderError(error, resetError)}
+    {renderError(error, setError)}
   </div>
 );
 

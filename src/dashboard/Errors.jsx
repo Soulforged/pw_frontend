@@ -11,10 +11,11 @@ const ErrorRow = ({ error, count, rate }: { error: Object, count: integer, rate:
   </tr>
 );
 
-const Component = ({ summary, errors }) => (
-  errors.results.map((error) => {
-    const count = (summary.cashInCount + summary.cashOutCount) || 0;
-    const rate = (count / (errors.total * 100)) || 0.0;
+const Component = ({ errors, summary }) => {
+  const total = summary.cashInCount + summary.cashOutCount || 1;
+  return errors.results.map((error) => {
+    const count = error.cashInCount + error.cashOutCount;
+    const rate = ((count * 100) / (total * count)) || 0.0;
     return (
       <ErrorRow
         key={error.statusSource}
@@ -23,8 +24,8 @@ const Component = ({ summary, errors }) => (
         rate={rate}
       />
     );
-  })
-);
+  });
+};
 
 export default boundLifecycle({
   didMount: ({ fetchErrors }) => fetchErrors()

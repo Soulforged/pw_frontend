@@ -1,0 +1,10 @@
+{
+  "total": 1,
+  "results":[{
+    "cash_in_amount": 2000,
+    "cash_in_count": 20,
+    "cash_out_amount": 2322,
+    "cash_out_count": 21,
+    "net_cash_in_amount": 2323.22
+  }]
+}

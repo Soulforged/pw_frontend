@@ -16,7 +16,7 @@ const checkStatus = (response) => {
   return response.json();
 };
 
-const callApi = (endpoint, schema, body) => {
+const callApi = (endpoint, { schema, body, mock }) => {
   const options = {
     credentials: "include",
     body: JSON.stringify(body),
@@ -27,16 +27,15 @@ const callApi = (endpoint, schema, body) => {
       "content-type": "application/json"
     }
   };
+  const doNormalize = json => (
+    schema ? normalize(camelizeKeys(json), schema) : camelizeKeys(json)
+  );
+  if (mock){
+    return Promise.resolve(mock).then(doNormalize);
+  }
   return fetch(endpoint, options)
     .then(checkStatus)
-    .then((json) => {
-      const camelizedJson = camelizeKeys(json);
-
-      if (schema) {
-        return normalize(camelizedJson, schema);
-      }
-      return camelizedJson;
-    });
+    .then(doNormalize);
 };
 
 export default (config: Config) => (
@@ -47,7 +46,12 @@ export default (config: Config) => (
     }
 
     let { endpoint } = callAPI; // eslint-disable-line immutable/no-let
-    const { schema, types, body } = callAPI;
+    const {
+      schema,
+      types,
+      body,
+      mock
+    } = callAPI;
 
     if (typeof endpoint === "function") {
       endpoint = endpoint(store.getState());
@@ -74,7 +78,7 @@ export default (config: Config) => (
     const [requestType, successType, failureType] = types;
     next(actionWith({ type: requestType }));
 
-    return (callApi(config.root + endpoint, schema, body).then(
+    return (callApi(config.root + endpoint, { schema, body, mock }).then(
       (response: Object) => next(actionWith({ response, type: successType })),
       (error: Object) => next(actionWith({
         type: failureType,
