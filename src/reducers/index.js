@@ -11,7 +11,9 @@ const {
   LOGIN_SUCCESS,
   setLoading,
   logout,
-  toggleTheme
+  toggleTheme,
+  toggleMenu,
+  toggleUserMenu
 } = actions;
 
 type State = {
@@ -32,9 +34,9 @@ const session = handleActions({
     localStorage.setItem("user", JSON.stringify(user));
     return { ...state, user };
   },
-  [logout]: () => {
+  [logout]: (state) => {
     localStorage.removeItem("user");
-    return {};
+    return { ...state, user: null };
   }
 }, initialState);
 
@@ -42,13 +44,22 @@ const loading = handleActions({
   [setLoading]: (state, newState) => newState
 }, false);
 
+const uiInitialState = {
+  dark: localStorage.getItem("dark") === "true" || false,
+  menuCollapsed: localStorage.getItem("menuCollapsed") === "true" || false
+};
+
+const toggleReducer = (state, key) => {
+  const newState = !state[key];
+  localStorage.setItem(key, newState);
+  return { ...state, [key]: newState };
+};
+
 const ui = handleActions({
-  [toggleTheme]: (state) => {
-    const newState = !state.light;
-    localStorage.setItem("light", newState);
-    return { ...state, light: newState };
-  }
-}, { light: localStorage.getItem("light") === "true" || false });
+  [toggleTheme]: state => toggleReducer(state, "dark"),
+  [toggleMenu]: state => toggleReducer(state, "menuCollapsed"),
+  [toggleUserMenu]: state => toggleReducer(state, "userMenuCollapsed")
+}, uiInitialState);
 
 export default {
   error,

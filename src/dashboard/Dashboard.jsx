@@ -1,62 +1,22 @@
 //@flow
 import React from "react";
 import { compose, withHandlers } from "recompose";
-import { boundLifecycle } from "src/recompose-ext";
 import serialize from "form-serialize";
-import { Doughnut as DoughnutChart } from "react-chartjs";
+import InsitutionsCashInChart from "./containers/InstitutionsCashInChartContainer";
+import TrendsAmountChart from "./containers/TrendsAmountChartContainer";
+import Errors from "./containers/ErrorsContainer";
+import Summary from "./containers/SummaryContainer";
 
 type Props = {
   onSubmit: (Event) => void,
-  summary: Object,
-  errors: Object,
-  trendsByInstitution: Array<Object>
 };
 
-const ErrorRow = ({ error, count, rate }: { error: Object, count: integer, rate: float }) => (
-  <tr>
-    <td><span>{error.status}</span></td>
-    <td><span>{error.statusSource}</span></td>
-    <td>{count}</td>
-    <td className="theme bold">{rate}</td>
-  </tr>
-);
-
-const allColors = ["#602715", "#b04f32", "#d5694a", "#ffb59f", "#fb4d3d",
-  "#403f4c", "#fa7921", "#1b998b", "#eac435", "#345995", "#e40066", "#03cea4",
-  "#6eb1ff", "#acd2ff", "#4d4d4e", "#e47b47", "#393f63", "#f39b70"];
-
-const InsitutionsCashInChart = ({ data }: { data: Array<Object> }) => {
-  const options = {
-    responsive: true,
-    maintainAspectRatio: true,
-  };
-  const chartData = data.reduce((acc, trend) => (
-    [
-      ...acc,
-      {
-        value: trend.cashInCount,
-        color: allColors[acc.length],
-        highlight: "#FF5A5E",
-        label: trend.institutionName
-      }
-    ]
-  ), []);
-  return <DoughnutChart data={chartData} options={options} />;
-};
-
-const Dashboard = ({
-  summary,
-  errors,
-  trendsByInstitution,
-  onSubmit
-}: Props) => (
+const Dashboard = ({ onSubmit }: Props) => (
   <div id="dashboard">
-
     <div id="search-pnl" className="dash-search-pnl text-left">
-
       <div id="filter-row">
         <form onSubmit={onSubmit} className="row">
-          <div className="col-md-3 col-sm-6">
+          <div className="col-md-3 col-sm-3">
             <span>Date from</span>
             <input
               name="dateFrom"
@@ -65,7 +25,7 @@ const Dashboard = ({
               style={{ maxWidth: 120 }}
             />
           </div>
-          <div className="col-md-3 col-sm-6">
+          <div className="col-md-3 col-sm-3">
             <span>Date to</span>
             <input
               name="dateTo"
@@ -74,7 +34,8 @@ const Dashboard = ({
               style={{ maxWidth: 120 }}
             />
           </div>
-          <div className="col-md-6 col-sm-6 text-right">
+          <div className="col-md-5 col-sm-5" />
+          <div className="col-md-1 col-sm-1">
             <button className="btn filter-btn" type="submit">G0</button>
           </div>
         </form>
@@ -86,55 +47,7 @@ const Dashboard = ({
     </div>
 
     <div className="tnx-flex">
-      <div id="tnx-avg" className="tnx text-center col-md-3 col-sm-4 tnx-abs">
-        <p className="bold">SUMMARY</p>
-        <div className="tnx-sm cash-in">
-          <p id="cashin-amount">{summary.cashInAmount}</p>
-          <span />
-          <p>
-            <span>Cash-In Total Value</span>
-          </p>
-        </div>
-        <div className="tnx-sm cash-in">
-          <p id="cashin-count">{summary.cashInCount}</p>
-          <span />
-          <p>
-            <span>Cash-In Total Count</span>
-          </p>
-        </div>
-        <div className="tnx-sm cash-in">
-          <p id="cashin-uniq">{summary.cashInUnique}</p>
-          <span />
-          <p>
-            <span>Cash-In Unique Customers</span>
-          </p>
-        </div>
-
-        <div className="tnx-sm cash-out">
-          <p id="cashout-amount">{summary.cashOutAmount}</p>
-          <span />
-          <p>
-            <span>Cash-Out Total Value</span>
-          </p>
-        </div>
-        <div className="tnx-sm cash-out">
-          <p id="cashout-count">{summary.cashOutCount}</p>
-          <span />
-          <p>
-            <span>Cash-Out Total Count</span>
-          </p>
-        </div>
-        <div className="tnx-sm cash-out">
-          <p id="cashout-uniq">{summary.cashOutUnique}</p>
-          <span />
-          <p>
-            <span>Cash-Out Unique customers</span>
-          </p>
-        </div>
-
-        <div className="clearfix" />
-        <div className="tnx-footer" />
-      </div>
+      <Summary />
 
       <div id="tnx-graph" className="text-center col-md-9 col-sm-8">
         <div className="tnx-ema">
@@ -149,13 +62,12 @@ const Dashboard = ({
           <div className="tab-content">
             <div id="trend-amount" className="tab-pane fade in active">
               <div className="tnx">
-                <canvas id="trendAmountChart" />
+                <TrendsAmountChart />
                 <div id="trendAmountChartLegend" className="tnx-footer" />
               </div>
             </div>
             <div id="trend-count" className="tab-pane fade">
               <div className="tnx">
-                <canvas id="trendCountChart" />
                 <div id="trendCountChartLegend" className="tnx-footer" />
               </div>
             </div>
@@ -170,8 +82,7 @@ const Dashboard = ({
             <div className="tab-content">
               <div id="institutions-in" className="tab-pane active">
                 <div className="tnx">
-                  {/*<canvas id="cashinChart" />*/}
-                  <InsitutionsCashInChart data={trendsByInstitution} />
+                  <InsitutionsCashInChart />
                   <div id="cashinChartLegend" className="tnx-footer" />
                 </div>
               </div>
@@ -201,18 +112,7 @@ const Dashboard = ({
                       </tr>
                     </thead>
                     <tbody>
-                      {errors.results.map((error) => {
-                        const count = summary.cashInCount + summary.cashOutCount;
-                        const rate = count / (errors.total * 100);
-                        return (
-                          <ErrorRow
-                            key={error.statusSource}
-                            error={error}
-                            count={count}
-                            rate={rate}
-                          />
-                        );
-                      })}
+                      <Errors />
                     </tbody>
                   </table>
                   <div className="tnx-footer" />
@@ -231,14 +131,10 @@ const Dashboard = ({
 export default compose(withHandlers({
   onSubmit: props => (event) => {
     event.preventDefault();
-    const params = serialize(event.target);
+    const params = serialize(event.target, { hash: true });
     props.fetchSummary(params);
-  }
-}), boundLifecycle({
-  didMount: (props) => {
-    props.fetchSummary();
-    props.fetchTrendsByDate();
-    props.fetchTrendsByInstitution();
-    props.fetchErrors();
+    props.fetchTrendsByDate(params);
+    props.fetchTrendsByInstitution(params);
+    props.fetchErrors(params);
   }
 }))(Dashboard);

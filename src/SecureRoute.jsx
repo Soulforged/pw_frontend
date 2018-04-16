@@ -9,11 +9,11 @@ type Props = {
   location: string
 };
 
-const Comp = ({ component: Component, ...rest }: {component: any}) => (
+const Comp = ({ component: Component, session, ...rest }: {component: any}) => (
   <Route
     {...rest}
     render={(props: Props) => {
-      if (localStorage.getItem("user")) {
+      if (session.user) {
         return <Component {...props} />;
       }
       return <Redirect to={{ pathname: "/login", state: { from: props.location } }} />;
@@ -21,7 +21,7 @@ const Comp = ({ component: Component, ...rest }: {component: any}) => (
   />
 );
 
-const mapStateToProps = ({ session }: Session) => ({ session });
+const mapStateToProps = ({ session }: { session: Session }) => ({ session });
 
 const mapDispatchToProps = () => ({});
 

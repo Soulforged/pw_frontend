@@ -16,7 +16,6 @@ body {
   height: 100%;
   max-width: 100%;
   font-family: robotolight;
-  /*font-size: 13px;*/
   font-size: 0.9vw;
   background: #ffffff;
 }
@@ -284,6 +283,7 @@ hr {
 
 .usrnm-div {
   width: 100%;
+  height: 0px;
   z-index: 1;
   background-color: #666666;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
@@ -473,7 +473,6 @@ hr {
 }
 
 #wrapper_right {
-  width: calc(100% - 250px);
   float: right;
   padding: 0 15px;
 }
@@ -771,7 +770,7 @@ hr {
 
 .tnx-sm {
   width: 95%;
-  height: 109px;
+  height: 12%;
   margin: 5px 2.5% 20px;
   padding: 0 5px;
   float: left;
@@ -1366,10 +1365,11 @@ input:checked+.slider:before {
     margin-bottom: 0;
   }
   #wrapper_left {
-
+    width: 15%;
+    overflow: hidden;
   }
   #wrapper_right {
-    width: 100%;
+    width: calc(100% - 250px);
     margin-top: 54px;
   }
   #wrapper_top {

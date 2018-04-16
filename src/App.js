@@ -20,11 +20,11 @@ type Props = {
   history?: RouterHistory
 };
 
-const ThemeLinkC = ({ light }: { light: boolean }) => (
-  !light ? <link rel="stylesheet" type="text/css" href="/App.dark.css" /> : false
+const ThemeLinkC = ({ dark }: { dark: boolean }) => (
+  dark ? <link rel="stylesheet" type="text/css" href="/App.dark.css" /> : false
 );
 
-const ThemeLink = connect(({ ui: { light } }) => ({ light }))(ThemeLinkC);
+const ThemeLink = connect(({ ui: { dark } }) => ({ dark }))(ThemeLinkC);
 
 const App = ({ store, history }: Props) => (
   <Provider store={store}>

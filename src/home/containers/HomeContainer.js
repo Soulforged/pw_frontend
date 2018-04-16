@@ -1,10 +1,9 @@
 //@flow
 import { connect } from "react-redux";
-import type { Session } from "src/types";
 
 import Home from "../Home";
 
-const mapStateToProps = ({ session }: Session) => ({ session });
+const mapStateToProps = ({ ui: { menuCollapsed } }) => ({ menuCollapsed });
 
 const mapDispatchToProps = () => ({});
 
