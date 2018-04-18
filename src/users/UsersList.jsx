@@ -13,9 +13,9 @@ const columns = [
   { Header: "Primary email", accessor: "primaryEmail" },
   { Header: "Business unit", accessor: "businessUnitName" },
   { Header: "Role", accessor: "role" },
-  { Header: "Status", accessor: "status" },
-  { Header: "" },
-  { Header: "" }
+  { Header: "Status", accessor: "status", Cell: row => (row.value ? "Active" : "Inactive") },
+  { Header: "", Cell: () => <button className="btn">Edit</button> },
+  { Header: "", Cell: () => <button className="btn">Delete</button> }
 ];
 
 const data = users => (
@@ -33,7 +33,7 @@ const Component = (users) => {
       data={data(users)}
       columns={columns}
       className="-striped -highlight"
-      noDataText={(users.error && users.error.message) || "No data to show"}
+      noDataText={(users.error && users.error.expected && users.error.message) || "No data to show"}
     />
   );
 };

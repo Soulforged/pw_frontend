@@ -55,7 +55,7 @@ const defDatasets = [
   }
 ];
 
-const SpecLoading = () => <Loading style={{ height: "398px" }} />;
+const SpecLoading = () => <Loading style={{ height: "398px" }} loading />;
 
 const Chart = ({ trendsByDate }: { trendsByDate: Array<Object> }) => {
   const chartData = trendsByDate.reduce(({ labels, datasets }, trend) => (

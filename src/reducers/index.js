@@ -28,11 +28,9 @@ const initialState: State = {
   routes
 };
 
-const mapResponse = response => response.entities.users[response.result];
-
 const session = handleActions({
   [LOGIN_SUCCESS]: (state, { response }) => {
-    const user = mapResponse(response);
+    const user = response;
     localStorage.setItem("user", JSON.stringify(user));
     return { ...state, user };
   },

@@ -1,0 +1,13 @@
+{
+  "token": "token",
+  "details": {
+    "id": 115,
+    "userName": "testing1",
+    "mobileNumber": "254700886978",
+    "firstName": "TESTER",
+    "lastName": "TEST",
+    "status": 1,
+    "roleId": 9,
+    "roleName": "admin"
+  }
+}

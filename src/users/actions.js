@@ -1,5 +1,6 @@
 //@flow
 import { CALL_API } from "src/constants";
+import mocks from "src/mocks";
 import { user, list, error } from "./schemas";
 
 export const fetchUsers = () => ({
@@ -8,7 +9,7 @@ export const fetchUsers = () => ({
     endpoint: "/user/backofficeuser",
     schema: list(user),
     errorSchema: error,
-    key: "users"
+    key: "users",
   }
 });
 
@@ -22,7 +23,8 @@ export const fetchUserByCriteria = ({ criteria, filter }) => {
       endpoint: `/user/backofficeuser/${criteria}/${filter}`,
       schema: user,
       errorSchema: error,
-      key: "users"
+      key: "users",
+      mock: mocks.users
     }
   };
 };

@@ -34,8 +34,8 @@ const App = ({ store, history }: Props) => (
         <ConnectedRouter history={history}>
           <div>
             <Switch>
+              <Route path="/login" component={Login} />
               <SecureRoute path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
             </Switch>
             <Loading />
           </div>

@@ -9,7 +9,7 @@ type Config = {
   root: string
 };
 
-const sleep = (timeout = 500) => new Promise(resolve => setTimeout(resolve, timeout));
+const sleep = (timeout = 1500) => new Promise(resolve => setTimeout(resolve, timeout));
 
 async function emulate(mock) {
   await sleep();

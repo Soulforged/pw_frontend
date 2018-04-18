@@ -21,7 +21,7 @@ const List = ({ errors, summary }) => {
   const total = summary.cashInCount + summary.cashOutCount || 1;
   return errors.results.map((error) => {
     const count = error.cashInCount + error.cashOutCount;
-    const rate = ((count * 100) / (total * count)) || 0.0;
+    const rate = (count / (total + count)) * 100 || 0.0;
     return (
       <ErrorRow
         key={`${error.statusSource}_${error.statusDetail}`}

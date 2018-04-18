@@ -47,6 +47,7 @@ export const fetchErrors = prms => ({
   [CALL_API]: {
     types: ["DASHBOARD_ERRORS_REQUEST", DASHBOARD_ERRORS_SUCCESS, "DASHBOARD_ERRORS_FAILURE"],
     endpoint: `/bi/totals/transactions?date_from=${params(prms).dateFrom}&date_to=${params(prms).dateTo}&group_by=status&status=ERROR`,
+    mock: mocks.errors,
     key: "errors"
   }
 });

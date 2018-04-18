@@ -6,7 +6,9 @@ export default {
   summary: require("./data/summary.json"),
   trendsByDate: require("./data/trendsByDate.json"),
   trendsByInstitution: require("./data/trendsByInstitution.json"),
+  errors: require("./data/errors.json"),
   users: require("./data/users.json"),
+  login: require("./data/login.json"),
 };
 
 /* eslint-disable */
