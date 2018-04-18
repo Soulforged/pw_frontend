@@ -102,19 +102,7 @@ const Dashboard = ({ onSubmit }: Props) => (
               <div id="exceptions" className="tab-pane active">
                 <div className="tnx">
                   <p className="bold">EXCEPTIONS</p>
-                  <table className="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>INSTRUMENT</th>
-                        <th>TXN</th>
-                        <th>EXCEPTION COUNT</th>
-                        <th>EXCEPTION RATE</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <Errors />
-                    </tbody>
-                  </table>
+                  <Errors />
                   <div className="tnx-footer" />
                 </div>
               </div>

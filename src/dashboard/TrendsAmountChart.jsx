@@ -1,7 +1,9 @@
 //@flow
 import React from "react";
+import { compose, branch, renderComponent } from "recompose";
 import { boundLifecycle } from "recompose-ext";
 import { Line as LineChart } from "react-chartjs";
+import { Loading } from "src/components";
 
 const options = {
   responsive: true,
@@ -53,6 +55,8 @@ const defDatasets = [
   }
 ];
 
+const SpecLoading = () => <Loading style={{ height: "398px" }} />;
+
 const Chart = ({ trendsByDate }: { trendsByDate: Array<Object> }) => {
   const chartData = trendsByDate.reduce(({ labels, datasets }, trend) => (
     {
@@ -69,6 +73,7 @@ const Chart = ({ trendsByDate }: { trendsByDate: Array<Object> }) => {
   return <LineChart data={chartData} options={options} height="90px" />;
 };
 
-export default boundLifecycle({
-  didMount: ({ fetchTrendsByDate }) => fetchTrendsByDate()
-})(Chart);
+export default compose(
+  boundLifecycle({ didMount: ({ fetchTrendsByDate }) => fetchTrendsByDate() }),
+  branch(({ trendsByDate: { fetching } }) => fetching, renderComponent(SpecLoading))
+)(Chart);

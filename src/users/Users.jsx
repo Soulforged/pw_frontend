@@ -1,52 +1,43 @@
 //@flow
 import React from "react";
+import { withHandlers } from "recompose";
+import serialize from "form-serialize";
 import UsersList from "./containers/UsersListContainer";
 
-export default () => (
+const Component = ({ filter }: { filter: Object }) => (
   <div id="user-div">
     <div id="search-pnl" className="text-left">
-      <div id="filter-row" className="row">
-        <div className="col-md-2 col-sm-2">
-          <label htmlFor="rows">
-            Rows per page
-            <select id="rows" className="form-control" name="rows" defaultValue="15">
-              <option value="10">10 Rows</option>
-              <option value="15">15 Rows</option>
-              <option value="25">25 Rows</option>
-              <option value="50">50 Rows</option>
-              <option value="75">75 Rows</option>
-            </select>
-          </label>
-        </div>
-        <div className="col-md-3 col-sm-3">
-          <label htmlFor="criteria">
-            Search criteria
-            <select id="criteria" className="form-control" name="criteria" defaultValue="userName">
-              <option value="userName">User Name</option>
-              <option value="businessunit">Business Unit</option>
-            </select>
-          </label>
-        </div>
-        <div className="col-md-3 col-sm-3 txt-div">
-          <label htmlFor="filter" className="lbl">
-            Search text
-            <input id="filter" className="form-control" placeholder="Text to search" />
-          </label>
-        </div>
-        <div className="col-md-3 col-sm-3 slct-div hidden">
-          <label htmlFor="srch-bunit" className="lbl">
-            Business unit
-            <select className="form-control" name="srch-bunit" style={{ maxWidth: 250 }} />
-          </label>
-        </div>
-        <div className="col-md-1 col-sm-1 text-right">
-          <button id="filter-btn" className="btn">GO</button>
-        </div>
-
+      <div id="filter-row">
+        <form onSubmit={filter} className="row">
+          <div className="col-md-3 col-sm-3">
+            <label htmlFor="criteria">
+              Search criteria
+              <select id="criteria" className="form-control" name="criteria" defaultValue="userName">
+                <option value="userName">User Name</option>
+                <option value="businessunit">Business Unit</option>
+              </select>
+            </label>
+          </div>
+          <div className="col-md-4 col-sm-4 txt-div">
+            <label htmlFor="filter" className="lbl">
+              Search text
+              <input name="filter" className="form-control" placeholder="Text to search" />
+            </label>
+          </div>
+          <div className="col-md-4 col-sm-4 slct-div hidden">
+            <label htmlFor="srch-bunit" className="lbl">
+              Business unit
+              <select className="form-control" name="srch-bunit" />
+            </label>
+          </div>
+          <div className="col-md-1 col-sm-1 text-right">
+            <button id="filter-btn" className="btn" type="submit">GO</button>
+          </div>
+        </form>
       </div>
     </div>
 
-    <div id="main-pnl" className="pnls" data-attribute="administration">
+    <div id="main-pnl" className="pnls">
       <div id="trans-wrap">
         <h2 className="form-header trebuchet bold">Back Office User(s) List
           <span className="add-new-btn pointer pull-right bold">
@@ -56,26 +47,7 @@ export default () => (
         </h2>
 
         <div className="tbl-wrapper">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>UserName</th>
-                <th>Phone Number</th>
-                <th>Email</th>
-                <th>Business Unit</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th />
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              <UsersList />
-            </tbody>
-          </table>
+          <UsersList />
         </div>
       </div>
 
@@ -188,3 +160,11 @@ export default () => (
     </div>
   </div>
 );
+
+export default withHandlers({
+  filter: props => (event) => {
+    event.preventDefault();
+    const params = serialize(event.target, { hash: true });
+    props.fetchUserByCriteria(params);
+  }
+})(Component);

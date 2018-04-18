@@ -2,14 +2,14 @@
 import { connect } from "react-redux";
 import type { Dispatch } from "src/types";
 
-import { fetchUsers } from "../actions";
+import { fetchUserByCriteria } from "../actions";
 
 import Users from "../Users";
 
-const mapStateToProps = ({ entities: { users } }) => users;
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  fetchUsers: params => dispatch(fetchUsers(params)),
+  fetchUserByCriteria: params => dispatch(fetchUserByCriteria(params)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);

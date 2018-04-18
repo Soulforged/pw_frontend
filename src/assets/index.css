@@ -315,7 +315,7 @@ hr {
   margin-top: 15px;
 }
 
-.menu-nav li.active, .menu-nav li:hover {
+.menu-nav a.active, .menu-nav a:hover {
   color: #f05323;
 }
 
@@ -494,6 +494,7 @@ hr {
 .tbl-wrapper {
   width: 100%;
   overflow-x: auto;
+  min-height: 100px;
 }
 
 .tbl-wrapper table {
@@ -1149,27 +1150,18 @@ hr {
 }
 
 #loader, #m-loader {
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  position: fixed;
+  flex: 1;
   z-index: 100;
-  background-color: rgba(75, 75, 75, 0.2);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
-.loader, .m-loader {
-  width: 40px;
-  height: 40px;
+#loader > img {
+  align-self: center;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  top: 45%;
-  position: inherit;
-  left: 0;
-  right: 0;
-  margin: auto;
-  background: #fff url(./img/loader.GIF) no-repeat;
-  background-position: center;
-  background-size: 38px 38px;
 }
 
 #pagination {
@@ -1667,4 +1659,16 @@ span.inner-aggr {
 
 .bootstrap-tags ul.tags-suggestion-list {
   overflow: hidden;
+}
+
+div > label {
+  width: 100%;
+}
+
+label > input {
+  width: 100%;
+}
+
+label > select {
+  width: 100%;
 }

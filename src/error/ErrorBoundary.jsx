@@ -17,7 +17,7 @@ const onCatch = (error: Error, info: string, { setError }: Props) => {
 };
 
 const renderError = (error, setError) => {
-  if (error) {
+  if (error && !error.expected) {
     return (
       <div id="alertdiv2" className="text-center error">
         <span>{error.message}</span>

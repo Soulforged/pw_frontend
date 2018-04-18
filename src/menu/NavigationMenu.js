@@ -44,7 +44,12 @@ const UserMenuIcon = (props: UserMenuIconProps) => {
   );
 };
 
-const UserMenu = ({ onSignOut, style }: { onSignOut: Event => void, style: Object }) => (
+type UserMenuProps = {
+  onSignOut: Event => void,
+  style: Object
+};
+
+const UserMenu = ({ onSignOut, style }: UserMenuProps) => (
   <div className="usrnm-div" style={style}>
     <p>
       <a href="/#" className="change-pswd">Change Password</a>
@@ -83,7 +88,7 @@ const Component = (props: Props) => (
     <div className="left-down">
       <ul className="menu-nav">
         {props.routes.filter(route => !route.hidden).map(route => (
-          <li key={route.name}>
+          <li key={route.name} className="nav-tabs">
             <NavLink to={route.path}>
               <img src={images[route.name]} alt={route.name} />
               <span style={{ display: props.menuCollapsed ? "none" : "inline" }}>{route.title}</span>

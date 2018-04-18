@@ -1,7 +1,7 @@
 //@flow
 import { createActions } from "redux-actions";
 import { CALL_API } from "src/constants";
-import { User } from "src/schemas";
+import { user } from "src/users/schemas";
 import type { UserInfo, AppError } from "src/types";
 
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -13,7 +13,7 @@ const login = ({ username, password }: UserInfo) => ({ // eslint-disable-line
     types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
     endpoint: "/authenticate/generate-token",
     body: { user: username, password },
-    schema: User
+    schema: user
   }
 });
 

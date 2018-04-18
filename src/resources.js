@@ -7,7 +7,8 @@ export const images = {
   userSmall: require("assets/img/pegb-user-small.svg"),
   help: require("assets/img/help-support.svg"),
   dashboard: require("assets/img/dashboard.svg"),
-  users: require("assets/img/admin-icon.svg")
+  users: require("assets/img/admin-icon.svg"),
+  loader: require("assets/img/loader.gif")
 };
 
 /* eslint-disable */

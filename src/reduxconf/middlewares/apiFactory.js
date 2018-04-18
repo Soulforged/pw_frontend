@@ -9,29 +9,53 @@ type Config = {
   root: string
 };
 
-const checkStatus = (response) => {
-  if (!response.ok) {
-    return Promise.reject(new Error(response.message || "Unexpected error"));
-  }
-  return response.json();
-};
+const sleep = (timeout = 500) => new Promise(resolve => setTimeout(resolve, timeout));
 
-const callApi = (endpoint, { schema, body, mock }) => {
+async function emulate(mock) {
+  await sleep();
+  return mock;
+}
+
+const callApi = (endpoint, optParams) => {
+  const {
+    schema,
+    body,
+    mock,
+    errorSchema
+  } = optParams;
   const options = {
     credentials: "include",
-    body: JSON.stringify(body),
+    body: body && JSON.stringify(body),
     method: body ? "POST" : "GET",
     cache: "no-cache",
     headers: {
       accept: "application/json",
-      "content-type": "application/json"
+      "content-type": body ? "application/json" : "text/plain"
     }
+  };
+  const jsonError = (json) => {
+    if (errorSchema) {
+      return errorSchema(json);
+    }
+    return json;
+  };
+  const checkStatus = (response) => {
+    if (!response.ok) {
+      return response.json()
+        .then(jsonError)
+        .then(Promise.reject)
+        .catch((error) => {
+          console.log(error);
+          return Promise.reject(response);
+        });
+    }
+    return response.json();
   };
   const doNormalize = json => (
     schema ? normalize(camelizeKeys(json), schema) : camelizeKeys(json)
   );
   if (mock){
-    return Promise.resolve(mock).then(doNormalize);
+    return emulate(doNormalize(mock));
   }
   return fetch(endpoint, options)
     .then(checkStatus)
@@ -47,10 +71,8 @@ export default (config: Config) => (
 
     let { endpoint } = callAPI; // eslint-disable-line immutable/no-let
     const {
-      schema,
       types,
-      body,
-      mock
+      key
     } = callAPI;
 
     if (typeof endpoint === "function") {
@@ -70,7 +92,7 @@ export default (config: Config) => (
     }
 
     const actionWith = (data) => {
-      const finalAction = { ...action, ...data };
+      const finalAction = { ...action, ...data, key };
       delete finalAction[CALL_API];
       return finalAction;
     };
@@ -78,7 +100,7 @@ export default (config: Config) => (
     const [requestType, successType, failureType] = types;
     next(actionWith({ type: requestType }));
 
-    return (callApi(config.root + endpoint, { schema, body, mock }).then(
+    return (callApi(config.root + endpoint, callAPI).then(
       (response: Object) => next(actionWith({ response, type: successType })),
       (error: Object) => next(actionWith({
         type: failureType,

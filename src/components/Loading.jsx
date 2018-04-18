@@ -1,14 +1,9 @@
 //@flow
 import React from "react";
+import { images } from "src/resources";
 
-type Props = {
-  loading: boolean
-}
-
-export default ({ loading }: Props) => (
-  loading ?
-    <div id="loader">
-      <div className="loader" />
-    </div>
-    : false
+export default ({ style }: { style: Object }) => (
+  <div id="loader" style={style}>
+    <img src={images.loader} className="loader" alt="loading something..." />
+  </div>
 );

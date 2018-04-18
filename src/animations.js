@@ -4,9 +4,11 @@ export const slideTransition = (duration, key, initialValue, endValue, state) =>
   const transitions = {
     entering: { [key]: initialValue, display: "block", opacity: 0 },
     entered: { [key]: endValue, display: "block", opacity: 1 },
+    exiting: { [key]: endValue, display: "block", opacity: 1 },
+    exited: { [key]: initialValue, display: "none", opacity: 0 },
   };
   return {
-    transition: `opacity ${key} ${duration}ms ease-in-out`,
+    transition: `${key} ${duration}ms ease-in-out, opacity ${duration}ms ease-in-out`,
     [key]: initialValue,
     display: "none",
     opacity: 0,

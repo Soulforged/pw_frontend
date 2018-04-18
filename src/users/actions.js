@@ -1,11 +1,28 @@
 //@flow
 import { CALL_API } from "src/constants";
-import { usersSchema } from "./schemas";
+import { user, list, error } from "./schemas";
 
-export const fetchUsers = prms => ({ // eslint-disable-line
+export const fetchUsers = () => ({
   [CALL_API]: {
-    types: ["USERS_REQUEST", "USERS_SUCCESS", "USERS_FAILURE"],
+    types: ["@@entities/USERS_REQUEST", "@@entities/USERS_SUCCESS", "@@entities/USERS_FAILURE"],
     endpoint: "/user/backofficeuser",
-    schema: usersSchema
+    schema: list(user),
+    errorSchema: error,
+    key: "users"
   }
 });
+
+export const fetchUserByCriteria = ({ criteria, filter }) => {
+  if (!filter) {
+    return fetchUsers();
+  }
+  return {
+    [CALL_API]: {
+      types: ["@@entities/USERS_FILTER_REQUEST", "@@entities/USERS_FILTER_SUCCESS", "@@entities/USERS_FILTER_FAILURE"],
+      endpoint: `/user/backofficeuser/${criteria}/${filter}`,
+      schema: user,
+      errorSchema: error,
+      key: "users"
+    }
+  };
+};
