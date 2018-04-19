@@ -6,7 +6,7 @@ import { fetchUserByCriteria } from "../actions";
 
 import Users from "../Users";
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({ ui: { editionItem } }) => ({ editionItem });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchUserByCriteria: params => dispatch(fetchUserByCriteria(params)),

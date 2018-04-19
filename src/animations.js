@@ -28,3 +28,16 @@ export const shirnkTransition = (duration, key, initialValue, endValue, state) =
     ...transitions[state]
   };
 };
+
+export const fadeInTransition = (duration, state) => {
+  const transitions = {
+    entering: { opacity: 0, display: "block" },
+    entered: { opacity: 1, display: "block" },
+  };
+  return {
+    transition: `opacity ${duration}ms ease-in-out`,
+    display: "none",
+    opacity: 0,
+    ...transitions[state]
+  };
+};

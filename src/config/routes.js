@@ -1,6 +1,6 @@
 //@flow
 import { Dashboard } from "src/dashboard";
-import { Users } from "src/users";
+import { Users, UserForm } from "src/users";
 
 export default [
   {
@@ -21,5 +21,19 @@ export default [
     name: "users",
     title: "Users",
     component: Users
+  },
+  {
+    path: "/users/:id/edit",
+    name: "users_edit",
+    title: "User edition",
+    component: UserForm,
+    hidden: true
+  },
+  {
+    path: "/users/:id/new",
+    name: "users_create",
+    title: "New user",
+    component: UserForm,
+    hidden: true
   }
 ];

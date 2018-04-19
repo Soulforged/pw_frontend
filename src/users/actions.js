@@ -1,7 +1,16 @@
 //@flow
 import { CALL_API } from "src/constants";
-import mocks from "src/mocks";
 import { user, list, error } from "./schemas";
+
+export const fetchUser = id => ({
+  [CALL_API]: {
+    types: ["@@entities/USER_REQUEST", "@@entities/USER_SUCCESS", "@@entities/USER_FAILURE"],
+    endpoint: `/user/backofficeuser/${id}`,
+    schema: user,
+    errorSchema: error,
+    key: "users",
+  }
+});
 
 export const fetchUsers = () => ({
   [CALL_API]: {
@@ -24,7 +33,6 @@ export const fetchUserByCriteria = ({ criteria, filter }) => {
       schema: user,
       errorSchema: error,
       key: "users",
-      mock: mocks.users
     }
   };
 };

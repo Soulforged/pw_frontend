@@ -3,8 +3,9 @@ import React from "react";
 import { withHandlers } from "recompose";
 import serialize from "form-serialize";
 import UsersList from "./containers/UsersListContainer";
+import UserDetails from "./containers/UserDetailsContainer";
 
-const Component = ({ filter }: { filter: Object }) => (
+const MainComponent = ({ filter }: { filter: Object }) => (
   <div id="user-div">
     <div id="search-pnl" className="text-left">
       <div id="filter-row">
@@ -39,123 +40,18 @@ const Component = ({ filter }: { filter: Object }) => (
 
     <div id="main-pnl" className="pnls">
       <div id="trans-wrap">
-        <h2 className="form-header trebuchet bold">Back Office User(s) List
+        <h4 className="form-header trebuchet bold">Back Office User(s) List
           <span className="add-new-btn pointer pull-right bold">
             <i className="fa fa-plus theme" />
             New User
           </span>
-        </h2>
+        </h4>
 
         <div className="tbl-wrapper">
           <UsersList />
         </div>
-      </div>
 
-      <div id="trans-new" style={{ display: "none" }}>
-        <h2 className="form-header trebuchet text-center bold">
-          New Back Office User
-          <span className="add-new pointer pull-right bold">
-            <i className="fa fa-close theme" />
-          </span>
-        </h2>
-        <div className="add-pnl-cnt">
-          <form id="user_frm">
-            <article className="row modal-p">
-              <div className="col-md-6 col-sm-6">
-                <label htmlFor="usertype">
-                  User Type
-                  <select id="usertype" className="form-control" name="usertype" required defaultValue="1">
-                    <option value="">Choose a User Type</option>
-                    <option value="1">Business User</option>
-                  </select>
-                </label>
-              </div>
-            </article>
-            <article className="row modal-p">
-              <div className="col-md-6 col-sm-6">
-                <label htmlFor="fname">
-                  First Name:
-                  <input id="fname" className="form-control" name="fname" required placeholder="First Name" />
-                </label>
-              </div>
-            </article>
-            <article className="row modal-p">
-              <div className="col-md-6 col-sm-6">
-                <label htmlFor="mname">
-                  Middle Name:
-                  <input id="mname" className="form-control" name="mname" placeholder="Middle Name (Optional)" />
-                </label>
-              </div>
-            </article>
-            <article className="row modal-p">
-              <div className="col-md-6 col-sm-6">
-                <label htmlFor="lname">
-                  Last Name:
-                  <input id="lname" className="form-control" name="lname" required placeholder="Last Name" />
-                </label>
-              </div>
-            </article>
-            <article className="row modal-p">
-              <div className="col-md-6 col-sm-6">
-                <label htmlFor="uname">
-                  UserName:
-                  <input id="uname" className="form-control" name="uname" required placeholder="UserName" />
-                </label>
-              </div>
-            </article>
-            <article className="row modal-p">
-              <div className="col-md-6 col-sm-6">
-                <label htmlFor="phone">
-                  Phone Number:
-                  <input id="phone" className="form-control" name="phone" required placeholder="Phone Number" />
-                </label>
-              </div>
-            </article>
-            <article className="row modal-p">
-              <div className="col-md-6 col-sm-6">
-                <label htmlFor="email">
-                  Email:
-                  <input id="email" className="form-control" name="email" placeholder="Email (Optional)" />
-                </label>
-              </div>
-            </article>
-            <article className="row modal-p hidden">
-              <div className="col-md-6 col-sm-6">
-                <label htmlFor="status">
-                  Status
-                  <select id="status" className="form-control" name="status" defaultValue="1">
-                    <option value="1">Active</option>
-                    <option value="0">Inactive</option>
-                  </select>
-                </label>
-              </div>
-            </article>
-            <article className="row modal-p">
-              <div className="col-md-6 col-sm-6">
-                <label htmlFor="bunit">
-                  Business Unit
-                  <select id="bunit" className="form-control" name="bunit">
-                    <option value="">Choose a Business Unit</option>
-                  </select>
-                </label>
-              </div>
-            </article>
-            <article className="row modal-p">
-              <div className="col-md-6 col-sm-6">
-                <label htmlFor="role">
-                  Role
-                  <select id="role" className="form-control" name="role">
-                    <option value="">Choose a Role</option>
-                  </select>
-                </label>
-              </div>
-            </article>
-            <hr />
-            <article className="row modal-p text-center">
-              <input type="submit" className="btn btn-default" value="SAVE" />
-            </article>
-          </form>
-        </div>
+        <UserDetails />
       </div>
     </div>
   </div>
@@ -167,4 +63,4 @@ export default withHandlers({
     const params = serialize(event.target, { hash: true });
     props.fetchUserByCriteria(params);
   }
-})(Component);
+})(MainComponent);

@@ -48,7 +48,7 @@ const App = ({ store, history }: Props) => (
 const defaultHistory = createHistory();
 App.defaultProps = {
   history: defaultHistory,
-  store: createStore({ defaultHistory, logActions: true })
+  store: createStore({ history: defaultHistory, logActions: true })
 };
 
 export default App;

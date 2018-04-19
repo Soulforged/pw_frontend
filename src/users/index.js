@@ -1,5 +1,6 @@
 //@flow
 
 import Users from "./containers/UsersContainer";
+import UserForm from "./containers/UserFormContainer";
 
-export { Users }; // eslint-disable-line
+export { Users, UserForm };
