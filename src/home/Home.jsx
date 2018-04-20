@@ -11,10 +11,10 @@ export default ({ menuCollapsed }: { menuCollapsed: boolean }) => (
   <Transition in={!menuCollapsed} timeout={defDuration}>
     {state => (
       <div id="wrapper">
-        <div id="wrapper_left" className="text-center" style={shirnkTransition(defDuration, "width", "3%", "13%", state)}>
+        <div id="wrapper_left" className="text-center" style={shirnkTransition(defDuration, "width", "4%", "14%", state)}>
           <NavigationMenu />
         </div>
-        <div id="wrapper_right" style={shirnkTransition(defDuration, "width", "97%", "87%", state)}>
+        <div id="wrapper_right" style={shirnkTransition(defDuration, "width", "96%", "86%", state)}>
           <MainNavigation />
         </div>
       </div>

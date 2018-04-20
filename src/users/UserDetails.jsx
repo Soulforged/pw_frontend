@@ -36,7 +36,7 @@ const Details = ({ selected, editItem }: Props) => (
         <span className="col-sm-3">Business unit:</span>
         <span className="col-sm-3">{selected.businessUnitName}</span>
         <span className="col-sm-3">Role:</span>
-        <span className="col-sm-3">{selected.role}</span>
+        <span className="col-sm-3">{selected.roleName}</span>
       </div>
     </div>
     : <div className="modal-p details">No data to show</div>
@@ -54,8 +54,5 @@ const Component = ({ selected, editItem }: { selected: Object, editItem: () => v
 );
 
 export default withHandlers({
-  editItem: props => () => {
-    console.log(props);
-    props.openForm(props.selected.id);
-  }
+  editItem: props => () => props.openForm(props.selected.id)
 })(Component);

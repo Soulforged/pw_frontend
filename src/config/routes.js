@@ -30,7 +30,7 @@ export default [
     hidden: true
   },
   {
-    path: "/users/:id/new",
+    path: "/users/new",
     name: "users_create",
     title: "New user",
     component: UserForm,

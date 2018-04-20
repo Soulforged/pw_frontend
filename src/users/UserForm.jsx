@@ -1,7 +1,9 @@
 //@flow
 import React from "react";
 import { Form, Text, Select } from "react-form";
+import { branch, compose, renderComponent } from "recompose";
 import { boundLifecycle } from "src/recompose-ext";
+import { Loading } from "src/components";
 
 const statusOptions = [
   { label: "Active", value: 1 },
@@ -13,11 +15,21 @@ const roleOptions = [
   { label: "A role", value: 1 }
 ];
 
-const Component = ({ item }: { item: Object }) => (
+type Props = {
+  item: Object,
+  saveUser: (Object) => void,
+  saving: boolean
+};
+
+const ButtonOrLoading = ({ saving }: { saving: boolean }) => (
+  saving ? <Loading loading /> : <button type="submit" className="btn btn-default">SAVE</button>
+);
+
+const Component = ({ item, saveUser, saving }: Props) => (
   <div id="main-pnl" className="pnls">
-    <h4>{item ? `Details for ${item.id}` : "New user"}</h4>
+    <h4>{item.id ? `Edit user ${item.id}` : "New user"}</h4>
     <div className="add-pnl-cnt">
-      <Form onSubmit={submittedValues => console.log(submittedValues)} defaultValues={item}>
+      <Form onSubmit={submittedValues => saveUser(submittedValues)} defaultValues={item}>
         {formApi => (
           <form id="user_frm" onSubmit={formApi.submitForm} disabled>
             <div className="row">
@@ -76,7 +88,6 @@ const Component = ({ item }: { item: Object }) => (
                   className="form-control"
                   field="primaryEmail"
                   placeholder="Email (Optional)"
-                  required
                 />
               </label>
             </div>
@@ -113,9 +124,8 @@ const Component = ({ item }: { item: Object }) => (
                 />
               </label>
             </div>
-            <hr />
             <article className="row modal-p pull-right">
-              <button type="submit" className="btn btn-default">SAVE</button>
+              <ButtonOrLoading saving={saving} />
             </article>
           </form>
         )}
@@ -124,6 +134,13 @@ const Component = ({ item }: { item: Object }) => (
   </div>
 );
 
-export default boundLifecycle({
-  didMount: ({ id, fetchUser }) => fetchUser(id)
-})(Component);
+const SpecLoading = () => <Loading loading />;
+const NoData = () => <div id="main-pnl" className="pnls">User not found</div>;
+
+export default compose(
+  boundLifecycle({
+    didMount: ({ id, fetchUser, item }) => !item && fetchUser(id)
+  }),
+  branch(({ fetching }) => fetching, renderComponent(SpecLoading)),
+  branch(({ item }) => item == null, renderComponent(NoData))
+)(Component);

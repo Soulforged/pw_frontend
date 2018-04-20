@@ -19,13 +19,13 @@ const columns = [
   { Header: "Mobile number", accessor: "mobileNumber" },
   { Header: "Primary email", accessor: "primaryEmail" },
   { Header: "Business unit", accessor: "businessUnitName" },
-  { Header: "Role", accessor: "role" },
+  { Header: "Role", accessor: "roleName" },
   { Header: "Status", accessor: "status", Cell: ActiveCell },
 ];
 
 const data = users => (
   !users.error && users.lastResultIds ?
-    users.lastResultIds.map(username => users.byId[username])
+    users.lastResultIds.map(id => users.byId[id])
     : []
 );
 
@@ -54,5 +54,5 @@ export default compose(
   boundLifecycle({
     didMount: ({ fetchUsers }) => fetchUsers()
   }),
-  branch(props => props.fetching, renderComponent(SpecLoading))
+  branch(({ users }) => users.fetching, renderComponent(SpecLoading))
 )(Component);

@@ -1,0 +1,13 @@
+{
+  "id": 117,
+  "userName": "robert",
+  "primaryEmail": "robert@merchant8.com",
+  "mobileNumber": "254700156952",
+  "firstName": "SAMPLE",
+  "lastName": "DOE",
+  "description": "New User",
+  "status": 1,
+  "activeLanguage": "0",
+  "roleId": 9,
+  "roleName": "admin"
+}

@@ -1,16 +1,26 @@
 //@flow
 import { connect } from "react-redux";
+import { matchPath } from "react-router";
 import type { Dispatch } from "src/types";
-import { fetchUser } from "../actions";
+import { fetchUser, saveUser } from "../actions";
 import UserForm from "../UserForm";
 
-const mapStateToProps = ({ routing: { location: { id } }, entities }) => ({
-  id,
-  item: entities.users.byId[id]
-});
+const mapStateToProps = ({ routing: { location: { pathname } }, entities: { users } }) => {
+  const match = matchPath(pathname, { path: "/users/:id?(/edit|new)" });
+  const params = match ? match.params : null;
+  const id = params ? params.id : null;
+  const item = id ? users.byId && users.byId[id] : {};
+  return {
+    id,
+    item,
+    fetching: users.fetching,
+    saving: users.saving
+  };
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  fetchUser: id => dispatch(fetchUser(id))
+  fetchUser: id => dispatch(fetchUser(id)),
+  saveUser: body => dispatch(saveUser(body)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserForm);

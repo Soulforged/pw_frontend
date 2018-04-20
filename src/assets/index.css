@@ -659,6 +659,7 @@ hr {
   border-bottom: 1px solid #ccc;
   padding: 15px 15px 10px;
   margin: 0 -10px;
+  font-size: 0.95vw;
 }
 
 #csv-export {
@@ -1342,6 +1343,7 @@ input:checked+.slider:before {
   .tnx-sm {
     width: 95%;
   }
+
   .tnx-lg {
     width: 100%;
     margin: 0 0 15px;
@@ -1395,7 +1397,7 @@ input:checked+.slider:before {
     font-size: 8px;
   }
   .form-header {
-    font-size: 12px;
+    font-size: 0.95vw;
   }
   .ema-left p {
     font-size: 13px;
@@ -1675,7 +1677,7 @@ label > select {
 }
 
 .details {
-  font-size: 0.8vw;
+  font-size: 0.9vw;
 }
 
 .details .row {

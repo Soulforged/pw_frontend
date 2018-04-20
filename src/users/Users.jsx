@@ -5,7 +5,7 @@ import serialize from "form-serialize";
 import UsersList from "./containers/UsersListContainer";
 import UserDetails from "./containers/UserDetailsContainer";
 
-const MainComponent = ({ filter }: { filter: Object }) => (
+const MainComponent = ({ filter, create }: { filter: () => void, create: () => void }) => (
   <div id="user-div">
     <div id="search-pnl" className="text-left">
       <div id="filter-row">
@@ -41,10 +41,10 @@ const MainComponent = ({ filter }: { filter: Object }) => (
     <div id="main-pnl" className="pnls">
       <div id="trans-wrap">
         <h4 className="form-header trebuchet bold">Back Office User(s) List
-          <span className="add-new-btn pointer pull-right bold">
+          <button className="add-new-btn pointer pull-right bold" onClick={create}>
             <i className="fa fa-plus theme" />
             New User
-          </span>
+          </button>
         </h4>
 
         <div className="tbl-wrapper">
@@ -62,5 +62,6 @@ export default withHandlers({
     event.preventDefault();
     const params = serialize(event.target, { hash: true });
     props.fetchUserByCriteria(params);
-  }
+  },
+  create: ({ openForm }) => () => openForm()
 })(MainComponent);

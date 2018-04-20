@@ -4,8 +4,8 @@ import routes from "src/config/routes";
 import type { FeatureRoute } from "src/types";
 import actions from "src/actions";
 
-import error from "./ErrorReducer";
-import entities from "./EntitiesReducer";
+import error from "./errorReducer";
+import entities from "./entitiesReducer";
 
 const {
   LOGIN_SUCCESS,

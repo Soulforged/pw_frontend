@@ -9,24 +9,26 @@ type Config = {
   root: string
 };
 
-const sleep = (timeout = 1500) => new Promise(resolve => setTimeout(resolve, timeout));
+const sleep = (timeout = 500) => new Promise(resolve => setTimeout(resolve, timeout));
 
 async function emulate(mock) {
   await sleep();
   return mock;
 }
 
-const callApi = (endpoint, optParams) => {
+const callApi = (endpoint, dispatch, optParams) => {
   const {
     schema,
     body,
     mock,
-    errorSchema
+    errorSchema,
+    update,
   } = optParams;
+  const updateMethod = update ? "PUT" : "POST";
   const options = {
     credentials: "include",
     body: body && JSON.stringify(body),
-    method: body ? "POST" : "GET",
+    method: body ? updateMethod : "GET",
     cache: "no-cache",
     headers: {
       accept: "application/json",
@@ -70,10 +72,7 @@ export default (config: Config) => (
     }
 
     let { endpoint } = callAPI; // eslint-disable-line immutable/no-let
-    const {
-      types,
-      key
-    } = callAPI;
+    const { types, key, after } = callAPI;
 
     if (typeof endpoint === "function") {
       endpoint = endpoint(store.getState());
@@ -100,8 +99,14 @@ export default (config: Config) => (
     const [requestType, successType, failureType] = types;
     next(actionWith({ type: requestType }));
 
-    return (callApi(config.root + endpoint, callAPI).then(
-      (response: Object) => next(actionWith({ response, type: successType })),
+    return (callApi(config.root + endpoint, next, callAPI).then(
+      (response: Object) => {
+        const n = next(actionWith({ response, type: successType }));
+        if (after){
+          return after(next, response);
+        }
+        return n;
+      },
       (error: Object) => next(actionWith({
         type: failureType,
         error: error || new Error("Unexpected error")
