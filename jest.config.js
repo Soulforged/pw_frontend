@@ -4,7 +4,8 @@ module.exports = {
   ],
   setupFiles: [
     "<rootDir>/config/polyfills.js",
-    "<rootDir>/__tests__/setup.js"
+    "<rootDir>/__tests__/setup.js",
+    "jest-localstorage-mock"
   ],
   testMatch: [
     "<rootDir>/__tests__/**/*.{js,jsx,mjs}"

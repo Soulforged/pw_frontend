@@ -35,7 +35,6 @@ const login = ({ username, password }: UserInfo) => ({ // eslint-disable-line
 const syncActions = createActions({
   SET_ERROR: (error: AppError) => error,
   LOGOUT: () => ({}),
-  SET_LOADING: (loading: boolean) => loading,
   TOGGLE_THEME: () => ({}),
   TOGGLE_MENU: () => ({}),
   TOGGLE_USER_MENU: () => ({}),

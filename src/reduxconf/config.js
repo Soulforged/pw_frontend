@@ -3,7 +3,7 @@ import { combineReducers, createStore, applyMiddleware } from "redux";
 import { routerReducer } from "react-router-redux";
 import reducers from "src/reducers";
 import dashboard from "src/dashboard/reducers";
-import middlewares from "./middlewares";
+import middlewares from "./middlewaresConfig";
 
 export default (config: Object = {}) => {
   const rootReducer = combineReducers({

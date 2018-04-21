@@ -11,7 +11,6 @@ const {
   LOGIN_SUCCESS,
   LOGIN_REQUEST,
   LOGIN_FAILURE,
-  setLoading,
   logout,
   toggleTheme,
   toggleMenu,
@@ -42,10 +41,6 @@ const session = handleActions({
   }
 }, initialState);
 
-const loading = handleActions({
-  [setLoading]: (state, newState) => newState
-}, false);
-
 const uiInitialState = {
   dark: localStorage.getItem("dark") === "true" || false,
   menuCollapsed: localStorage.getItem("menuCollapsed") === "true" || false
@@ -67,6 +62,5 @@ export default {
   error,
   entities,
   session,
-  loading,
   ui
 };

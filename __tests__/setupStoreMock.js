@@ -1,8 +1,7 @@
 //@flow
 import configureStore from "redux-mock-store";
-import thunk from "redux-thunk";
+import middlewares from "src/reduxconf/middlewaresConfig";
 
-const middlewares = [thunk]; // you can mock any middlewares here if necessary
-const mockStore = configureStore(middlewares);
+const mockStore = configureStore(middlewares());
 
 export default mockStore;
