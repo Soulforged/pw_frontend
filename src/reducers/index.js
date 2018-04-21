@@ -16,7 +16,6 @@ const {
   toggleTheme,
   toggleMenu,
   toggleUserMenu,
-  setSelected,
 } = actions;
 
 type State = {
@@ -62,7 +61,6 @@ const ui = handleActions({
   [toggleTheme]: state => toggleReducer(state, "dark"),
   [toggleMenu]: state => toggleReducer(state, "menuCollapsed"),
   [toggleUserMenu]: state => toggleReducer(state, "userMenuCollapsed"),
-  [setSelected]: (state, { payload }) => ({ ...state, selected: payload })
 }, uiInitialState);
 
 export default {

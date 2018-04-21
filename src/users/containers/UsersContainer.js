@@ -10,7 +10,7 @@ const mapStateToProps = ({ ui: { editionItem } }) => ({ editionItem });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchUserByCriteria: params => dispatch(fetchUserByCriteria(params)),
-  openForm: () => dispatch(push("/users/new"))
+  openForm: () => dispatch(push("/new/users"))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);

@@ -2,5 +2,6 @@
 
 import Users from "./containers/UsersContainer";
 import UserForm from "./containers/UserFormContainer";
+import UserDetails from "./containers/UserDetailsContainer";
 
-export { Users, UserForm };
+export { Users, UserForm, UserDetails };

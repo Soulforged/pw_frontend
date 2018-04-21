@@ -3,7 +3,6 @@ import React from "react";
 import { withHandlers } from "recompose";
 import serialize from "form-serialize";
 import UsersList from "./containers/UsersListContainer";
-import UserDetails from "./containers/UserDetailsContainer";
 
 const MainComponent = ({ filter, create }: { filter: () => void, create: () => void }) => (
   <div id="user-div">
@@ -50,8 +49,6 @@ const MainComponent = ({ filter, create }: { filter: () => void, create: () => v
         <div className="tbl-wrapper">
           <UsersList />
         </div>
-
-        <UserDetails />
       </div>
     </div>
   </div>

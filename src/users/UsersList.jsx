@@ -31,18 +31,19 @@ const data = users => (
 
 type Props = {
   users: Object,
-  setSelected: (row: Object) => void
+  showDetails: (id: integer) => void
 }
 
-const Component = ({ users, setSelected }: Props) => (
+const Component = ({ users, showDetails }: Props) => (
   <ReactTable
     data={data(users)}
     columns={columns}
     className="-striped -highlight tbl-wrapper table table-striped"
     noDataText={(users.error && users.error.expected && users.error.message) || "No data to show"}
+    defaultPageSize={10}
     getTrProps={(state, rowInfo) => (
       {
-        onClick: () => setSelected(rowInfo.original)
+        onClick: () => showDetails(rowInfo.original.id)
       }
     )}
   />

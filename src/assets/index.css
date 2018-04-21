@@ -955,10 +955,6 @@ hr {
   margin: 0 -5px 0px 15px;
 }
 
-#filter-row .col-sm-6 {
-  padding: 0 5px;
-}
-
 #filter-row label {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -1073,9 +1069,10 @@ hr {
 .pnls {
   border: 1px solid #ddd;
   border-radius: 3px;
-  padding: 0 10px;
+  padding: 10px;
   box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2);
   background: #fff;
+  margin-bottom: 10px;
 }
 
 #main-pnl tbody .assign, #main-pnl tbody .edit, #main-pnl tbody .edit-btn {

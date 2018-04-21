@@ -39,7 +39,6 @@ const syncActions = createActions({
   TOGGLE_THEME: () => ({}),
   TOGGLE_MENU: () => ({}),
   TOGGLE_USER_MENU: () => ({}),
-  SET_SELECTED: item => item,
 });
 
 export default {

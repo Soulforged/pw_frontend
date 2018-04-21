@@ -21,7 +21,7 @@ type Props = {
 };
 
 const ThemeLinkC = ({ dark }: { dark: boolean }) => (
-  dark ? <link rel="stylesheet" type="text/css" href="/App.dark.css" /> : false
+  dark ? <link rel="stylesheet" type="text/css" href="/AppDark.css" /> : false
 );
 
 const ThemeLink = connect(({ ui: { dark } }) => ({ dark }))(ThemeLinkC);

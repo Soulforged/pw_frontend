@@ -1,17 +1,15 @@
 //@flow
 import { connect } from "react-redux";
+import { push } from "react-router-redux";
 import type { Dispatch } from "src/types";
-import actions from "src/actions";
 import { fetchUsers } from "../actions";
 import UsersList from "../UsersList";
-
-const { setSelected } = actions;
 
 const mapStateToProps = ({ entities: { users } }) => ({ users });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  fetchUsers: params => dispatch(fetchUsers(params)),
-  setSelected: row => dispatch(setSelected(row))
+  fetchUsers: () => dispatch(fetchUsers()),
+  showDetails: id => dispatch(push(`/users/${id}`))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersList);
