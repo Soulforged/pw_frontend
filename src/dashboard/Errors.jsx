@@ -1,6 +1,6 @@
 //@flow
 import React from "react";
-import { boundLifecycle } from "recompose-ext";
+import { boundLifecycle } from "src/recompose-ext";
 import { Loading } from "src/components";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
   summary: Object
 };
 
-const ErrorRow = ({ error, count, rate }: { error: Object, count: integer, rate: float }) => (
+const ErrorRow = ({ error, count, rate }: { error: Object, count: number, rate: number }) => (
   <tr>
     <td><span>{error.status}</span></td>
     <td><span>{error.statusSource}</span></td>

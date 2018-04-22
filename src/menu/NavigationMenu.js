@@ -5,7 +5,7 @@ import { images } from "src/resources";
 import type { FeatureRoute } from "src/types";
 import { compose, withHandlers } from "recompose";
 import Transition from "react-transition-group/Transition";
-import { slideTransition } from "src/animations";
+import { topDownSlide } from "src/animations";
 
 type UserMenuIconProps = {
   menuCollapsed: boolean,
@@ -79,13 +79,7 @@ const Component = (props: Props) => (
         {state => (
           <UserMenu
             onSignOut={props.onSignOut}
-            style={slideTransition({
-              duration: defDuration,
-              key: "height",
-              initialValue: 0,
-              endValue: 80,
-              state
-            })}
+            style={topDownSlide(state, defDuration, 80)}
           />
         )}
       </Transition>

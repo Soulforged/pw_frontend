@@ -2,7 +2,7 @@
 import React from "react";
 import { Doughnut as DoughnutChart } from "react-chartjs";
 import { compose, branch, renderComponent } from "recompose";
-import { boundLifecycle } from "recompose-ext";
+import { boundLifecycle } from "src/recompose-ext";
 import { Loading } from "src/components";
 
 const allColors = ["#602715", "#b04f32", "#d5694a", "#ffb59f", "#fb4d3d",

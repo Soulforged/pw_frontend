@@ -1,8 +1,8 @@
 //@flow
 import React from "react";
 import { compose, branch, renderComponent } from "recompose";
-import { boundLifecycle } from "recompose-ext";
 import { Line as LineChart } from "react-chartjs";
+import { boundLifecycle } from "src/recompose-ext";
 import { Loading } from "src/components";
 
 const options = {

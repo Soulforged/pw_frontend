@@ -1,50 +1,46 @@
 //@flow
-type CommonProps = {
-  duration: integer,
-  state: boolean
-};
+type State = "entering" | "entered" | "exiting" | "exited";
 
-type SlideShrinkProps = {
-  key: string,
-  initialValue: any,
-  endValue: any,
-  ...CommonProps
-};
-
-export const slideTransition = ({
-  duration, key, initialValue, endValue, state
-}: SlideShrinkProps) => {
+export const topDownSlide = (
+  state: State,
+  endValue: number,
+  initialValue: number = 0,
+  duration: number = 150
+) => {
   const transitions = {
-    entering: { [key]: initialValue, display: "block", opacity: 0 },
-    entered: { [key]: endValue, display: "block", opacity: 1 },
-    exiting: { [key]: endValue, display: "block", opacity: 1 },
-    exited: { [key]: initialValue, display: "none", opacity: 0 },
+    entering: { height: initialValue, display: "block", opacity: 0 },
+    entered: { height: endValue, display: "block", opacity: 1 },
+    exiting: { height: endValue, display: "block", opacity: 1 },
+    exited: { height: initialValue, display: "none", opacity: 0 },
   };
   return {
-    transition: `${key} ${duration}ms ease-in-out, opacity ${duration}ms ease-in-out`,
-    [key]: initialValue,
+    transition: `height ${duration}ms ease-in-out, opacity ${duration}ms ease-in-out`,
+    height: initialValue,
     display: "none",
     opacity: 0,
     ...transitions[state]
   };
 };
 
-export const shirnkTransition = ({
-  duration, key, initialValue, endValue, state
-}: SlideShrinkProps) => {
+export const collapse = (
+  state: State,
+  endValue: any,
+  initialValue: any = "0px",
+  duration: number = 150
+) => {
   const transitions = {
-    entering: { [key]: initialValue },
-    entered: { [key]: endValue },
+    entering: { width: initialValue },
+    entered: { width: endValue },
   };
   return {
-    transition: `${key} ${duration}ms ease-in-out`,
-    [key]: initialValue,
+    transition: `width ${duration}ms ease-in-out`,
+    width: initialValue,
     overflow: "hidden",
     ...transitions[state]
   };
 };
 
-export const fadeInTransition = ({ duration, state }: CommonProps) => {
+export const fadeIn = (state: State, duration: number = 150) => {
   const transitions = {
     entering: { opacity: 0, display: "block" },
     entered: { opacity: 1, display: "block" },
