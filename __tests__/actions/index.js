@@ -4,9 +4,6 @@ import actions from "src/actions";
 import mockStore from "test/setupStoreMock";
 
 const {
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-  LOGIN_REQUEST,
   login,
   setError,
   logout,
@@ -22,14 +19,13 @@ describe("common actions", () => {
   });
   const body = { username: "a", password: "b" };
   it("supports LOGIN action", () => {
-    const placeDesc = "desc";
     fetchMock.postOnce(
       `end:/authenticate/generate-token`,
       { body, headers: { "content-type": "application/json" } }
     );
     const expectedActions = [
-      {"key": undefined, "type": "LOGIN_REQUEST"},
-      {"key": undefined, "response": body, "type": "LOGIN_SUCCESS"}
+      { key: undefined, type: "LOGIN_REQUEST" },
+      { key: undefined, response: body, type: "LOGIN_SUCCESS" }
     ];
     const store = mockStore({ session: { user: null } });
     return store.dispatch(login(body)).then(() => (
@@ -78,4 +74,4 @@ describe("common actions", () => {
     };
     expect(logout()).toEqual(example);
   });
-})
+});

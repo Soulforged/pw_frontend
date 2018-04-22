@@ -19,7 +19,7 @@ describe("dashboard actions", () => {
   });
 
   it("supports fetchSummary action", () => {
-    const params = { from: "2017-01-01", to: "2018-01-01"};
+    const params = { from: "2017-01-01", to: "2018-01-01" };
     fetchMock.getOnce(
       `end:/bi/totals/transactions?date_from=${params.from}&date_to=${params.to}&distinct=sender_account_number`,
       { body: mocks.summary, headers: { "content-type": "application/json" } }
@@ -32,7 +32,7 @@ describe("dashboard actions", () => {
   });
 
   it("supports fetchTrendsByDate action", () => {
-    const params = { from: "2017-01-01", to: "2018-01-01"};
+    const params = { from: "2017-01-01", to: "2018-01-01" };
     fetchMock.getOnce(
       `end:/bi/totals/transactions?date_from=${params.from}&date_to=${params.to}&group_by=date`,
       { body: mocks.trendsByDate, headers: { "content-type": "application/json" } }
@@ -45,8 +45,7 @@ describe("dashboard actions", () => {
   });
 
   it("supports fetchTrendsByInstitution action", () => {
-    const placeDesc = "desc";
-    const params = { from: "2017-01-01", to: "2018-01-01"};
+    const params = { from: "2017-01-01", to: "2018-01-01" };
     fetchMock.getOnce(
       `end:/bi/totals/transactions?date_from=${params.from}&date_to=${params.to}&group_by=institution_name`,
       { body: mocks.summary, headers: { "content-type": "application/json" } }
@@ -59,8 +58,7 @@ describe("dashboard actions", () => {
   });
 
   it("supports fetchErrors action", () => {
-    const placeDesc = "desc";
-    const params = { from: "2017-01-01", to: "2018-01-01"};
+    const params = { from: "2017-01-01", to: "2018-01-01" };
     fetchMock.getOnce(
       `end:/bi/totals/transactions?date_from=${params.from}&date_to=${params.to}&group_by=status&status=ERROR`,
       { body: mocks.summary, headers: { "content-type": "application/json" } }

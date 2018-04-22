@@ -5,16 +5,35 @@ import MainNavigation from "src/MainNavigation";
 import Transition from "react-transition-group/Transition";
 import { shirnkTransition } from "src/animations";
 
-const defDuration = 150;
+const duration = 150;
 
 export default ({ menuCollapsed }: { menuCollapsed: boolean }) => (
-  <Transition in={!menuCollapsed} timeout={defDuration}>
+  <Transition in={!menuCollapsed} timeout={duration}>
     {state => (
       <div id="wrapper">
-        <div id="wrapper_left" className="text-center" style={shirnkTransition(defDuration, "width", "4%", "14%", state)}>
+        <div
+          id="wrapper_left"
+          className="text-center"
+          style={shirnkTransition({
+            duration,
+            key: "width",
+            initialValue: "4%",
+            endValue: "14%",
+            state
+          })}
+        >
           <NavigationMenu />
         </div>
-        <div id="wrapper_right" style={shirnkTransition(defDuration, "width", "96%", "86%", state)}>
+        <div
+          id="wrapper_right"
+          style={shirnkTransition({
+            duration,
+            key: "width",
+            initialValue: "96%",
+            endValue: "86%",
+            state
+          })}
+        >
           <MainNavigation />
         </div>
       </div>

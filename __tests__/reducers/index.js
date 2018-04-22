@@ -14,7 +14,9 @@ const {
   setError
 } = actions;
 
-const { ui, session, entities, error } = reducers;
+const {
+  ui, session, error
+} = reducers;
 
 it("enters error state", () => {
   const errorMsg = new Error("message");

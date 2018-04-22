@@ -79,7 +79,13 @@ const Component = (props: Props) => (
         {state => (
           <UserMenu
             onSignOut={props.onSignOut}
-            style={slideTransition(defDuration, "height", 0, 80, state)}
+            style={slideTransition({
+              duration: defDuration,
+              key: "height",
+              initialValue: 0,
+              endValue: 80,
+              state
+            })}
           />
         )}
       </Transition>

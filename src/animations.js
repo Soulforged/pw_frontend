@@ -1,6 +1,19 @@
 //@flow
+type CommonProps = {
+  duration: integer,
+  state: boolean
+};
 
-export const slideTransition = (duration, key, initialValue, endValue, state) => {
+type SlideShrinkProps = {
+  key: string,
+  initialValue: any,
+  endValue: any,
+  ...CommonProps
+};
+
+export const slideTransition = ({
+  duration, key, initialValue, endValue, state
+}: SlideShrinkProps) => {
   const transitions = {
     entering: { [key]: initialValue, display: "block", opacity: 0 },
     entered: { [key]: endValue, display: "block", opacity: 1 },
@@ -16,7 +29,9 @@ export const slideTransition = (duration, key, initialValue, endValue, state) =>
   };
 };
 
-export const shirnkTransition = (duration, key, initialValue, endValue, state) => {
+export const shirnkTransition = ({
+  duration, key, initialValue, endValue, state
+}: SlideShrinkProps) => {
   const transitions = {
     entering: { [key]: initialValue },
     entered: { [key]: endValue },
@@ -29,7 +44,7 @@ export const shirnkTransition = (duration, key, initialValue, endValue, state) =
   };
 };
 
-export const fadeInTransition = (duration, state) => {
+export const fadeInTransition = ({ duration, state }: CommonProps) => {
   const transitions = {
     entering: { opacity: 0, display: "block" },
     entered: { opacity: 1, display: "block" },
