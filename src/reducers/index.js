@@ -33,8 +33,6 @@ const session = handleActions({
     localStorage.setItem("user", JSON.stringify(user));
     return { ...state, user };
   },
-  [LOGIN_REQUEST]: state => ({ ...state, loading: true }),
-  [LOGIN_FAILURE]: state => ({ ...state, loading: false }),
   [logout]: (state) => {
     localStorage.removeItem("user");
     return { ...state, user: null };
@@ -56,6 +54,9 @@ const ui = handleActions({
   [toggleTheme]: state => toggleReducer(state, "dark"),
   [toggleMenu]: state => toggleReducer(state, "menuCollapsed"),
   [toggleUserMenu]: state => toggleReducer(state, "userMenuCollapsed"),
+  [LOGIN_REQUEST]: state => ({ ...state, loading: true }),
+  [LOGIN_FAILURE]: state => ({ ...state, loading: false }),
+  [LOGIN_SUCCESS]: state => ({ ...state, loading: false }),
 }, uiInitialState);
 
 export default {

@@ -5,7 +5,7 @@ import mocks from "src/mocks";
 import actions from "src/actions";
 import { user, list, error } from "./schemas";
 
-const { fetchTypes, saveTypes } = actions;
+const { fetchEntitiesTypes, saveTypes } = actions;
 
 const USER = "USER";
 const USERS = "USER";
@@ -27,7 +27,7 @@ export const saveUser = body => ({
 
 export const fetchUser = id => ({
   [CALL_API]: {
-    types: fetchTypes(USER),
+    types: fetchEntitiesTypes(USER),
     endpoint: `/user/backofficeuser/${id}`,
     schema: user,
     errorSchema: error,
@@ -38,7 +38,7 @@ export const fetchUser = id => ({
 
 export const fetchUsers = () => ({
   [CALL_API]: {
-    types: fetchTypes(USERS),
+    types: fetchEntitiesTypes(USERS),
     endpoint: "/user/backofficeuser",
     schema: list(user),
     errorSchema: error,
@@ -53,7 +53,7 @@ export const fetchUserByCriteria = ({ criteria, filter }) => {
   }
   return {
     [CALL_API]: {
-      types: fetchTypes("USERS_FILTER"),
+      types: fetchEntitiesTypes("USERS_FILTER"),
       endpoint: `/user/backofficeuser/${criteria}/${filter}`,
       schema: user,
       errorSchema: error,

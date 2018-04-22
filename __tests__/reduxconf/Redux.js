@@ -1,6 +1,6 @@
 //@flow
 
-import middlewares from "src/reduxconf/middlewares";
+import middlewares from "src/reduxconf/middlewaresConfig";
 import reduxLogger from "redux-logger";
 
 it("redux logger if logger activated", () => {

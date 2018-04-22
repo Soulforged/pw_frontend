@@ -19,10 +19,12 @@ const saveTypes = actionName => [
 ];
 
 const fetchTypes = actionName => [
-  `${ENTITIES}/${actionName}_${REQ}`,
-  `${ENTITIES}/${actionName}_${SUCCESS}`,
-  `${ENTITIES}/${actionName}_${FAIL}`
+  `${actionName}_${REQ}`,
+  `${actionName}_${SUCCESS}`,
+  `${actionName}_${FAIL}`
 ];
+
+const fetchEntitiesTypes = actionName => fetchTypes(`${ENTITIES}/${actionName}`);
 
 const login = ({ username, password }: UserInfo) => ({ // eslint-disable-line
   [CALL_API]: {
@@ -48,6 +50,7 @@ export default {
   FAIL,
   saveTypes,
   fetchTypes,
+  fetchEntitiesTypes,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGIN_REQUEST,

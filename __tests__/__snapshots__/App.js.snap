@@ -1,0 +1,714 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shows home (dashboard) when logged in 1`] = `
+<div>
+  <div>
+    <div>
+      <div
+        id="wrapper"
+      >
+        <div
+          className="text-center"
+          id="wrapper_left"
+          style={
+            Object {
+              "overflow": "hidden",
+              "transition": "width 150ms ease-in-out",
+              "width": "14%",
+            }
+          }
+        >
+          <div
+            className="left-relative"
+          >
+            <div
+              className="left-up"
+            >
+              <div
+                className="text-right"
+              >
+                <i
+                  aria-hidden="true"
+                  className="menu-toggle fa fa-bars pointer"
+                  onClick={[Function]}
+                />
+              </div>
+              <div
+                className="logo-big"
+              >
+                <img
+                  alt="logo"
+                  className="home pointer"
+                  src="pegb-logo-final-white.svg"
+                />
+              </div>
+            </div>
+            <div
+              className="left-center"
+            >
+              <div
+                className="usrnm-lbl"
+              >
+                <div
+                  className="usrnm-big"
+                >
+                  <span />
+                  <button
+                    className="fa fa-chevron-down pointer"
+                    onClick={[Function]}
+                  />
+                </div>
+              </div>
+              <div
+                className="usrnm-div"
+                style={
+                  Object {
+                    "display": "none",
+                    "height": 0,
+                    "opacity": 0,
+                    "transition": "height 150ms ease-in-out, opacity 150ms ease-in-out",
+                  }
+                }
+              >
+                <p>
+                  <a
+                    className="change-pswd"
+                    href="/#"
+                  >
+                    Change Password
+                  </a>
+                </p>
+                <p>
+                  <a
+                    className="sign-out"
+                    href="/#"
+                    onClick={[Function]}
+                  >
+                    Sign Out
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div
+              className="left-down"
+            >
+              <ul
+                className="menu-nav"
+              >
+                <li
+                  className="nav-tabs"
+                >
+                  <a
+                    aria-current={false}
+                    className={undefined}
+                    href="/dashboard"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    <img
+                      alt="dashboard"
+                      src="dashboard.svg"
+                    />
+                    <span
+                      style={
+                        Object {
+                          "display": "inline",
+                        }
+                      }
+                    >
+                      Dashboard
+                    </span>
+                  </a>
+                </li>
+                <li
+                  className="nav-tabs"
+                >
+                  <a
+                    aria-current={false}
+                    className={undefined}
+                    href="/users"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    <img
+                      alt="users"
+                      src="admin-icon.svg"
+                    />
+                    <span
+                      style={
+                        Object {
+                          "display": "inline",
+                        }
+                      }
+                    >
+                      Users
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div
+              className="absolute-down"
+            >
+              <div
+                className="theme_toggle"
+              >
+                <label
+                  className="switch"
+                  htmlFor="theme_toggle"
+                >
+                  <input
+                    checked={false}
+                    id="theme_toggle"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                  <span
+                    className="slider round"
+                  />
+                </label>
+              </div>
+              <p
+                className="help-support"
+                style={
+                  Object {
+                    "display": "block",
+                  }
+                }
+              >
+                <a
+                  href="/"
+                >
+                  Help and support
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          id="wrapper_right"
+          style={
+            Object {
+              "overflow": "hidden",
+              "transition": "width 150ms ease-in-out",
+              "width": "86%",
+            }
+          }
+        >
+          <div
+            id="dashboard"
+          >
+            <div
+              className="dash-search-pnl text-left"
+              id="search-pnl"
+            >
+              <div
+                id="filter-row"
+              >
+                <form
+                  className="row"
+                  onSubmit={[Function]}
+                >
+                  <div
+                    className="col-md-4 col-sm-4"
+                  >
+                    <label
+                      htmlFor="dateFrom"
+                    >
+                      Date from
+                      <input
+                        className="form-control"
+                        name="dateFrom"
+                        placeholder="Date From"
+                        type="date"
+                      />
+                    </label>
+                  </div>
+                  <div
+                    className="col-md-4 col-sm-4"
+                  >
+                    <label
+                      htmlFor="dateTo"
+                    >
+                      Date to
+                      <input
+                        className="form-control"
+                        name="dateTo"
+                        placeholder="Date To"
+                        type="date"
+                      />
+                    </label>
+                  </div>
+                  <div
+                    className="col-md-3 col-sm-3"
+                  />
+                  <div
+                    className="col-md-1 col-sm-1"
+                  >
+                    <button
+                      className="btn filter-btn"
+                      type="submit"
+                    >
+                      G0
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div
+              className="tnx-flex"
+            >
+              <div
+                className="tnx text-center col-md-3 col-sm-4 tnx-abs"
+                id="tnx-avg"
+              >
+                <p
+                  className="bold"
+                >
+                  SUMMARY
+                </p>
+                <div
+                  className="tnx-sm cash-in"
+                >
+                  <div
+                    id="loader"
+                    style={undefined}
+                  >
+                    <img
+                      alt="loading something..."
+                      className="loader"
+                      src="loader.gif"
+                    />
+                  </div>
+                  <span />
+                  <p>
+                    <span>
+                      Cash-In Total Value
+                    </span>
+                  </p>
+                </div>
+                <div
+                  className="tnx-sm cash-in"
+                >
+                  <div
+                    id="loader"
+                    style={undefined}
+                  >
+                    <img
+                      alt="loading something..."
+                      className="loader"
+                      src="loader.gif"
+                    />
+                  </div>
+                  <span />
+                  <p>
+                    <span>
+                      Cash-In Total Count
+                    </span>
+                  </p>
+                </div>
+                <div
+                  className="tnx-sm cash-in"
+                >
+                  <div
+                    id="loader"
+                    style={undefined}
+                  >
+                    <img
+                      alt="loading something..."
+                      className="loader"
+                      src="loader.gif"
+                    />
+                  </div>
+                  <span />
+                  <p>
+                    <span>
+                      Cash-In Unique Customers
+                    </span>
+                  </p>
+                </div>
+                <div
+                  className="tnx-sm cash-out"
+                >
+                  <div
+                    id="loader"
+                    style={undefined}
+                  >
+                    <img
+                      alt="loading something..."
+                      className="loader"
+                      src="loader.gif"
+                    />
+                  </div>
+                  <span />
+                  <p>
+                    <span>
+                      Cash-Out Total Value
+                    </span>
+                  </p>
+                </div>
+                <div
+                  className="tnx-sm cash-out"
+                >
+                  <div
+                    id="loader"
+                    style={undefined}
+                  >
+                    <img
+                      alt="loading something..."
+                      className="loader"
+                      src="loader.gif"
+                    />
+                  </div>
+                  <span />
+                  <p>
+                    <span>
+                      Cash-Out Total Count
+                    </span>
+                  </p>
+                </div>
+                <div
+                  className="tnx-sm cash-out"
+                >
+                  <div
+                    id="loader"
+                    style={undefined}
+                  >
+                    <img
+                      alt="loading something..."
+                      className="loader"
+                      src="loader.gif"
+                    />
+                  </div>
+                  <span />
+                  <p>
+                    <span>
+                      Cash-Out Unique customers
+                    </span>
+                  </p>
+                </div>
+                <div
+                  className="clearfix"
+                />
+                <div
+                  className="tnx-footer"
+                />
+              </div>
+              <div
+                className="text-center col-md-9 col-sm-8"
+                id="tnx-graph"
+              >
+                <div
+                  className="tnx-ema"
+                >
+                  <ul
+                    className="nav nav-tabs"
+                  >
+                    <li
+                      className="active"
+                    >
+                      <span>
+                        Transaction Amount
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        Transaction Count
+                      </span>
+                    </li>
+                  </ul>
+                  <div
+                    className="tab-content"
+                  >
+                    <div
+                      className="tab-pane active"
+                      id="trend-amount"
+                    >
+                      <div
+                        className="tnx"
+                      >
+                        <div
+                          id="loader"
+                          style={
+                            Object {
+                              "height": "398px",
+                            }
+                          }
+                        >
+                          <img
+                            alt="loading something..."
+                            className="loader"
+                            src="loader.gif"
+                          />
+                        </div>
+                        <div
+                          className="tnx-footer"
+                          id="trendAmountChartLegend"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      className="tab-pane fade"
+                      id="trend-count"
+                    >
+                      <div
+                        className="tnx"
+                      >
+                        <div
+                          className="tnx-footer"
+                          id="trendCountChartLegend"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="tnx-flex tnx-max"
+                >
+                  <div
+                    className="tnx-lg"
+                  >
+                    <ul
+                      className="nav nav-tabs"
+                    >
+                      <li
+                        className="active"
+                      >
+                        Cash-In
+                      </li>
+                      <li>
+                        Cash-Out
+                      </li>
+                    </ul>
+                    <div
+                      className="tab-content"
+                    >
+                      <div
+                        className="tab-pane active"
+                        id="institutions-in"
+                      >
+                        <div
+                          className="tnx"
+                        >
+                          <div
+                            id="loader"
+                            style={
+                              Object {
+                                "height": "289px",
+                              }
+                            }
+                          >
+                            <img
+                              alt="loading something..."
+                              className="loader"
+                              src="loader.gif"
+                            />
+                          </div>
+                          <div
+                            className="tnx-footer"
+                            id="cashinChartLegend"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        className="tab-pane fade"
+                        id="institutions-out"
+                      >
+                        <div
+                          className="tnx"
+                        >
+                          <canvas
+                            id="cashoutChart"
+                          />
+                          <div
+                            className="tnx-footer"
+                            id="cashoutChartLegend"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="tnx-lg last"
+                  >
+                    <ul
+                      className="nav nav-tabs"
+                    >
+                      <li
+                        className="active"
+                      >
+                        Exceptions
+                      </li>
+                    </ul>
+                    <div
+                      className="tab-content"
+                    >
+                      <div
+                        className="tab-pane active"
+                        id="exceptions"
+                      >
+                        <div
+                          className="tnx"
+                        >
+                          <p
+                            className="bold"
+                          >
+                            EXCEPTIONS
+                          </p>
+                          <div
+                            id="loader"
+                            style={undefined}
+                          >
+                            <img
+                              alt="loading something..."
+                              className="loader"
+                              src="loader.gif"
+                            />
+                          </div>
+                          <div
+                            className="tnx-footer"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="clearfix"
+                />
+              </div>
+            </div>
+            <div
+              className="clearfix"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`shows login when not logged in 1`] = `
+<div>
+  <div>
+    <div>
+      <div
+        id="login-wrapper"
+      >
+        <div
+          id="login-frame"
+        >
+          <div
+            className="pnls"
+            id="login"
+          >
+            <div
+              className="login-header"
+            >
+              <p
+                className="login-title color-6"
+              >
+                BACK OFFICE
+              </p>
+            </div>
+            <form
+              id="login_frm"
+              onSubmit={[Function]}
+            >
+              <div
+                className="login-body"
+              >
+                <div
+                  className="modal-p"
+                >
+                  <div
+                    className="input-group"
+                  >
+                    <span
+                      className="input-group-addon"
+                    >
+                      <span
+                        className="login-user"
+                      />
+                    </span>
+                    <input
+                      className="form-control"
+                      id="usrnm"
+                      onChange={[Function]}
+                      placeholder="User@domain.com"
+                      required={true}
+                      type="text"
+                    />
+                  </div>
+                </div>
+                <div
+                  className="modal-p"
+                >
+                  <div
+                    className="input-group"
+                  >
+                    <span
+                      className="input-group-addon"
+                    >
+                      <span
+                        className="login-pswd"
+                      />
+                    </span>
+                    <input
+                      className="form-control"
+                      id="pswd"
+                      onChange={[Function]}
+                      placeholder="Password"
+                      type="password"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="login-footer"
+              >
+                <div
+                  className="modal-p"
+                >
+                  <input
+                    className="btn btn-md"
+                    type="submit"
+                    value="LOGIN"
+                  />
+                </div>
+                <div
+                  className="modal-p"
+                >
+                  <a
+                    className="forgot-pswd color-6"
+                    href="/forgotPassword"
+                  >
+                    Forgot your password?
+                  </a>
+                </div>
+                <div
+                  className="row color-6"
+                >
+                  <div
+                    className="col-md-6 col-sm-6 text-left"
+                  >
+                    Powered by Peg b
+                  </div>
+                  <div
+                    className="col-md-6 col-sm-6 text-right"
+                  >
+                    <i
+                      className="logo-s"
+                    />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

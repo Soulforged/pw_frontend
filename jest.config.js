@@ -1,11 +1,11 @@
 module.exports = {
   collectCoverageFrom: [
-    "<rootDir>/__tests__/**/*.{js,jsx,mjs}"
+    "src/**/*.{js,jsx,mjs}"
   ],
   setupFiles: [
     "<rootDir>/config/polyfills.js",
     "<rootDir>/__tests__/setup.js",
-    "jest-localstorage-mock"
+    "jest-localstorage-mock",
   ],
   testMatch: [
     "<rootDir>/__tests__/**/*.{js,jsx,mjs}"

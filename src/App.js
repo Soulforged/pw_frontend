@@ -1,5 +1,4 @@
 //@flow
-
 import React from "react";
 import { Provider, connect } from "react-redux";
 import "src/App.css";
@@ -48,7 +47,7 @@ const App = ({ store, history }: Props) => (
 const defaultHistory = createHistory();
 App.defaultProps = {
   history: defaultHistory,
-  store: createStore({ history: defaultHistory, logActions: true })
+  store: createStore({ history: defaultHistory, logActions: process.env.DEBUG_APP })
 };
 
 export default App;

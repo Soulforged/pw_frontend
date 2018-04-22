@@ -13,9 +13,9 @@ const initialState: State = {
 };
 
 export default (state: State = initialState, action) => {
-  if (action.type.indexOf("FAILURE") || action.type === setError.type()) {
-    const { error } = action;
-    return { ...state, error };
+  if (action.type === setError().type) {
+    const error = action.payload;
+    return error ? { ...state, error } : { ...state, error: false };
   }
   return state;
 };

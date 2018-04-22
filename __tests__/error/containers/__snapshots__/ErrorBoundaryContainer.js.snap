@@ -3,6 +3,24 @@
 exports[`displays appropriate view on error 1`] = `
 <div>
   <div />
+  <div
+    className="text-center error"
+    id="alertdiv2"
+  >
+    <span>
+      message
+    </span>
+    <button
+      className="fa fa-close alert2-x"
+      onClick={[Function]}
+      style={
+        Object {
+          "margin": 5,
+        }
+      }
+      title="Close"
+    />
+  </div>
 </div>
 `;
 
