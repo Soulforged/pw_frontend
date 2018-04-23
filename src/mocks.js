@@ -11,6 +11,9 @@ export default {
   login: require("./data/login.json"),
   user: require("./data/user.json"),
   userCreate: require("./data/userCreate.json"),
+  BunitCreate: require("./data/businessUnitCreate.json"),
+  businessUnit: require("./data/businessUnit.json"),
+  businessUnits: require("./data/businessUnits.json")
 };
 
 /* eslint-disable */
