@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login matches snapshot 1`] = `
+<div
+  id="login-wrapper"
+>
+  <div
+    id="login-frame"
+  >
+    <div
+      className="pnls"
+      id="login"
+    >
+      <div
+        className="login-header"
+      >
+        <p
+          className="login-title color-6"
+        >
+          BACK OFFICE
+        </p>
+      </div>
+      <form
+        id="login_frm"
+        onSubmit={[Function]}
+      >
+        <div
+          className="login-body"
+        >
+          <div
+            className="modal-p"
+          >
+            <div
+              className="input-group"
+            >
+              <span
+                className="input-group-addon"
+              >
+                <span
+                  className="login-user"
+                />
+              </span>
+              <input
+                className="form-control"
+                id="usrnm"
+                onChange={[Function]}
+                placeholder="User@domain.com"
+                required={true}
+                type="text"
+              />
+            </div>
+          </div>
+          <div
+            className="modal-p"
+          >
+            <div
+              className="input-group"
+            >
+              <span
+                className="input-group-addon"
+              >
+                <span
+                  className="login-pswd"
+                />
+              </span>
+              <input
+                className="form-control"
+                id="pswd"
+                onChange={[Function]}
+                placeholder="Password"
+                type="password"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="login-footer"
+        >
+          <div
+            className="modal-p"
+          >
+            <input
+              className="btn btn-md"
+              type="submit"
+              value="LOGIN"
+            />
+          </div>
+          <div
+            className="modal-p"
+          >
+            <a
+              className="forgot-pswd color-6"
+              href="/forgotPassword"
+            >
+              Forgot your password?
+            </a>
+          </div>
+          <div
+            className="row color-6"
+          >
+            <div
+              className="col-md-6 col-sm-6 text-left"
+            >
+              Powered by Peg b
+            </div>
+            <div
+              className="col-md-6 col-sm-6 text-right"
+            >
+              <i
+                className="logo-s"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

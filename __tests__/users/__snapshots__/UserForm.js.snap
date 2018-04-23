@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`user form matches snapshot 1`] = `
+<div
+  className="pnls"
+  id="main-pnl"
+>
+  User not found
+</div>
+`;

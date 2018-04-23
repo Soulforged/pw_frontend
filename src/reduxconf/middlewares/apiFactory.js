@@ -35,21 +35,18 @@ const callApi = (endpoint, dispatch, optParams) => {
       "content-type": body ? "application/json" : "text/plain"
     }
   };
-  const jsonError = (json) => {
+  const jsonError = (json, { status }) => {
     if (errorSchema) {
-      return errorSchema(json);
+      return errorSchema(json, status);
     }
     return json;
   };
   const checkStatus = (response) => {
     if (!response.ok) {
       return response.json()
-        .then(jsonError)
-        .then(Promise.reject)
-        .catch((error) => {
-          console.log(error);
-          return Promise.reject(response);
-        });
+        .then(error => jsonError(error, response))
+        .catch(Promise.reject)
+        .then(json => Promise.reject(json));
     }
     return response.json();
   };
@@ -67,16 +64,12 @@ const callApi = (endpoint, dispatch, optParams) => {
 export default (config: Config) => (
   (store: MiddlewareAPI<*, *>) => (next: Dispatch<*>) => (action: Object) => {
     const callAPI = action[CALL_API];
-    if (typeof callAPI === "undefined") {
+    if (!callAPI) {
       return next(action);
     }
 
     let { endpoint } = callAPI; // eslint-disable-line immutable/no-let
     const { types, key, after } = callAPI;
-
-    if (typeof endpoint === "function") {
-      endpoint = endpoint(store.getState());
-    }
 
     if (typeof endpoint !== "string") {
       throw new Error("'endpoint' should be a URL string.");
@@ -108,8 +101,8 @@ export default (config: Config) => (
         return n;
       },
       (error: Object) => next(actionWith({
-        type: failureType,
-        error: error || new Error("Unexpected error")
+          type: failureType,
+          error: error || new Error("Unexpected error")
       }))
     ): Object);
   }
