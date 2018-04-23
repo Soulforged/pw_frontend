@@ -12,11 +12,11 @@ import SecureRoute from "src/SecureRoute";
 import createStore from "src/reduxconf";
 import createHistory from "history/createBrowserHistory";
 
-import type { Store, RouterHistory } from "src/types";
+import type { Store } from "src/types";
 
 type Props = {
   store?: Store<*, *>,
-  history?: RouterHistory
+  history?: Object
 };
 
 const ThemeLinkC = ({ dark }: { dark: boolean }) => (

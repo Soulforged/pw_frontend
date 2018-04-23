@@ -3,14 +3,17 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { compose, withState, withHandlers } from "recompose";
 
-import type { Session } from "src/types";
+import type { Session, Location } from "src/types";
 
 type Props = {
   ...Session,
   onChangeUsername: (string) => void,
   onChangePassword: (string) => void,
   onSubmit: (Event) => void,
-  location: string
+  location: Location,
+  username: string,
+  password: string,
+  login: (Object) => void
 };
 
 const component = (props: Props) => {

@@ -64,7 +64,7 @@ exports[`shows home (dashboard) when logged in 1`] = `
                 style={
                   Object {
                     "display": "none",
-                    "height": 0,
+                    "height": 80,
                     "opacity": 0,
                     "transition": "height 150ms ease-in-out, opacity 150ms ease-in-out",
                   }

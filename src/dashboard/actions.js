@@ -18,7 +18,12 @@ const params = prms => ({ ...defaultParams, ...prms });
 
 const { fetchTypes } = actions;
 
-export const fetchSummary = prms => ({
+type Params = {
+  dateFrom?: string,
+  dateTo?: string
+}
+
+export const fetchSummary = (prms: Params) => ({
   [CALL_API]: {
     types: fetchTypes("DASHBOARD_SUMMARY"),
     endpoint: `/bi/totals/transactions?date_from=${params(prms).dateFrom}&date_to=${params(prms).dateTo}&distinct=sender_account_number`,
@@ -27,7 +32,7 @@ export const fetchSummary = prms => ({
   }
 });
 
-export const fetchTrendsByDate = prms => ({
+export const fetchTrendsByDate = (prms: Params) => ({
   [CALL_API]: {
     types: fetchTypes("DASHBOARD_TRENDS_BY_DATE"),
     endpoint: `/bi/totals/transactions?date_from=${params(prms).dateFrom}&date_to=${params(prms).dateTo}&group_by=date`,
@@ -36,7 +41,7 @@ export const fetchTrendsByDate = prms => ({
   }
 });
 
-export const fetchTrendsByInstitution = prms => ({
+export const fetchTrendsByInstitution = (prms: Params) => ({
   [CALL_API]: {
     types: fetchTypes("DASHBOARD_TRENDS_BY_INSTITUTION"),
     endpoint: `/bi/totals/transactions?date_from=${params(prms).dateFrom}&date_to=${params(prms).dateTo}&group_by=institution_name`,
@@ -45,7 +50,7 @@ export const fetchTrendsByInstitution = prms => ({
   }
 });
 
-export const fetchErrors = prms => ({
+export const fetchErrors = (prms: Params) => ({
   [CALL_API]: {
     types: fetchTypes("DASHBOARD_ERRORS"),
     endpoint: `/bi/totals/transactions?date_from=${params(prms).dateFrom}&date_to=${params(prms).dateTo}&group_by=status&status=ERROR`,

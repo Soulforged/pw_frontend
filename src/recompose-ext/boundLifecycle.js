@@ -5,9 +5,9 @@ import { setDisplayName, wrapDisplayName } from "recompose";
 import type { ComponentType } from "react";
 
 type Spec = {
-  didMount?: ((props: any) => void),
-  onCatch?: ((error: Error, info: string, props: any) => void),
-  willUnmount?: ((props: any) => void)
+  didMount?: ((props: any) => any),
+  onCatch?: ((error: Error, info: string, props: any) => any),
+  willUnmount?: ((props: any) => any)
 };
 
 const boundLifecycle = (spec: Spec) => (baseComponent: ComponentType<*>) => {

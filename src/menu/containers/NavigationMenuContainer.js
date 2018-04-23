@@ -2,7 +2,7 @@
 
 import { connect } from "react-redux";
 import actions from "src/actions";
-import type { Dispatch } from "src/types";
+import type { DispatchAPI } from "src/types";
 
 import NavigationMenu from "../NavigationMenu";
 
@@ -24,7 +24,7 @@ const mapStateToProps = ({
   userMenuCollapsed
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: DispatchAPI<*>) => ({
   logout: () => dispatch(logout()),
   toggleTheme: () => dispatch(toggleTheme()),
   toggleMenu: () => dispatch(toggleMenu()),

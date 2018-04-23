@@ -2,7 +2,7 @@
 import React from "react";
 import ReactTable from "react-table";
 import { compose, branch, renderComponent } from "recompose";
-import { boundLifecycle } from "recompose-ext";
+import { boundLifecycle } from "src/recompose-ext";
 import { Loading } from "src/components";
 
 const ActiveCell = row => (
@@ -31,7 +31,7 @@ const data = users => (
 
 type Props = {
   users: Object,
-  showDetails: (id: integer) => void
+  showDetails: (id: number) => void
 }
 
 const Component = ({ users, showDetails }: Props) => (

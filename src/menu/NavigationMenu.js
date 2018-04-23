@@ -3,25 +3,29 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { images } from "src/resources";
 import type { FeatureRoute } from "src/types";
+import type { SessionUser } from "src/session/types";
 import { compose, withHandlers } from "recompose";
 import Transition from "react-transition-group/Transition";
 import { topDownSlide } from "src/animations";
 
 type UserMenuIconProps = {
   menuCollapsed: boolean,
-  user: Object,
+  user: SessionUser,
   toggleUserMenu: (Event) => void,
   userMenuCollapsed: boolean
 };
 
-type Props = {
-  routes: Array<FeatureRoute>,
+type UserMenuProps = {
   onSignOut: (Event) => void,
+  style: Object
+};
+
+type Props = {
+  routes: FeatureRoute[],
   toggleMenu: (Event) => void,
   toggleTheme: (Event) => void,
   dark: boolean,
-  ...UserMenuIconProps
-};
+} & UserMenuIconProps & UserMenuProps;
 
 const defDuration = 150;
 
@@ -42,11 +46,6 @@ const UserMenuIcon = (props: UserMenuIconProps) => {
       <button className={`fa fa-chevron-${userMenuCollapsed ? "up" : "down"} pointer`} onClick={toggleUserMenu} />
     </div>
   );
-};
-
-type UserMenuProps = {
-  onSignOut: Event => void,
-  style: Object
 };
 
 const UserMenu = ({ onSignOut, style }: UserMenuProps) => (

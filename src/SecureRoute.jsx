@@ -2,17 +2,17 @@
 import React from "react";
 import { Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import type { Session } from "src/types";
+import type { Session, ComponentType, Location } from "src/types";
 
 type Props = {
-  session: Session,
-  location: string
+  component: ComponentType<*>,
+  session: Session
 };
 
-const Comp = ({ component: Component, session, ...rest }: {component: any}) => (
+const Comp = ({ component: Component, session, ...rest }: Props) => (
   <Route
     {...rest}
-    render={(props: Props) => {
+    render={(props: { location: Location }) => {
       if (session.user) {
         return <Component {...props} />;
       }

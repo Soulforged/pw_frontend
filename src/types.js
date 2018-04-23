@@ -1,6 +1,8 @@
 //@flow
 import type { ComponentType } from "react";
+import type { SessionUser } from "src/session/types";
 
+export * from "react";
 export * from "redux";
 export * from "react-router";
 
@@ -24,6 +26,6 @@ export type FeatureRoute = {
 };
 
 export type Session = {
-  username: string,
+  user: SessionUser,
   routes: Array<FeatureRoute>
 };

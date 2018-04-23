@@ -1,13 +1,20 @@
 //@flow
 type State = "entering" | "entered" | "exiting" | "exited";
 
+type Transitions = {
+  entering?: Object,
+  entered?: Object,
+  exiting?: Object,
+  exited?: Object
+};
+
 export const topDownSlide = (
   state: State,
   endValue: number,
   initialValue: number = 0,
   duration: number = 150
 ) => {
-  const transitions = {
+  const transitions: Transitions = {
     entering: { height: initialValue, display: "block", opacity: 0 },
     entered: { height: endValue, display: "block", opacity: 1 },
     exiting: { height: endValue, display: "block", opacity: 1 },
@@ -28,7 +35,7 @@ export const collapse = (
   initialValue: any = "0px",
   duration: number = 150
 ) => {
-  const transitions = {
+  const transitions: Transitions = {
     entering: { width: initialValue },
     entered: { width: endValue },
   };
@@ -41,7 +48,7 @@ export const collapse = (
 };
 
 export const fadeIn = (state: State, duration: number = 150) => {
-  const transitions = {
+  const transitions: Transitions = {
     entering: { opacity: 0, display: "block" },
     entered: { opacity: 1, display: "block" },
   };

@@ -12,7 +12,7 @@ const initialState: State = {
   error: false
 };
 
-export default (state: State = initialState, action) => {
+export default (state: State = initialState, action: Object) => {
   if (action.type === setError().type) {
     const error = action.payload;
     return error ? { ...state, error } : { ...state, error: false };

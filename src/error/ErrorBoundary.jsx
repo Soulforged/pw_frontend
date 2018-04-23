@@ -8,7 +8,7 @@ type ErrorState = Error | false;
 type Props = {
   children: React.Node,
   error: ErrorState,
-  setError: () => void
+  setError: (Object) => void
 };
 
 const onCatch = (error: Error, info: string, { setError }: Props) => {
@@ -30,7 +30,7 @@ const renderError = (error, setError) => {
 
 const component = ({ error, setError, children }: Props) => (
   <div>
-    { { ...children } }
+    {children}
     {renderError(error, setError)}
   </div>
 );

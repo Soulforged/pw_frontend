@@ -1,7 +1,7 @@
 //@flow
 import { connect } from "react-redux";
 import { matchPath } from "react-router";
-import type { Dispatch } from "src/types";
+import type { DispatchAPI } from "src/types";
 import { push } from "react-router-redux";
 import UserDetails from "../UserDetails";
 import { fetchUser } from "../actions";
@@ -18,7 +18,7 @@ const mapStateToProps = ({ routing: { location: { pathname } }, entities: { user
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: DispatchAPI<*>) => ({
   openForm: id => dispatch(push(`/edit/users/${id}`)),
   fetchUser
 });

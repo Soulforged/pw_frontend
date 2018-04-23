@@ -1,13 +1,13 @@
 //@flow
 import { connect } from "react-redux";
 import { push } from "react-router-redux";
-import type { Dispatch } from "src/types";
+import type { DispatchAPI } from "src/types";
 import { fetchUsers } from "../actions";
 import UsersList from "../UsersList";
 
 const mapStateToProps = ({ entities: { users } }) => ({ users });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: DispatchAPI<*>) => ({
   fetchUsers: () => dispatch(fetchUsers()),
   showDetails: id => dispatch(push(`/users/${id}`))
 });

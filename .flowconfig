@@ -1,4 +1,7 @@
 [ignore]
+<PROJECT_ROOT>/__tests__
+<PROJECT_ROOT>/node_modules/npm/node_modules/config-chain/test
+<PROJECT_ROOT>/node_modules/config-chain/test
 
 [include]
 

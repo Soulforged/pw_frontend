@@ -1,7 +1,8 @@
 //@flow
 import { handleActions } from "redux-actions";
 import routes from "src/config/routes";
-import type { FeatureRoute } from "src/types";
+import type { FeatureRoute, Reducer } from "src/types";
+import type { SessionUser } from "src/session/types";
 import actions from "src/actions";
 
 import error from "./errorReducer";
@@ -18,16 +19,22 @@ const {
 } = actions;
 
 type State = {
-  user?: Object,
+  user?: SessionUser | null,
   routes?: Array<FeatureRoute>
 };
 
+const initializeUser = localStorageUser => (
+  localStorageUser ?
+    JSON.parse(localStorageUser)
+    : null
+);
+
 const initialState: State = {
-  user: JSON.parse(localStorage.getItem("user")),
+  user: initializeUser(localStorage.getItem("user")),
   routes
 };
 
-const session = handleActions({
+const session: Reducer<*, *> = handleActions({
   [LOGIN_SUCCESS]: (state, { response }) => {
     const user = response;
     localStorage.setItem("user", JSON.stringify(user));
@@ -50,7 +57,7 @@ const toggleReducer = (state, key) => {
   return { ...state, [key]: newState };
 };
 
-const ui = handleActions({
+const ui: Reducer<*, *> = handleActions({
   [toggleTheme]: state => toggleReducer(state, "dark"),
   [toggleMenu]: state => toggleReducer(state, "menuCollapsed"),
   [toggleUserMenu]: state => toggleReducer(state, "userMenuCollapsed"),

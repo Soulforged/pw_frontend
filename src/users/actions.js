@@ -4,6 +4,12 @@ import { CALL_API } from "src/constants";
 import mocks from "src/mocks";
 import actions from "src/actions";
 import { user, list, error } from "./schemas";
+import type { User } from "./types";
+
+type Params = {
+  criteria: string,
+  filter: string
+};
 
 const { fetchEntitiesTypes, saveTypes } = actions;
 
@@ -12,7 +18,7 @@ const USERS = "USER";
 
 const restPath = body => (body.id ? `/${body.id}` : "");
 
-export const saveUser = body => ({
+export const saveUser = (body: User) => ({
   [CALL_API]: {
     types: saveTypes(USER),
     endpoint: `/user/backofficeuser${restPath(body)}`,
@@ -25,7 +31,7 @@ export const saveUser = body => ({
   }
 });
 
-export const fetchUser = id => ({
+export const fetchUser = (id: number) => ({
   [CALL_API]: {
     types: fetchEntitiesTypes(USER),
     endpoint: `/user/backofficeuser/${id}`,
@@ -47,7 +53,7 @@ export const fetchUsers = () => ({
   }
 });
 
-export const fetchUserByCriteria = ({ criteria, filter }) => {
+export const fetchUserByCriteria = ({ criteria, filter }: Params) => {
   if (!filter) {
     return fetchUsers();
   }

@@ -17,7 +17,7 @@ const initialState = {
 
 const dashboardReqRegex = /^DASHBOARD_(\w+)_REQUEST$/;
 
-export default (state = initialState, action) => {
+export default (state: Object = initialState, action: Object) => {
   if (dashboardReqRegex.test(action.type)){
     return { ...state, [action.key]: { fetching: true } };
   }

@@ -1,26 +1,28 @@
 //@flow
 import { merge } from "lodash";
-import { Action } from "src/types";
 import actions from "src/actions";
+import type { AppError } from "src/types";
 
 type State = {
   users: Object
 };
 
 type EntityResponse = {
-  entities?: Object
+  id?: string | number,
+  error?: AppError,
+  result: Object,
+  entities?: Object,
 };
 
 type EntityAction = {
-  ...Action,
-  response?: EntityResponse
+  type: string,
+  key: string,
+  response: EntityResponse,
+  error?: boolean
 };
 
 const {
-  ENTITIES,
-  SAVE,
-  FAIL,
-  REQ
+  ENTITIES, SAVE, FAIL, REQ
 } = actions;
 
 const initialState: State = {
@@ -33,10 +35,10 @@ const requestRegex = new RegExp(`/[\\w_]+_${REQ}$`);
 const saveRegex = new RegExp(`/${SAVE}_[\\w_]+`);
 
 const getIds = ({ entities, result }, key) => (
-  entities.results ? entities.results[key].results : result
+  entities && entities.results ? entities.results[key].results : result
 );
 
-const handleFetch = (action, entityName, state) => {
+const handleFetch = (action: EntityAction, entityName, state) => {
   if (requestRegex.test(action.type)){
     return {
       ...state,
@@ -56,7 +58,8 @@ const handleFetch = (action, entityName, state) => {
       }
     };
   }
-  const byId = action.response.entities[entityName];
+  const { entities } = action.response;
+  const byId = entities ? entities[entityName] : {};
   const ids = getIds(action.response, entityName);
   const ids1 = (ids instanceof Array) ? ids : [ids];
   const newState = { [entityName]: { byId, ids, fetching: false } };
@@ -98,7 +101,7 @@ const handleSave = (action, entityName, state) => {
     [entityName]: {
       ...state[entityName],
       savedId: id,
-      error: false,
+      saveError: false,
       saving: false
     }
   };

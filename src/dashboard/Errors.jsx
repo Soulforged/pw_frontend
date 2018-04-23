@@ -3,8 +3,13 @@ import React from "react";
 import { boundLifecycle } from "src/recompose-ext";
 import { Loading } from "src/components";
 
+type Errors = {
+  results: Array<Object>,
+  fetching?: boolean
+};
+
 type Props = {
-  errors: Array<Object> | { fetching: boolean },
+  errors: Errors,
   summary: Object
 };
 
