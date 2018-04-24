@@ -12,7 +12,7 @@ exports[`matches snapshot no data 1`] = `
 exports[`matches snapshot while fetching 1`] = `
 <div
   id="loader"
-  style={undefined}
+  style={Object {}}
 >
   <img
     alt="loading something..."
@@ -450,7 +450,7 @@ exports[`matches snapshot while saving 1`] = `
       >
         <div
           id="loader"
-          style={undefined}
+          style={Object {}}
         >
           <img
             alt="loading something..."

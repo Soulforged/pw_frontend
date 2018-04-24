@@ -11,10 +11,10 @@ export default ({ menuCollapsed }: { menuCollapsed: boolean }) => (
   <Transition in={!menuCollapsed} timeout={duration}>
     {state => (
       <div id="wrapper">
-        <div id="wrapper_left" className="text-center" style={collapse(state, "14%", "4%")}>
+        <div id="wrapper_left" className="text-center" style={collapse(state, "13%", "3%")}>
           <NavigationMenu />
         </div>
-        <div id="wrapper_right" style={collapse(state, "86%", "96%")}>
+        <div id="wrapper_right" style={collapse(state, "87%", "97%")}>
           <MainNavigation />
         </div>
       </div>
