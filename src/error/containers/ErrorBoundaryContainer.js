@@ -8,10 +8,6 @@ const { setError } = actions;
 
 const mapStateToProps = ({ error }) => (error);
 
-const mapDispatchToProps = (dispatch: Dispatch) => (
-  {
-    setError: () => dispatch(setError(false))
-  }
-);
+const mapDispatchToProps = { setError };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ErrorBoundary);

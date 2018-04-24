@@ -3,8 +3,9 @@ import apiFactory from "src/reduxconf/middlewares/apiFactory";
 import mockStore from "test/setupStoreMock";
 import { CALL_API } from "src/constants";
 import fetchMock from "fetch-mock";
-import { schema } from "normalizr"
+import { schema } from "normalizr";
 import { error } from "src/schemas";
+import { fail } from "test/fixtures";
 
 describe("api factory tests", () => {
   afterEach(() => {
@@ -56,12 +57,11 @@ describe("api factory tests", () => {
     fetchMock.getOnce("*", { status: 404, body: { description: "error" } });
     const store1 = mockStore({});
     const boundAdapter1 = apiAdapter(store1)(store1.dispatch);
-    boundAdapter1(validAction).then(() => (
+    boundAdapter1(validAction).then(() =>
       expect(store1.getActions()).toEqual([
         { type: "A", key: "s" },
-        { type: "C", key: "s", error: { description: "error" }}
-      ])
-    ));
+        { type: "C", key: "s", error: { description: "error" } }
+      ])).catch(fail);
   });
 
   it("dispatches REQUEST and then SUCCESS if promise succeeds", () => {
@@ -71,14 +71,20 @@ describe("api factory tests", () => {
     boundAdapter1(validAction).then(() => (
       expect(store1.getActions()).toEqual([
         { type: "A", key: "s" },
-        { type: "B", key: "s", response: { description: "something" }}
+        { type: "B", key: "s", response: { description: "something" } }
       ])
-    ));
+    )).catch(fail);
   });
 
   it("uses schema to normalize if available", () => {
     const dummySchema = new schema.Entity("some");
-    const action = { ...validAction, [CALL_API]: { ...validAction[CALL_API], schema: dummySchema } };
+    const action = {
+      ...validAction,
+      [CALL_API]: {
+        ...validAction[CALL_API],
+        schema: dummySchema
+      }
+    };
     fetchMock.getOnce("*", { body: { id: 1, desc_ription: "some" } });
     const store1 = mockStore({});
     const boundAdapter1 = apiAdapter(store1)(store1.dispatch);
@@ -90,13 +96,13 @@ describe("api factory tests", () => {
           key: "s",
           response: {
             entities: {
-              "some": { 1: { descRiption: "some", id: 1 } }
+              some: { 1: { descRiption: "some", id: 1 } }
             },
             result: 1
           }
         }
       ])
-    ));
+    )).catch(fail);
   });
 
   it("uses errorSchema to normalize error if available", () => {
@@ -107,25 +113,28 @@ describe("api factory tests", () => {
     boundAdapter1(action).then(() => (
       expect(store1.getActions()).toEqual([
         { type: "A", key: "s" },
-        { type: "C", key: "s", error: { message: "error", expected: true }}
+        { type: "C", key: "s", error: { message: "error", expected: true } }
       ])
-    ));
+    )).catch(fail);
   });
 
   it("executes any success post hooks that are available", () => {
-    const action = { ...validAction, [CALL_API]: {
-      ...validAction[CALL_API],
-      after: (dispatch, r) => dispatch({ type: "D", body: r })
-    }};
+    const action = {
+      ...validAction,
+      [CALL_API]: {
+        ...validAction[CALL_API],
+        after: (dispatch, r) => dispatch({ type: "D", body: r })
+      }
+    };
     fetchMock.getOnce("*", { body: { description: "some" } });
     const store1 = mockStore({});
     const boundAdapter1 = apiAdapter(store1)(store1.dispatch);
     boundAdapter1(action).then(() => (
       expect(store1.getActions()).toEqual([
         { type: "A", key: "s" },
-        { type: "B", key: "s", response: { description: "some" }},
-        { type: "D", body: { description: "some" }}
+        { type: "B", key: "s", response: { description: "some" } },
+        { type: "D", body: { description: "some" } }
       ])
-    ));
+    )).catch(fail);
   });
 });

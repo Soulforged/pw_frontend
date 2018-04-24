@@ -18,22 +18,7 @@ const options = {
     xAxes: [{ gridLines: { display: false, drawBorder: false } }],
     yAxes: [{
       ticks: {
-        beginAtZero: true,
-        callback: (label) => {
-          const ranges = [{ divider: 1e6, suffix: "M" }, { divider: 1e3, suffix: "K" }];
-          const formatNumber = (n) => {
-            if (n <= 1 && n > 0) {
-              return parseFloat(n).toFixed(1);
-            }
-            for (let i = 0; i < ranges.length; i++) { //eslint-disable-line
-              if (n >= ranges[i].divider) {
-                return (n / ranges[i].divider).toString() + ranges[i].suffix;
-              }
-            }
-            return n;
-          };
-          return formatNumber(label);
-        }
+        beginAtZero: true
       },
       gridLines: { borderDash: [2, 8], drawBorder: false }
     }]

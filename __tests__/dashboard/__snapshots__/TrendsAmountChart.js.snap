@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches loading snapshot 1`] = `
+<div
+  id="loader"
+  style={
+    Object {
+      "height": "398px",
+    }
+  }
+>
+  <img
+    alt="loading something..."
+    className="loader"
+    src="loader.gif"
+  />
+</div>
+`;
+
+exports[`matches snapshot with data 1`] = `
+<Line
+  data={
+    Object {
+      "datasets": Array [
+        Object {
+          "backgroundColor": "#707ed3",
+          "borderColor": "#707ed3",
+          "data": Array [
+            undefined,
+            undefined,
+          ],
+          "fill": false,
+          "label": "Cash-In",
+        },
+        Object {
+          "backgroundColor": "#4bd1b4",
+          "borderColor": "#4bd1b4",
+          "data": Array [
+            undefined,
+            undefined,
+          ],
+          "fill": false,
+          "label": "Cash-Out",
+        },
+      ],
+      "labels": Array [
+        "2018-02-25",
+        "2018-02-27",
+      ],
+    }
+  }
+  height="90px"
+  options={
+    Object {
+      "maintainAspectRatio": true,
+      "responsive": true,
+      "scales": Object {
+        "xAxes": Array [
+          Object {
+            "gridLines": Object {
+              "display": false,
+              "drawBorder": false,
+            },
+          },
+        ],
+        "yAxes": Array [
+          Object {
+            "gridLines": Object {
+              "borderDash": Array [
+                2,
+                8,
+              ],
+              "drawBorder": false,
+            },
+            "ticks": Object {
+              "beginAtZero": true,
+            },
+          },
+        ],
+      },
+      "title": Object {
+        "display": true,
+        "fontColor": "#fff",
+        "fontFamily": "robotolight",
+        "text": "Cash in",
+      },
+    }
+  }
+/>
+`;

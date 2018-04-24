@@ -19,9 +19,9 @@ describe("dashboard actions", () => {
   });
 
   it("supports fetchSummary action", () => {
-    const params = { from: "2017-01-01", to: "2018-01-01" };
+    const params = { fromDate: "2017-01-01", toDate: "2018-01-01" };
     fetchMock.getOnce(
-      `end:/bi/totals/transactions?date_from=${params.from}&date_to=${params.to}&distinct=sender_account_number`,
+      `end:/bi/totals/transactions?date_from=${params.fromDate}&date_to=${params.toDate}&distinct=sender_account_number`,
       { body: mocks.summary, headers: { "content-type": "application/json" } }
     );
     const expectedActions = fetchTypes("DASHBOARD_SUMMARY").slice(0, 2);
@@ -32,9 +32,9 @@ describe("dashboard actions", () => {
   });
 
   it("supports fetchTrendsByDate action", () => {
-    const params = { from: "2017-01-01", to: "2018-01-01" };
+    const params = { fromDate: "2017-01-01", toDate: "2018-01-01" };
     fetchMock.getOnce(
-      `end:/bi/totals/transactions?date_from=${params.from}&date_to=${params.to}&group_by=date`,
+      `end:/bi/totals/transactions?date_from=${params.fromDate}&date_to=${params.toDate}&group_by=date`,
       { body: mocks.trendsByDate, headers: { "content-type": "application/json" } }
     );
     const expectedActions = fetchTypes("DASHBOARD_TRENDS_BY_DATE").slice(0, 2);
@@ -45,9 +45,9 @@ describe("dashboard actions", () => {
   });
 
   it("supports fetchTrendsByInstitution action", () => {
-    const params = { from: "2017-01-01", to: "2018-01-01" };
+    const params = { fromDate: "2017-01-01", toDate: "2018-01-01" };
     fetchMock.getOnce(
-      `end:/bi/totals/transactions?date_from=${params.from}&date_to=${params.to}&group_by=institution_name`,
+      `end:/bi/totals/transactions?date_from=${params.fromDate}&date_to=${params.toDate}&group_by=institution_name`,
       { body: mocks.summary, headers: { "content-type": "application/json" } }
     );
     const expectedActions = fetchTypes("DASHBOARD_TRENDS_BY_INSTITUTION").slice(0, 2);
@@ -58,9 +58,9 @@ describe("dashboard actions", () => {
   });
 
   it("supports fetchErrors action", () => {
-    const params = { from: "2017-01-01", to: "2018-01-01" };
+    const params = { fromDate: "2017-01-01", toDate: "2018-01-01" };
     fetchMock.getOnce(
-      `end:/bi/totals/transactions?date_from=${params.from}&date_to=${params.to}&group_by=status&status=ERROR`,
+      `end:/bi/totals/transactions?date_from=${params.fromDate}&date_to=${params.toDate}&group_by=status&status=ERROR`,
       { body: mocks.summary, headers: { "content-type": "application/json" } }
     );
     const expectedActions = fetchTypes("DASHBOARD_ERRORS").slice(0, 2);

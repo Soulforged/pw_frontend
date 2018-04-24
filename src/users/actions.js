@@ -14,7 +14,7 @@ type Params = {
 const { fetchEntitiesTypes, saveTypes } = actions;
 
 const USER = "USER";
-const USERS = "USER";
+const USERS = "USERS";
 
 const restPath = body => (body.id ? `/${body.id}` : "");
 

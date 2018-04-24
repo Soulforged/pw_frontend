@@ -4,7 +4,7 @@ type Error = {
   description: string
 };
 
-export const error = (error: Error, status) => { //eslint-disable-line
+export const error = (error: Error, status: number) => { //eslint-disable-line
   switch (status) {
   case 404: {
     return { message: error.description, expected: true };

@@ -5,7 +5,6 @@ import "src/App.css";
 import { ErrorBoundary } from "src/error";
 import { Login } from "src/session";
 import { Home } from "src/home";
-import { Loading } from "src/components";
 import { ConnectedRouter } from "react-router-redux";
 import { Route, Switch } from "react-router-dom";
 import SecureRoute from "src/SecureRoute";
@@ -36,7 +35,6 @@ const App = ({ store, history }: Props) => (
               <Route path="/login" component={Login} />
               <SecureRoute path="/" component={Home} />
             </Switch>
-            <Loading />
           </div>
         </ConnectedRouter>
       </ErrorBoundary>
@@ -47,7 +45,7 @@ const App = ({ store, history }: Props) => (
 const defaultHistory = createHistory();
 App.defaultProps = {
   history: defaultHistory,
-  store: createStore({ history: defaultHistory, logActions: process.env.DEBUG_APP })
+  store: createStore({ history: defaultHistory, logActions: process.env.REACT_APP_DEBUG })
 };
 
 export default App;
