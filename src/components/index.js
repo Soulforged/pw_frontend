@@ -1,5 +1,5 @@
 //@flow
 
-import Loading from "./containers/LoadingContainer";
+import Loading from "./Loading";
 
 export { Loading }; //eslint-disable-line

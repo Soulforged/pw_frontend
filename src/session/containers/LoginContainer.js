@@ -6,10 +6,6 @@ const { login } = actions;
 
 const mapStateToProps = ({ session }) => session;
 
-const mapDispatchToProps = (dispatch: Dispatch) => (
-  {
-    login: form => dispatch(login(form))
-  }
-);
+const mapDispatchToProps = { login };
 
 export default connect(mapStateToProps, mapDispatchToProps);

@@ -1,0 +1,290 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot no session 1`] = `
+<div
+  className="left-relative"
+>
+  <div
+    className="left-up"
+  >
+    <div
+      className="text-right"
+    >
+      <i
+        aria-hidden="true"
+        className="menu-toggle fa fa-bars pointer"
+        onClick={undefined}
+      />
+    </div>
+    <div
+      className="logo-big"
+    >
+      <img
+        alt="logo"
+        className="home pointer"
+        src="pegb-logo-final-white.svg"
+      />
+    </div>
+  </div>
+  <div
+    className="left-center"
+  >
+    <div
+      className="usrnm-lbl"
+    >
+      <div
+        className="usrnm-big"
+      >
+        <span />
+        <button
+          className="fa fa-chevron-down pointer"
+          onClick={undefined}
+        />
+      </div>
+    </div>
+    <div
+      className="usrnm-div"
+      style={
+        Object {
+          "display": "none",
+          "height": 80,
+          "opacity": 0,
+          "transition": "height 150ms ease-in-out, opacity 150ms ease-in-out",
+        }
+      }
+    >
+      <p>
+        <a
+          className="change-pswd"
+          href="/#"
+        >
+          Change Password
+        </a>
+      </p>
+      <p>
+        <a
+          className="sign-out"
+          href="/#"
+          onClick={[Function]}
+        >
+          Sign Out
+        </a>
+      </p>
+    </div>
+  </div>
+  <div
+    className="left-down"
+  >
+    <ul
+      className="menu-nav"
+    />
+  </div>
+  <div
+    className="absolute-down"
+  >
+    <div
+      className="theme_toggle"
+    >
+      <label
+        className="switch"
+        htmlFor="theme_toggle"
+      >
+        <input
+          checked={undefined}
+          id="theme_toggle"
+          onChange={undefined}
+          type="checkbox"
+        />
+        <span
+          className="slider round"
+        />
+      </label>
+    </div>
+    <p
+      className="help-support"
+      style={
+        Object {
+          "display": "block",
+        }
+      }
+    >
+      <a
+        href="/"
+      >
+        Help and support
+      </a>
+    </p>
+  </div>
+</div>
+`;
+
+exports[`matches snapshot with session 1`] = `
+<div
+  className="left-relative"
+>
+  <div
+    className="left-up"
+  >
+    <div
+      className="text-right"
+    >
+      <i
+        aria-hidden="true"
+        className="menu-toggle fa fa-bars pointer"
+        onClick={undefined}
+      />
+    </div>
+    <div
+      className="logo-big"
+    >
+      <img
+        alt="logo"
+        className="home pointer"
+        src="pegb-logo-final-white.svg"
+      />
+    </div>
+  </div>
+  <div
+    className="left-center"
+  >
+    <div
+      className="usrnm-lbl"
+    >
+      <div
+        className="usrnm-big"
+      >
+        <span>
+          testuser
+        </span>
+        <button
+          className="fa fa-chevron-down pointer"
+          onClick={undefined}
+        />
+      </div>
+    </div>
+    <div
+      className="usrnm-div"
+      style={
+        Object {
+          "display": "none",
+          "height": 80,
+          "opacity": 0,
+          "transition": "height 150ms ease-in-out, opacity 150ms ease-in-out",
+        }
+      }
+    >
+      <p>
+        <a
+          className="change-pswd"
+          href="/#"
+        >
+          Change Password
+        </a>
+      </p>
+      <p>
+        <a
+          className="sign-out"
+          href="/#"
+          onClick={[Function]}
+        >
+          Sign Out
+        </a>
+      </p>
+    </div>
+  </div>
+  <div
+    className="left-down"
+  >
+    <ul
+      className="menu-nav"
+    >
+      <li
+        className="nav-tabs"
+      >
+        <a
+          aria-current={false}
+          className={undefined}
+          href="/dashboard"
+          onClick={[Function]}
+          style={undefined}
+        >
+          <img
+            alt="dashboard"
+            src="dashboard.svg"
+          />
+          <span
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+          >
+            Dashboard
+          </span>
+        </a>
+      </li>
+      <li
+        className="nav-tabs"
+      >
+        <a
+          aria-current={false}
+          className={undefined}
+          href="/users"
+          onClick={[Function]}
+          style={undefined}
+        >
+          <img
+            alt="users"
+            src="admin-icon.svg"
+          />
+          <span
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+          >
+            Users
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div
+    className="absolute-down"
+  >
+    <div
+      className="theme_toggle"
+    >
+      <label
+        className="switch"
+        htmlFor="theme_toggle"
+      >
+        <input
+          checked={undefined}
+          id="theme_toggle"
+          onChange={undefined}
+          type="checkbox"
+        />
+        <span
+          className="slider round"
+        />
+      </label>
+    </div>
+    <p
+      className="help-support"
+      style={
+        Object {
+          "display": "block",
+        }
+      }
+    >
+      <a
+        href="/"
+      >
+        Help and support
+      </a>
+    </p>
+  </div>
+</div>
+`;

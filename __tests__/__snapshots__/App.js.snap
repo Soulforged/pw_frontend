@@ -634,7 +634,7 @@ exports[`shows login when not logged in 1`] = `
                     </span>
                     <input
                       className="form-control"
-                      id="usrnm"
+                      id="username"
                       onChange={[Function]}
                       placeholder="User@domain.com"
                       required={true}
@@ -657,7 +657,7 @@ exports[`shows login when not logged in 1`] = `
                     </span>
                     <input
                       className="form-control"
-                      id="pswd"
+                      id="password"
                       onChange={[Function]}
                       placeholder="Password"
                       type="password"

@@ -5,6 +5,7 @@ module.exports = {
   setupFiles: [
     "<rootDir>/config/polyfills.js",
     "<rootDir>/__tests__/setup.js",
+    "<rootDir>/__tests__/setupEnzyme.js",
     "jest-localstorage-mock",
   ],
   testMatch: [
@@ -20,13 +21,22 @@ module.exports = {
   transformIgnorePatterns: [
     "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
   ],
-  coveragePathIgnorePatterns: ["node_modules/", "__tests__/", "assets/", "lib/"],
+  coveragePathIgnorePatterns: [
+    "node_modules/",
+    "__tests__/",
+    "assets/",
+    "lib/",
+    ".*/index.js",
+    ".*/types.js",
+    "src/registerServiceWorker.js"
+  ],
   testPathIgnorePatterns: [
     "node_modules/",
     "assets/",
     "__tests__/setup.js",
     "__tests__/setupEnzyme.js",
-    "__tests__/setupStoreMock.js"
+    "__tests__/setupStoreMock.js",
+    "__tests__/fixtures.js",
   ],
   moduleNameMapper: {
     "^react-native$": "react-native-web"
@@ -42,5 +52,13 @@ module.exports = {
     "jsx",
     "node",
     "mjs"
-  ]
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 80,
+      "functions": 80,
+      "lines": 80,
+      "statements": 80
+    }
+  }
 };

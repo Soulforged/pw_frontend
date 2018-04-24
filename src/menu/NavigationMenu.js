@@ -3,14 +3,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { images } from "src/resources";
 import type { FeatureRoute } from "src/types";
-import type { SessionUser } from "src/session/types";
 import { compose, withHandlers } from "recompose";
 import Transition from "react-transition-group/Transition";
 import { topDownSlide } from "src/animations";
 
 type UserMenuIconProps = {
   menuCollapsed: boolean,
-  user: SessionUser,
+  userName: string,
   toggleUserMenu: (Event) => void,
   userMenuCollapsed: boolean
 };
@@ -32,7 +31,7 @@ const defDuration = 150;
 const UserMenuIcon = (props: UserMenuIconProps) => {
   const {
     menuCollapsed,
-    user,
+    userName,
     userMenuCollapsed,
     toggleUserMenu
   } = props;
@@ -42,7 +41,7 @@ const UserMenuIcon = (props: UserMenuIconProps) => {
     </div>
   ) : (
     <div className="usrnm-big">
-      <span>{user.details.userName}</span>
+      <span>{userName}</span>
       <button className={`fa fa-chevron-${userMenuCollapsed ? "up" : "down"} pointer`} onClick={toggleUserMenu} />
     </div>
   );
@@ -86,7 +85,7 @@ const Component = (props: Props) => (
 
     <div className="left-down">
       <ul className="menu-nav">
-        {props.routes.filter(route => !route.hidden).map(route => (
+        {props.routes && props.routes.filter(route => !route.hidden).map(route => (
           <li key={route.name} className="nav-tabs">
             <NavLink to={route.path}>
               <img src={images[route.name]} alt={route.name} />

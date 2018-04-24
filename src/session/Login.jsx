@@ -16,7 +16,7 @@ type Props = {
   login: (Object) => void
 };
 
-const component = (props: Props) => {
+const Component = (props: Props) => {
   const { from } = props.location.state || { from: { pathname: "/" } };
   if (props.user) {
     return <Redirect to={from} />;
@@ -38,7 +38,7 @@ const component = (props: Props) => {
                   <input
                     type="text"
                     className="form-control"
-                    id="usrnm"
+                    id="username"
                     placeholder="User@domain.com"
                     required
                     onChange={props.onChangeUsername}
@@ -53,7 +53,7 @@ const component = (props: Props) => {
                   <input
                     type="password"
                     className="form-control"
-                    id="pswd"
+                    id="password"
                     placeholder="Password"
                     onChange={props.onChangePassword}
                   />
@@ -81,7 +81,7 @@ const component = (props: Props) => {
   );
 };
 
-export default compose(
+export default (compose(
   withState("username", "setUsername", ""),
   withState("password", "setPassword", ""),
   withHandlers({
@@ -99,4 +99,4 @@ export default compose(
       props.login({ username, password });
     }
   })
-)(component);
+)(Component));

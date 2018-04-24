@@ -1,7 +1,6 @@
 //@flow
 import { connect } from "react-redux";
 import { matchPath } from "react-router";
-import type { DispatchAPI } from "src/types";
 import { fetchUser, saveUser } from "../actions";
 import UserForm from "../UserForm";
 
@@ -18,9 +17,6 @@ const mapStateToProps = ({ routing: { location: { pathname } }, entities: { user
   };
 };
 
-const mapDispatchToProps = (dispatch: DispatchAPI<*>) => ({
-  fetchUser: id => dispatch(fetchUser(id)),
-  saveUser: body => dispatch(saveUser(body)),
-});
+const mapDispatchToProps = { fetchUser, saveUser };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserForm);
