@@ -1,6 +1,7 @@
 //@flow
 import { createActions } from "redux-actions";
 import { CALL_API } from "src/constants";
+// import mocks from "src/mocks";
 import type { UserInfo, AppError } from "src/types";
 
 const ENTITIES = "@@entities";
@@ -31,6 +32,7 @@ const login = ({ username, password }: UserInfo) => ({ // eslint-disable-line
     types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
     endpoint: "/authenticate/generate-token",
     body: { user: username, password },
+    // mock: mocks.login
   }
 });
 

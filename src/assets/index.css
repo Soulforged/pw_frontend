@@ -659,7 +659,7 @@ hr {
   border-bottom: 1px solid #ccc;
   padding: 15px 15px 10px;
   margin: 0 -10px;
-  font-size: 0.95vw;
+  font-size: 1.6vw;
 }
 
 #csv-export {
@@ -980,6 +980,14 @@ hr {
   padding: 10px 3px;
 }
 
+.add-new-btn, .add-new{
+  background: transparent;
+  border: none;
+}
+.add-new-btn i{
+  margin-right: 5px;
+}
+
 .edit-pnl {
   background-color: #fff !important;
   cursor: default !important;
@@ -999,6 +1007,7 @@ hr {
 .edit-pnl-cnt, .add-pnl-cnt {
   width: 100%;
   margin: 5px auto;
+  max-width: 700px;
 }
 
 .add-pnl-cnt {
@@ -1069,13 +1078,13 @@ hr {
 .pnls {
   border: 1px solid #ddd;
   border-radius: 3px;
-  padding: 10px;
+  padding: 0 10px;
   box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2);
   background: #fff;
   margin-bottom: 10px;
 }
 
-#main-pnl tbody .assign, #main-pnl tbody .edit, #main-pnl tbody .edit-btn {
+#main-pnl tbody .assign, #main-pnl tbody .edit, #main-pnl tbody .edit-btn, #main-pnl .rt-td .edit {
   cursor: pointer;
   padding: 5px;
   margin: -5px;
@@ -1674,9 +1683,9 @@ label > select {
 }
 
 .details {
-  font-size: 0.9vw;
+  font-size: 1.0vw;
 }
 
 .details .row {
-  margin: 0.5vw;
+  margin: 0 0 1.2vw;
 }
