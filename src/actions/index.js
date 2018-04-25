@@ -2,6 +2,7 @@
 import { createActions } from "redux-actions";
 import { CALL_API } from "src/constants";
 import type { UserInfo, AppError } from "src/types";
+import mocks from "src/mocks";
 
 const ENTITIES = "@@entities";
 const SAVE = "SAVE";
@@ -31,6 +32,7 @@ const login = ({ username, password }: UserInfo) => ({ // eslint-disable-line
     types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
     endpoint: "/authenticate/generate-token",
     body: { user: username, password },
+    mock: mocks.login
   }
 });
 

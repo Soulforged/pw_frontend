@@ -69,7 +69,8 @@ const handleFetch = (action: EntityAction, entityName, state) => {
     [entityName]: {
       ...merged[entityName],
       lastResultIds: ids1,
-      error: false
+      error: false,
+      valid: true
     }
   };
   return merged1;
@@ -102,7 +103,8 @@ const handleSave = (action, entityName, state) => {
       ...state[entityName],
       savedId: id,
       saveError: false,
-      saving: false
+      saving: false,
+      valid: false
     }
   };
 };

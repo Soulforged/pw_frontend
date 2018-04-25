@@ -33,11 +33,12 @@ button:active, input[type='submit']:active, input[type='button']:active {
   top: 1px;
 }
 
-a, img, li, i {
+a, img, li, i, .animate {
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
+  overflow: hidden;
 }
 
 input:invalid, textarea:invalid {

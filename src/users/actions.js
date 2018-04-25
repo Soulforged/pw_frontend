@@ -27,7 +27,8 @@ export const saveUser = (body: User) => ({
     key: "users",
     errorSchema: error,
     mock: mocks.userCreate,
-    after: dispatch => dispatch(push("/users"))
+    after: dispatch => dispatch(push("/users")),
+    invalidatesCache: true
   }
 });
 

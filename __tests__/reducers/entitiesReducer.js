@@ -40,7 +40,7 @@ it("handles full flow for anything that's a fetch entities action", () => {
   const successState = reducer(errorState, successAction);
   expect(successState).toEqual({
     dash: {
-      fetching: false, lastResultIds: ids, ids, error: false
+      fetching: false, lastResultIds: ids, ids, error: false, valid: true
     }
   });
 });
@@ -63,5 +63,9 @@ it("handles full flow for anything that's a save entities action", () => {
   expect(errorState).toEqual({ dash: { saving: false, saveError } });
   const successAction = { type: success, response: { id: 1 }, key: "dash" };
   const successState = reducer(errorState, successAction);
-  expect(successState).toEqual({ dash: { saving: false, saveError: false, savedId: 1 } });
+  expect(successState).toEqual({
+    dash: {
+      saving: false, saveError: false, savedId: 1, valid: false
+    }
+  });
 });

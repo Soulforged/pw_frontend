@@ -43,13 +43,11 @@ exports[`matches snapshot no session 1`] = `
       </div>
     </div>
     <div
-      className="usrnm-div"
+      className="usrnm-div animate"
       style={
         Object {
-          "display": "none",
-          "height": 80,
-          "opacity": 0,
-          "transition": "height 150ms ease-in-out, opacity 150ms ease-in-out",
+          "height": "80px",
+          "opacity": 1,
         }
       }
     >
@@ -163,13 +161,11 @@ exports[`matches snapshot with session 1`] = `
       </div>
     </div>
     <div
-      className="usrnm-div"
+      className="usrnm-div animate"
       style={
         Object {
-          "display": "none",
-          "height": 80,
-          "opacity": 0,
-          "transition": "height 150ms ease-in-out, opacity 150ms ease-in-out",
+          "height": "80px",
+          "opacity": 1,
         }
       }
     >

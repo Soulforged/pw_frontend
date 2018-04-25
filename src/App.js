@@ -26,19 +26,17 @@ const ThemeLink = connect(({ ui: { dark } }) => ({ dark }))(ThemeLinkC);
 
 const App = ({ store, history }: Props) => (
   <Provider store={store}>
-    <div>
-      <ThemeLink />
-      <ErrorBoundary>
-        <ConnectedRouter history={history}>
-          <div>
-            <Switch>
-              <Route path="/login" component={Login} />
-              <SecureRoute path="/" component={Home} />
-            </Switch>
-          </div>
-        </ConnectedRouter>
-      </ErrorBoundary>
-    </div>
+    <ErrorBoundary>
+      <ConnectedRouter history={history}>
+        <div className="animate">
+          <ThemeLink />
+          <Switch>
+            <Route path="/login" component={Login} />
+            <SecureRoute path="/" component={Home} />
+          </Switch>
+        </div>
+      </ConnectedRouter>
+    </ErrorBoundary>
   </Provider>
 );
 

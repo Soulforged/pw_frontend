@@ -10,7 +10,7 @@ type Props = {
 
 const Details = ({ item, editItem }: Props) => (
   item ?
-    <div className="details">
+    <div className="details animate">
       <h5>Details for {item.id}</h5>
       <button title="Edit" className="btn btn-default pull-right" onClick={editItem}>
         <span className="edit fa fa-pencil theme" />Edit user
@@ -44,7 +44,7 @@ const Details = ({ item, editItem }: Props) => (
 );
 
 const Component = ({ item, editItem }: { item: Object, editItem: () => void }) => (
-  <div id="main-pnl" className="details pnls">
+  <div id="main-pnl" className="details pnls animate">
     <Details item={item} editItem={editItem} />
   </div>
 );
