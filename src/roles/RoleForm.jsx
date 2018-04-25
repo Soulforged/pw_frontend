@@ -1,7 +1,8 @@
 //@flow
 import React from "react";
-import { Form, Text, Select, withFormApi } from "react-form";
-import { branch, compose, renderComponent, withHandlers, withState } from "recompose";
+import { omit } from "lodash";
+import { Form, Text, Select, RadioGroup, Radio } from "react-form";
+import { branch, compose, renderComponent } from "recompose";
 import { boundLifecycle } from "src/recompose-ext";
 import { Loading } from "src/components";
 
@@ -10,9 +11,7 @@ type Props = {
   // saveRole: (Object) => void,
   saving: boolean,
   edit: boolean,
-  checked: boolean,
   closeNew: (Event) => void,
-  handleChange: (Event) => void
 };
 
 const bunitOptions = [
@@ -68,8 +67,14 @@ const BusinessUnitSelector = ({ item }: Item) => (
   </div>
 );
 
-const ComapanyRadio = ({ handleChange, checked }: { handleChange: (Event) => void, checked: boolean }) => (
-  <input type="radio" id="radioCompany" value="" checked={!checked} onChange={handleChange} />
+const preValidate = values => (
+  values.checked ? values : omit(values, "businessUnitId")
+);
+
+const validate = ({ checked, businessUnitId }) => (
+  {
+    businessUnitId: { error: checked && !businessUnitId && "You must specify" }
+  }
 );
 
 const Component = (props: Props) => {
@@ -77,10 +82,8 @@ const Component = (props: Props) => {
     item,
     // saveRole,
     saving,
-    handleChange,
     edit = item.id,
     closeNew,
-    checked = item && item.businessUnitId
   } = props;
   return (
     <div>
@@ -92,7 +95,13 @@ const Component = (props: Props) => {
           </button>
         </h4>
         <div className="add-pnl-cnt">
-          <Form onSubmit={submittedValues => console.log(submittedValues)} defaultValues={item}>
+          <Form
+            onSubmit={submittedValues => console.log(submittedValues)}
+            defaultValues={{ ...item, checked: item.id ? "1" : "" }}
+            preValidate={preValidate}
+            validate={validate}
+            validateOnSubmit
+          >
             {formApi => (
               <form id="role_frm" onSubmit={formApi.submitForm}>
                 <div className="row modal-p">
@@ -114,15 +123,21 @@ const Component = (props: Props) => {
                     <label htmlFor="roleType">Role Type:</label>
                   </div>
                   <div className="col-md-6 col-sm-6">
-                    {withFormApi(ComapanyRadio)}
-                    <label htmlFor="radioCompany">Company Wide</label>
-                    {withFormApi(<input type="radio" id="radioBu" value="1" checked={checked} onChange={handleChange} />)}
-                    <label htmlFor="radioBu">Business Unit Specific</label>
+                    <RadioGroup field="checked">
+                      <label htmlFor="radioCompany">Company Wide</label>
+                      <Radio id="radioCompany" value="" />
+                      <label htmlFor="radioBu">Business Unit Specific</label>
+                      <Radio id="radioBu" value="1" />
+                    </RadioGroup>
                   </div>
                 </div>
-                {checked && <BusinessUnitSelector item={item} />}
+                {formApi.values.checked && <BusinessUnitSelector item={item} />}
                 {edit && <StatusField item={item} />}
                 <hr />
+                <div>
+                  {formApi.errors
+                    && Object.keys(formApi.errors).map(e => <div key={e}>{formApi.errors[e]}</div>)}
+                </div>
                 <article className="modal-p text-center">
                   <ButtonOrLoading saving={saving} />
                 </article>
@@ -139,23 +154,8 @@ const SpecLoading = () => <Loading loading />;
 const NoData = () => <div id="main-pnl" className="pnls">Role(s) not found</div>;
 
 export default compose(
-  withState("checked", "setChecked", false),
   boundLifecycle({
     didMount: ({ id, fetchRole, item }) => !item && fetchRole(id)
-  }),
-  withHandlers({
-    handleChange: props => (event) => {
-      console.log(props);
-      console.log(event.target.value);
-      if (event.target.value) {
-        props.setChecked(true);
-      } else {
-        props.setChecked(false);
-      }
-      if (props.formApi && !props.checked) {
-        props.formApi.setValue("businessUnitId", null);
-      }
-    }
   }),
   branch(({ fetching }) => fetching, renderComponent(SpecLoading)),
   branch(({ item }) => item == null, renderComponent(NoData))

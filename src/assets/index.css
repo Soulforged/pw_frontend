@@ -80,20 +80,19 @@ select.form-control {
   appearance: none;
 }
 
-input[type=radio] {
+/* input[type=radio] {
   visibility: hidden;
   position: absolute;
-}
+}*/
 
-input[type=radio]+label {
+/* input[type=radio]+label {
   cursor: pointer;
   font-size: 15px;
   margin-bottom: 10px;
   font-weight: normal;
-  /* width: 45%; */
-}
+} */
 
-input[type=radio]+label:before {
+/* input[type=radio]+label:before {
   height: 14px;
   margin-right: 8px;
   content: " ";
@@ -105,7 +104,7 @@ input[type=radio]+label:before {
   transition: 0.3s;
   border-radius: 50%;
   width: 14px;
-}
+} */
 
 input[type=radio]:checked+label:before {
   box-shadow: inset 0 0 1px #17191a, inset 0 0 0 3px #ffffff;
@@ -1075,18 +1074,6 @@ input:checked+.slider:before {
   .form-header {
     font-size: 1vw;
   }
-}
-
-div > label {
-  width: 100%;
-}
-
-label > input {
-  width: 100%;
-}
-
-label > select {
-  width: 100%;
 }
 
 .icon-button {
