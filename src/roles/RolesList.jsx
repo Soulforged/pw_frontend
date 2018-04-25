@@ -1,20 +1,15 @@
 //@flow
 import React from "react";
 import ReactTable from "react-table";
-import { compose, branch, renderComponent, withHandlers } from "recompose";
-import { boundLifecycle } from "recompose-ext";
+import { compose, branch, renderComponent } from "recompose";
+import { boundLifecycle } from "src/recompose-ext";
 import { Loading } from "src/components";
 import ActiveCell from "src/roles/ActiveCell";
-
-const EditCell = ({ row, editItem }: { editItem: () => void, row: object }) => (
-  <button className="edit fa fa-pencil theme icon-button" title={`Edit ${row.id}`} onClick={editItem} />
-);
 
 const columns = [
   { Header: "ID", accessor: "id", maxWidth: 50 },
   { Header: "Role Name", accessor: "name" },
-  { Header: "Status", accessor: "status", Cell: row => <ActiveCell value={row.value} /> },
-  { Header: "", accessor: "id", Cell: EditCell }
+  { Header: "Status", accessor: "status", Cell: row => <ActiveCell value={row.value} /> }
 ];
 
 const data = roles => (
@@ -25,8 +20,8 @@ const data = roles => (
 
 type Props = {
   roles: Object,
-  showDetails: (id: integer) => void
-}
+  showDetails: (number) => void
+};
 
 const Component = ({ roles, showDetails }: Props) => (
   <ReactTable
@@ -49,8 +44,5 @@ export default compose(
   boundLifecycle({
     didMount: ({ fetchRoles }) => fetchRoles()
   }),
-  branch(({ roles }) => roles.fetching, renderComponent(SpecLoading)),
-  withHandlers({
-    editItem: props => () => props.openForm(props.item.id)
-  })
+  branch(({ roles }) => roles.fetching, renderComponent(SpecLoading))
 )(Component);

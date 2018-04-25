@@ -60,7 +60,7 @@ export default [
   },
   {
     path: "/roles/:id",
-    name: "roles",
+    name: "role",
     title: "Role details",
     component: RoleDetails,
     hidden: true,

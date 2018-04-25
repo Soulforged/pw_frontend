@@ -42,7 +42,7 @@ const UserMenuIcon = (props: UserMenuIconProps) => {
   ) : (
     <div className="usrnm-big">
       <span>{userName}</span>
-      <button className={`fa fa-chevron-${userMenuCollapsed ? "up" : "down"} pointer`} onClick={toggleUserMenu} />
+      <button className={`fa fa-chevron-${userMenuCollapsed ? "up" : "down"} pointer icon-button`} onClick={toggleUserMenu} />
     </div>
   );
 };

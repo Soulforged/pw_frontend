@@ -58,7 +58,8 @@ const callApi = (endpoint, dispatch, optParams) => {
   }
   return fetch(endpoint, options)
     .then(checkStatus)
-    .then(doNormalize);
+    .then(doNormalize)
+    .catch(error => Promise.reject(error));
 };
 
 export default (config: Config) => (

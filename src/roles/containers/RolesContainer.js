@@ -1,14 +1,13 @@
 //@flow
 import { connect } from "react-redux";
-import type { Dispatch } from "src/types";
 import { push } from "react-router-redux";
 
-import Roles from "../roles";
+import Roles from "../Roles";
 
 const mapStateToProps = ({ ui: { editionItem } }) => ({ editionItem });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  openForm: () => dispatch(push("/new/roles"))
-});
+const openForm = () => push("/new/roles");
+
+const mapDispatchToProps = { openForm };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Roles);

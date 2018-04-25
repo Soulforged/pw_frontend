@@ -1,7 +1,7 @@
 //@flow
 import React from "react";
 import { withHandlers, compose } from "recompose";
-import { boundLifecycle } from "recompose-ext";
+import { boundLifecycle } from "src/recompose-ext";
 import ActiveCell from "src/roles/ActiveCell";
 
 type Props = {

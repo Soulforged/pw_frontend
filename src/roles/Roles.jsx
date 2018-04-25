@@ -1,8 +1,7 @@
 //@flow
 import React from "react";
 import { withHandlers } from "recompose";
-import serialize from "form-serialize";
-import RolesList from "./containers/rolesListContainer";
+import RolesList from "./containers/RolesListContainer";
 
 const MainComponent = ({ create }: { create: () => void }) => (
   <div id="dashboard">
@@ -26,10 +25,5 @@ const MainComponent = ({ create }: { create: () => void }) => (
 );
 
 export default withHandlers({
-  filter: props => (event) => {
-    event.preventDefault();
-    const params = serialize(event.target, { hash: true });
-    props.fetchUserByCriteria(params);
-  },
-  create: ({ openForm }) => () => openForm(),
+  create: ({ openForm }) => () => openForm()
 })(MainComponent);

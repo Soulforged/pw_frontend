@@ -8,6 +8,7 @@ export const images = {
   help: require("assets/img/help-support.svg"),
   dashboard: require("assets/img/dashboard.svg"),
   users: require("assets/img/admin-icon.svg"),
+  roles: require("assets/img/admin-icon.svg"),
   loader: require("assets/img/loader.gif")
 };
 

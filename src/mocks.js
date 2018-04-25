@@ -10,7 +10,7 @@ export default {
   users: require("./data/users.json"),
   login: require("./data/login.json"),
   user: require("./data/user.json"),
-  userCreate: require("./data/userCreate.json"),
+  userCreate: require("./data/userCreate.json")
 };
 
 /* eslint-disable */

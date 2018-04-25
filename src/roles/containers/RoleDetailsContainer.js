@@ -1,9 +1,8 @@
 //@flow
 import { connect } from "react-redux";
 import { matchPath } from "react-router";
-import type { Dispatch } from "src/types";
 import { push } from "react-router-redux";
-import RoleDetails from "../roleDetails";
+import RoleDetails from "../RoleDetails";
 import { fetchRole } from "../actions";
 
 const mapStateToProps = ({ routing: { location: { pathname } }, entities: { roles } }) => {
@@ -18,9 +17,8 @@ const mapStateToProps = ({ routing: { location: { pathname } }, entities: { role
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  openForm: id => dispatch(push(`/edit/roles/${id}`)),
-  fetchRole
-});
+const openForm = id => push(`/edit/roles/${id}`);
+
+const mapDispatchToProps = { openForm, fetchRole };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoleDetails);

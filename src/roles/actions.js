@@ -1,7 +1,6 @@
 //@flow
 import { push } from "react-router-redux";
 import { CALL_API } from "src/constants";
-import mocks from "src/mocks";
 import actions from "src/actions";
 import { role, list, error } from "./schemas";
 
@@ -12,7 +11,7 @@ const ROLES = "ROLE";
 
 const restPath = body => (body.id ? `/${body.id}` : "");
 
-export const saveRole = body => ({
+export const saveRole = (body: Object) => ({
   [CALL_API]: {
     types: saveTypes(ROLE),
     endpoint: `/user/role${restPath(body)}`,
@@ -20,7 +19,6 @@ export const saveRole = body => ({
     update: body.id != null,
     key: "roles",
     errorSchema: error,
-    mock: mocks.roleCreate,
     after: dispatch => dispatch(push("/roles"))
   }
 });
@@ -31,8 +29,7 @@ export const fetchRole = id => ({
     endpoint: `/user/role/${id}`,
     schema: role,
     errorSchema: error,
-    key: "roles",
-    mock: mocks.role
+    key: "roles"
   }
 });
 
@@ -42,7 +39,6 @@ export const fetchRoles = () => ({
     endpoint: "/user/role",
     schema: list(role),
     errorSchema: error,
-    key: "roles",
-    mock: mocks.roles
+    key: "roles"
   }
 });

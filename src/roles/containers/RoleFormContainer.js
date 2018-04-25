@@ -1,10 +1,9 @@
 //@flow
 import { connect } from "react-redux";
 import { matchPath } from "react-router";
-import type { Dispatch } from "src/types";
 import { goBack } from "react-router-redux";
 import { fetchRole, saveRole } from "../actions";
-import RoleForm from "../roleForm";
+import RoleForm from "../RoleForm";
 
 const mapStateToProps = ({ routing: { location: { pathname } }, entities: { roles } }) => {
   const match = matchPath(pathname, { path: "/(edit|new)/roles/:id?" });
@@ -19,10 +18,8 @@ const mapStateToProps = ({ routing: { location: { pathname } }, entities: { role
   };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  fetchRole: id => dispatch(fetchRole(id)),
-  saveRole: body => dispatch(saveRole(body)),
-  closeNew: () => dispatch(goBack())
-});
+const closeNew = goBack;
+
+const mapDispatchToProps = { fetchRole, saveRole, closeNew };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoleForm);
