@@ -2,22 +2,14 @@
 import React from "react";
 import { NavigationMenu } from "src/menu";
 import MainNavigation from "src/MainNavigation";
-import Transition from "react-transition-group/Transition";
-import { collapse } from "src/animations";
-
-const duration = 150;
 
 export default ({ menuCollapsed }: { menuCollapsed: boolean }) => (
-  <Transition in={!menuCollapsed} timeout={duration}>
-    {state => (
-      <div id="wrapper">
-        <div id="wrapper_left" className="text-center" style={collapse(state, "13%", "3%")}>
-          <NavigationMenu />
-        </div>
-        <div id="wrapper_right" style={collapse(state, "87%", "97%")}>
-          <MainNavigation />
-        </div>
-      </div>
-    )}
-  </Transition>
+  <div id="wrapper">
+    <div id="wrapper_left" className="text-center animate" style={{ width: menuCollapsed ? "4%" : "14%", overflow: "hidden" }}>
+      <NavigationMenu />
+    </div>
+    <div id="wrapper_right" style={{ width: menuCollapsed ? "96%" : "86%", overflow: "hidden" }} className="animate">
+      <MainNavigation />
+    </div>
+  </div>
 );

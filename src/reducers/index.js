@@ -48,7 +48,8 @@ const session: Reducer<*, *> = handleActions({
 
 const uiInitialState = {
   dark: localStorage.getItem("dark") === "true" || false,
-  menuCollapsed: localStorage.getItem("menuCollapsed") === "true" || false
+  menuCollapsed: localStorage.getItem("menuCollapsed") === "true" || false,
+  userMenuCollapsed: localStorage.getItem("userMenuCollapsed") === "true" || false
 };
 
 const toggleReducer = (state, key) => {

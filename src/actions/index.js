@@ -3,6 +3,7 @@ import { createActions } from "redux-actions";
 import { CALL_API } from "src/constants";
 // import mocks from "src/mocks";
 import type { UserInfo, AppError } from "src/types";
+import mocks from "src/mocks";
 
 const ENTITIES = "@@entities";
 const SAVE = "SAVE";

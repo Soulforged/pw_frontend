@@ -4,8 +4,6 @@ import { NavLink } from "react-router-dom";
 import { images } from "src/resources";
 import type { FeatureRoute } from "src/types";
 import { compose, withHandlers } from "recompose";
-import Transition from "react-transition-group/Transition";
-import { topDownSlide } from "src/animations";
 
 type UserMenuIconProps = {
   menuCollapsed: boolean,
@@ -16,7 +14,7 @@ type UserMenuIconProps = {
 
 type UserMenuProps = {
   onSignOut: (Event) => void,
-  style: Object
+  show: boolean
 };
 
 type Props = {
@@ -25,8 +23,6 @@ type Props = {
   toggleTheme: (Event) => void,
   dark: boolean,
 } & UserMenuIconProps & UserMenuProps;
-
-const defDuration = 150;
 
 const UserMenuIcon = (props: UserMenuIconProps) => {
   const {
@@ -47,15 +43,20 @@ const UserMenuIcon = (props: UserMenuIconProps) => {
   );
 };
 
-const UserMenu = ({ onSignOut, style }: UserMenuProps) => (
-  <div className="usrnm-div" style={style}>
-    <p>
-      <a href="/#" className="change-pswd">Change Password</a>
-    </p>
-    <p>
-      <a href="/#" className="sign-out" onClick={onSignOut}>Sign Out</a>
-    </p>
-  </div>
+const UserMenu = ({ show, onSignOut }: UserMenuProps) => (
+  show ? (
+    <div
+      className="usrnm-div animate"
+      style={show ? { height: "80px", opacity: 1 } : { height: 0, opacity: 0 }}
+    >
+      <p>
+        <a href="/#" className="change-pswd">Change Password</a>
+      </p>
+      <p>
+        <a href="/#" className="sign-out" onClick={onSignOut}>Sign Out</a>
+      </p>
+    </div>
+  ) : false
 );
 
 const Component = (props: Props) => (
@@ -73,14 +74,7 @@ const Component = (props: Props) => (
       <div className="usrnm-lbl">
         <UserMenuIcon {...props} />
       </div>
-      <Transition in={props.userMenuCollapsed} timeout={defDuration}>
-        {state => (
-          <UserMenu
-            onSignOut={props.onSignOut}
-            style={topDownSlide(state, defDuration, 80)}
-          />
-        )}
-      </Transition>
+      <UserMenu show={props.userMenuCollapsed !== false} onSignOut={props.onSignOut} />
     </div>
 
     <div className="left-down">

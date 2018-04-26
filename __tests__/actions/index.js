@@ -2,6 +2,7 @@
 import fetchMock from "fetch-mock";
 import actions from "src/actions";
 import mockStore from "test/setupStoreMock";
+import mocks from "src/mocks";
 
 const {
   login,
@@ -25,7 +26,7 @@ describe("common actions", () => {
     );
     const expectedActions = [
       { key: undefined, type: "LOGIN_REQUEST" },
-      { key: undefined, response: body, type: "LOGIN_SUCCESS" }
+      { key: undefined, response: mocks.login, type: "LOGIN_SUCCESS" }
     ];
     const store = mockStore({ session: { user: null } });
     return store.dispatch(login(body)).then(() => (
