@@ -1,6 +1,7 @@
 //@flow
 import { Dashboard } from "src/dashboard";
 import { Users, UserForm, UserDetails } from "src/users";
+import { BusinessUnits, BusinessUnitForm, BusinessUnitDetail } from "src/businessUnits";
 
 export default [
   {
@@ -50,5 +51,38 @@ export default [
     hidden: true,
     exact: true,
     strict: true
+  },
+  {
+    path: "/business_units",
+    name: "business_units",
+    title: "Business Units",
+    component: BusinessUnits,
+  },
+  {
+    path: "/business_units/:id",
+    name: "business_unit",
+    title: "Business Unit details",
+    component: BusinessUnitDetail,
+    hidden: true,
+    strict: true,
+    exact: true
+  },
+  {
+    path: "/new/business_units",
+    name: "business_unit_new",
+    title: "New Business Unit",
+    component: BusinessUnitForm,
+    hidden: true,
+    strict: true,
+    exact: true
+  },
+  {
+    path: "/edit/business_units/:id",
+    name: "business_unit_edit",
+    title: "Edit Business Unit",
+    component: BusinessUnitForm,
+    hidden: true,
+    strict: true,
+    exact: true
   }
 ];

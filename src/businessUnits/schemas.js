@@ -1,12 +1,12 @@
 //@flow
 import { schema } from "normalizr";
 
-export const business_unit = new schema.Entity("business_units");
+export const businessUnit = new schema.Entity("businessUnits");
 
 export const list = single => new schema.Entity(
   "results",
   { results: [single] },
-  { idAttribute: () => "business_units" }
+  { idAttribute: () => "businessUnits" }
 );
 
 export * from "src/schemas";
