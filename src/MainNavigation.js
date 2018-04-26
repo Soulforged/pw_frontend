@@ -5,16 +5,18 @@ import type { FeatureRoute } from "src/types";
 import { connect } from "react-redux";
 
 type Props = {
-  routes: Array<FeatureRoute>
+  routes: Array<FeatureRoute>,
 };
 
 const Component = ({ routes }: Props) => (
-  routes.map(route => (
-    <Route key={route.name} {...route} />
-  ))
+  <div className="animate">
+    {routes.map(route => (
+      <Route key={route.name} {...route} />
+    ))}
+  </div>
 );
 
-const mapStateToProps = ({ session }) => session;
+const mapStateToProps = ({ session: { routes } }) => ({ routes });
 
 const mapDispatchToProps = () => ({});
 
