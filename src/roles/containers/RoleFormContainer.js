@@ -1,7 +1,7 @@
 //@flow
 import { connect } from "react-redux";
 import { matchPath } from "react-router";
-import { goBack } from "react-router-redux";
+import { push } from "react-router-redux";
 import { fetchRole, saveRole } from "../actions";
 import RoleForm from "../RoleForm";
 
@@ -18,8 +18,8 @@ const mapStateToProps = ({ routing: { location: { pathname } }, entities: { role
   };
 };
 
-const closeNew = goBack;
+const returnToList = () => push("/roles");
 
-const mapDispatchToProps = { fetchRole, saveRole, closeNew };
+const mapDispatchToProps = { fetchRole, saveRole, returnToList };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoleForm);

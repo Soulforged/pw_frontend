@@ -1,7 +1,8 @@
 //@flow
 import React from "react";
-import { Form, Text, Select, withFormApi } from "react-form";
-import { branch, compose, renderComponent, withHandlers, withState } from "recompose";
+import { omit } from "lodash";
+import { Form, Text, Select, RadioGroup, Radio } from "react-form";
+import { branch, compose, renderComponent } from "recompose";
 import { boundLifecycle } from "src/recompose-ext";
 import { Loading } from "src/components";
 
@@ -10,12 +11,11 @@ type Props = {
   // saveRole: (Object) => void,
   saving: boolean,
   edit: boolean,
-  checked: boolean,
-  closeNew: (Event) => void,
-  handleChange: (Event) => void
+  returnToList: (Event) => void
 };
 
 const bunitOptions = [
+  { label: "None", value: null },
   { label: "Finance", value: 6 },
   { label: "Accounts", value: 117 },
 ];
@@ -50,7 +50,7 @@ const StatusField = ({ item }: Item) => (
   </div>
 );
 
-const BusinessUnitSelector = ({ item }: Item) => (
+const BusinessUnitSelector = () => (
   <div className="row modal-p">
     <div className="col-md-6 col-sm-6">
       <label htmlFor="businessUnitName">Business Unit:</label>
@@ -61,38 +61,52 @@ const BusinessUnitSelector = ({ item }: Item) => (
         className="form-control"
         field="businessUnitId"
         options={bunitOptions}
-        value={item.businessUnitId}
         required
       />
     </div>
   </div>
 );
 
-const ComapanyRadio = ({ handleChange, checked }: { handleChange: (Event) => void, checked: boolean }) => (
-  <input type="radio" id="radioCompany" value="" checked={!checked} onChange={handleChange} />
+const preValidate = values => (values.checked ? values : omit(values, "businessUnitId"));
+
+const validate = values => ({
+  businessUnitId: { error: values.checked && !values.businessUnitId && "Must specify business unit" }
+});
+
+const ErrorMessage = ({ formApi }: { formApi: Object }) => (
+  <div>
+    {formApi.errors
+      && Object.keys(formApi.errors).map(k => (
+        formApi.touched[k] ?
+          <div key={k}>{formApi.errors[k]}</div>
+          : false
+      ))}
+  </div>
 );
 
 const Component = (props: Props) => {
   const {
     item,
-    // saveRole,
+    returnToList,
     saving,
-    handleChange,
-    edit = item.id,
-    closeNew,
-    checked = item && item.businessUnitId
+    edit = item.id
   } = props;
   return (
     <div>
       <div id="main-pnl" className="pnls">
         <h4 className="form-header trebuchet text-center bold">
           {edit ? `Edit Role ${item.id}` : "New Role"}
-          <button className="add-new pointer pull-right bold" onClick={closeNew}>
+          <button className="add-new pointer pull-right bold" onClick={returnToList}>
             <i className="fa fa-close theme" />
           </button>
         </h4>
         <div className="add-pnl-cnt">
-          <Form onSubmit={submittedValues => console.log(submittedValues)} defaultValues={item}>
+          <Form
+            onSubmit={submittedValues => console.log(submittedValues)}
+            defaultValues={{ ...item, checked: item.businessUnitId ? "1" : "" }}
+            preValidate={preValidate}
+            validate={validate}
+          >
             {formApi => (
               <form id="role_frm" onSubmit={formApi.submitForm}>
                 <div className="row modal-p">
@@ -114,15 +128,18 @@ const Component = (props: Props) => {
                     <label htmlFor="roleType">Role Type:</label>
                   </div>
                   <div className="col-md-6 col-sm-6">
-                    {withFormApi(ComapanyRadio)}
-                    <label htmlFor="radioCompany">Company Wide</label>
-                    {withFormApi(<input type="radio" id="radioBu" value="1" checked={checked} onChange={handleChange} />)}
-                    <label htmlFor="radioBu">Business Unit Specific</label>
+                    <RadioGroup field="checked">
+                      <Radio id="radioCompany" value="" />
+                      <label htmlFor="radioCompany">Company Wide</label>
+                      <Radio id="radioBu" value="1" />
+                      <label htmlFor="radioBu">Business Unit Specific</label>
+                    </RadioGroup>
                   </div>
                 </div>
-                {checked && <BusinessUnitSelector item={item} />}
+                {formApi.values.checked && <BusinessUnitSelector item={item} />}
                 {edit && <StatusField item={item} />}
                 <hr />
+                <ErrorMessage formApi={formApi} />
                 <article className="modal-p text-center">
                   <ButtonOrLoading saving={saving} />
                 </article>
@@ -139,23 +156,8 @@ const SpecLoading = () => <Loading loading />;
 const NoData = () => <div id="main-pnl" className="pnls">Role(s) not found</div>;
 
 export default compose(
-  withState("checked", "setChecked", false),
   boundLifecycle({
     didMount: ({ id, fetchRole, item }) => !item && fetchRole(id)
-  }),
-  withHandlers({
-    handleChange: props => (event) => {
-      console.log(props);
-      console.log(event.target.value);
-      if (event.target.value) {
-        props.setChecked(true);
-      } else {
-        props.setChecked(false);
-      }
-      if (props.formApi && !props.checked) {
-        props.formApi.setValue("businessUnitId", null);
-      }
-    }
   }),
   branch(({ fetching }) => fetching, renderComponent(SpecLoading)),
   branch(({ item }) => item == null, renderComponent(NoData))
