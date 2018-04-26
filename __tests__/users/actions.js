@@ -2,7 +2,6 @@
 import fetchMock from "fetch-mock";
 import mockStore from "test/setupStoreMock";
 import actions from "src/actions";
-import { push } from "react-router-redux";
 import {
   saveUser,
   fetchUser,
@@ -77,10 +76,9 @@ describe("users actions", () => {
       { body: { id: 1 }, headers: { "content-type": "application/json" } }
     );
     const expectedActions = saveTypes("USER").slice(0, 2);
-    const locationChangeType = push("").type;
     const store = mockStore({ entities: { users: {} } });
     return store.dispatch(saveUser(mocks.user)).then(() => (
-      expect(store.getActions().map(a => a.type)).toEqual([...expectedActions, locationChangeType])
+      expect(store.getActions().map(a => a.type)).toEqual(expectedActions)
     ));
   });
 });

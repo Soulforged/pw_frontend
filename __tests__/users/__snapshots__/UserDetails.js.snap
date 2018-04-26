@@ -2,7 +2,7 @@
 
 exports[`details matches snapshot 1`] = `
 <div
-  className="details pnls"
+  className="details pnls animate"
   id="main-pnl"
 >
   <div
@@ -15,11 +15,11 @@ exports[`details matches snapshot 1`] = `
 
 exports[`details matches snapshot with data 1`] = `
 <div
-  className="details pnls"
+  className="details pnls animate"
   id="main-pnl"
 >
   <div
-    className="details"
+    className="details animate"
   >
     <h5>
       Details for 

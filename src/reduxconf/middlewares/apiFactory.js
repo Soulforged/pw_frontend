@@ -3,7 +3,7 @@ import { normalize } from "normalizr";
 import { camelizeKeys } from "humps";
 import { CALL_API } from "src/constants";
 
-import type { DispatchAPI } from "src/types";
+import type { DispatchAPI, MiddlewareAPI } from "src/types";
 
 type Config = {
   root: string
@@ -62,15 +62,30 @@ const callApi = (endpoint, dispatch, optParams) => {
     .catch(error => Promise.reject(error));
 };
 
+const shouldUseCache = (store, key, invalidatesCache) => (
+  !invalidatesCache && key && store.getState().entities
+      && store.getState().entities[key]
+      && store.getState().entities[key].valid
+);
+
 export default (config: Config) => (
-  (/*store: MiddlewareAPI<*, *>*/) => (next: DispatchAPI<*>) => (action: Object) => {
+  (store: MiddlewareAPI<*, *>) => (next: DispatchAPI<*>) => (action: Object) => {
     const callAPI = action[CALL_API];
     if (!callAPI) {
       return next(action);
     }
 
     const { endpoint } = callAPI; // eslint-disable-line immutable/no-let
-    const { types, key, after } = callAPI;
+    const {
+      types,
+      key,
+      after,
+      invalidatesCache
+    } = callAPI;
+
+    if (shouldUseCache(store, key, invalidatesCache)) {
+      return next({ type: "CALL_API_FROM_CACHE" });
+    }
 
     if (typeof endpoint !== "string") {
       throw new Error("'endpoint' should be a URL string.");

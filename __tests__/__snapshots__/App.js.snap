@@ -2,198 +2,172 @@
 
 exports[`shows home (dashboard) when logged in 1`] = `
 <div>
-  <div>
-    <div>
+  <div
+    className="animate"
+  >
+    <div
+      id="wrapper"
+    >
       <div
-        id="wrapper"
+        className="text-center animate"
+        id="wrapper_left"
+        style={
+          Object {
+            "overflow": "hidden",
+            "width": "14%",
+          }
+        }
       >
         <div
-          className="text-center"
-          id="wrapper_left"
-          style={
-            Object {
-              "overflow": "hidden",
-              "transition": "width 150ms ease-in-out",
-              "width": "13%",
-            }
-          }
+          className="left-relative"
         >
           <div
-            className="left-relative"
+            className="left-up"
           >
             <div
-              className="left-up"
+              className="text-right"
+            >
+              <i
+                aria-hidden="true"
+                className="menu-toggle fa fa-bars pointer"
+                onClick={[Function]}
+              />
+            </div>
+            <div
+              className="logo-big"
+            >
+              <img
+                alt="logo"
+                className="home pointer"
+                src="pegb-logo-final-white.svg"
+              />
+            </div>
+          </div>
+          <div
+            className="left-center"
+          >
+            <div
+              className="usrnm-lbl"
             >
               <div
-                className="text-right"
+                className="usrnm-big"
               >
-                <i
-                  aria-hidden="true"
-                  className="menu-toggle fa fa-bars pointer"
+                <span />
+                <button
+                  className="fa fa-chevron-down pointer"
                   onClick={[Function]}
                 />
               </div>
-              <div
-                className="logo-big"
-              >
-                <img
-                  alt="logo"
-                  className="home pointer"
-                  src="pegb-logo-final-white.svg"
-                />
-              </div>
-            </div>
-            <div
-              className="left-center"
-            >
-              <div
-                className="usrnm-lbl"
-              >
-                <div
-                  className="usrnm-big"
-                >
-                  <span />
-                  <button
-                    className="fa fa-chevron-down pointer"
-                    onClick={[Function]}
-                  />
-                </div>
-              </div>
-              <div
-                className="usrnm-div"
-                style={
-                  Object {
-                    "display": "none",
-                    "height": 80,
-                    "opacity": 0,
-                    "transition": "height 150ms ease-in-out, opacity 150ms ease-in-out",
-                  }
-                }
-              >
-                <p>
-                  <a
-                    className="change-pswd"
-                    href="/#"
-                  >
-                    Change Password
-                  </a>
-                </p>
-                <p>
-                  <a
-                    className="sign-out"
-                    href="/#"
-                    onClick={[Function]}
-                  >
-                    Sign Out
-                  </a>
-                </p>
-              </div>
-            </div>
-            <div
-              className="left-down"
-            >
-              <ul
-                className="menu-nav"
-              >
-                <li
-                  className="nav-tabs"
-                >
-                  <a
-                    aria-current={false}
-                    className={undefined}
-                    href="/dashboard"
-                    onClick={[Function]}
-                    style={undefined}
-                  >
-                    <img
-                      alt="dashboard"
-                      src="dashboard.svg"
-                    />
-                    <span
-                      style={
-                        Object {
-                          "display": "inline",
-                        }
-                      }
-                    >
-                      Dashboard
-                    </span>
-                  </a>
-                </li>
-                <li
-                  className="nav-tabs"
-                >
-                  <a
-                    aria-current={false}
-                    className={undefined}
-                    href="/users"
-                    onClick={[Function]}
-                    style={undefined}
-                  >
-                    <img
-                      alt="users"
-                      src="admin-icon.svg"
-                    />
-                    <span
-                      style={
-                        Object {
-                          "display": "inline",
-                        }
-                      }
-                    >
-                      Users
-                    </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div
-              className="absolute-down"
-            >
-              <div
-                className="theme_toggle"
-              >
-                <label
-                  className="switch"
-                  htmlFor="theme_toggle"
-                >
-                  <input
-                    checked={false}
-                    id="theme_toggle"
-                    onChange={[Function]}
-                    type="checkbox"
-                  />
-                  <span
-                    className="slider round"
-                  />
-                </label>
-              </div>
-              <p
-                className="help-support"
-                style={
-                  Object {
-                    "display": "block",
-                  }
-                }
-              >
-                <a
-                  href="/"
-                >
-                  Help and support
-                </a>
-              </p>
             </div>
           </div>
+          <div
+            className="left-down"
+          >
+            <ul
+              className="menu-nav"
+            >
+              <li
+                className="nav-tabs"
+              >
+                <a
+                  aria-current={false}
+                  className={undefined}
+                  href="/dashboard"
+                  onClick={[Function]}
+                  style={undefined}
+                >
+                  <img
+                    alt="dashboard"
+                    src="dashboard.svg"
+                  />
+                  <span
+                    style={
+                      Object {
+                        "display": "inline",
+                      }
+                    }
+                  >
+                    Dashboard
+                  </span>
+                </a>
+              </li>
+              <li
+                className="nav-tabs"
+              >
+                <a
+                  aria-current={false}
+                  className={undefined}
+                  href="/users"
+                  onClick={[Function]}
+                  style={undefined}
+                >
+                  <img
+                    alt="users"
+                    src="admin-icon.svg"
+                  />
+                  <span
+                    style={
+                      Object {
+                        "display": "inline",
+                      }
+                    }
+                  >
+                    Users
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div
+            className="absolute-down"
+          >
+            <div
+              className="theme_toggle"
+            >
+              <label
+                className="switch"
+                htmlFor="theme_toggle"
+              >
+                <input
+                  checked={false}
+                  id="theme_toggle"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <span
+                  className="slider round"
+                />
+              </label>
+            </div>
+            <p
+              className="help-support"
+              style={
+                Object {
+                  "display": "block",
+                }
+              }
+            >
+              <a
+                href="/"
+              >
+                Help and support
+              </a>
+            </p>
+          </div>
         </div>
-        <div
-          id="wrapper_right"
-          style={
-            Object {
-              "overflow": "hidden",
-              "transition": "width 150ms ease-in-out",
-              "width": "87%",
-            }
+      </div>
+      <div
+        className="animate"
+        id="wrapper_right"
+        style={
+          Object {
+            "overflow": "hidden",
+            "width": "86%",
           }
+        }
+      >
+        <div
+          className="animate"
         >
           <div
             id="dashboard"
@@ -591,121 +565,121 @@ exports[`shows home (dashboard) when logged in 1`] = `
 
 exports[`shows login when not logged in 1`] = `
 <div>
-  <div>
-    <div>
+  <div
+    className="animate"
+  >
+    <div
+      id="login-wrapper"
+    >
       <div
-        id="login-wrapper"
+        id="login-frame"
       >
         <div
-          id="login-frame"
+          className="pnls"
+          id="login"
         >
           <div
-            className="pnls"
-            id="login"
+            className="login-header"
+          >
+            <p
+              className="login-title color-6"
+            >
+              BACK OFFICE
+            </p>
+          </div>
+          <form
+            id="login_frm"
+            onSubmit={[Function]}
           >
             <div
-              className="login-header"
-            >
-              <p
-                className="login-title color-6"
-              >
-                BACK OFFICE
-              </p>
-            </div>
-            <form
-              id="login_frm"
-              onSubmit={[Function]}
+              className="login-body"
             >
               <div
-                className="login-body"
+                className="modal-p"
               >
                 <div
-                  className="modal-p"
+                  className="input-group"
                 >
-                  <div
-                    className="input-group"
+                  <span
+                    className="input-group-addon"
                   >
                     <span
-                      className="input-group-addon"
-                    >
-                      <span
-                        className="login-user"
-                      />
-                    </span>
-                    <input
-                      className="form-control"
-                      id="username"
-                      onChange={[Function]}
-                      placeholder="User@domain.com"
-                      required={true}
-                      type="text"
+                      className="login-user"
                     />
-                  </div>
-                </div>
-                <div
-                  className="modal-p"
-                >
-                  <div
-                    className="input-group"
-                  >
-                    <span
-                      className="input-group-addon"
-                    >
-                      <span
-                        className="login-pswd"
-                      />
-                    </span>
-                    <input
-                      className="form-control"
-                      id="password"
-                      onChange={[Function]}
-                      placeholder="Password"
-                      type="password"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                className="login-footer"
-              >
-                <div
-                  className="modal-p"
-                >
+                  </span>
                   <input
-                    className="btn btn-md"
-                    type="submit"
-                    value="LOGIN"
+                    className="form-control"
+                    id="username"
+                    onChange={[Function]}
+                    placeholder="User@domain.com"
+                    required={true}
+                    type="text"
                   />
                 </div>
+              </div>
+              <div
+                className="modal-p"
+              >
                 <div
-                  className="modal-p"
+                  className="input-group"
                 >
-                  <a
-                    className="forgot-pswd color-6"
-                    href="/forgotPassword"
+                  <span
+                    className="input-group-addon"
                   >
-                    Forgot your password?
-                  </a>
-                </div>
-                <div
-                  className="row color-6"
-                >
-                  <div
-                    className="col-md-6 col-sm-6 text-left"
-                  >
-                    Powered by Peg b
-                  </div>
-                  <div
-                    className="col-md-6 col-sm-6 text-right"
-                  >
-                    <i
-                      className="logo-s"
+                    <span
+                      className="login-pswd"
                     />
-                  </div>
+                  </span>
+                  <input
+                    className="form-control"
+                    id="password"
+                    onChange={[Function]}
+                    placeholder="Password"
+                    type="password"
+                  />
                 </div>
               </div>
-            </form>
-          </div>
+            </div>
+            <div
+              className="login-footer"
+            >
+              <div
+                className="modal-p"
+              >
+                <input
+                  className="btn btn-md"
+                  type="submit"
+                  value="LOGIN"
+                />
+              </div>
+              <div
+                className="modal-p"
+              >
+                <a
+                  className="forgot-pswd color-6"
+                  href="/forgotPassword"
+                >
+                  Forgot your password?
+                </a>
+              </div>
+              <div
+                className="row color-6"
+              >
+                <div
+                  className="col-md-6 col-sm-6 text-left"
+                >
+                  Powered by Peg b
+                </div>
+                <div
+                  className="col-md-6 col-sm-6 text-right"
+                >
+                  <i
+                    className="logo-s"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>

@@ -25,7 +25,8 @@ export const saveUser = (body: User) => ({
     update: body.id != null,
     key: "users",
     errorSchema: error,
-    after: dispatch => dispatch(push("/users"))
+    after: dispatch => dispatch(push("/users")),
+    invalidatesCache: true
   }
 });
 
