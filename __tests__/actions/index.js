@@ -18,11 +18,12 @@ describe("common actions", () => {
     fetchMock.reset();
     fetchMock.restore();
   });
-  const body = { username: "a", password: "b" };
+
   it("supports LOGIN action", () => {
+    const body = { username: "a", password: "b" };
     fetchMock.postOnce(
       `end:/authenticate/generate-token`,
-      { body, headers: { "content-type": "application/json" } }
+      { body: mocks.login, headers: { "content-type": "application/json" } }
     );
     const expectedActions = [
       { key: undefined, type: "LOGIN_REQUEST" },

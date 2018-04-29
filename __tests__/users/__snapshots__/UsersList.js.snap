@@ -2,7 +2,7 @@
 
 exports[`list matches snapshot 1`] = `
 <div
-  className="ReactTable -striped -highlight tbl-wrapper table table-striped"
+  className="ReactTable -striped -highlight table table-striped"
   style={Object {}}
 >
   <div
@@ -1843,7 +1843,7 @@ exports[`list matches snapshot 1`] = `
 
 exports[`list matches snapshot with data 1`] = `
 <div
-  className="ReactTable -striped -highlight tbl-wrapper table table-striped"
+  className="ReactTable -striped -highlight table table-striped"
   style={Object {}}
 >
   <div

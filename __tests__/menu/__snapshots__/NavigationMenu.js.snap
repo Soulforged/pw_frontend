@@ -37,7 +37,7 @@ exports[`matches snapshot no session 1`] = `
       >
         <span />
         <button
-          className="fa fa-chevron-down pointer"
+          className="fa fa-chevron-down pointer icon-button"
           onClick={undefined}
         />
       </div>
@@ -46,7 +46,6 @@ exports[`matches snapshot no session 1`] = `
       className="usrnm-div animate"
       style={
         Object {
-          "height": "80px",
           "opacity": 1,
         }
       }
@@ -155,7 +154,7 @@ exports[`matches snapshot with session 1`] = `
           testuser
         </span>
         <button
-          className="fa fa-chevron-down pointer"
+          className="fa fa-chevron-down pointer icon-button"
           onClick={undefined}
         />
       </div>
@@ -164,7 +163,6 @@ exports[`matches snapshot with session 1`] = `
       className="usrnm-div animate"
       style={
         Object {
-          "height": "80px",
           "opacity": 1,
         }
       }
@@ -241,6 +239,31 @@ exports[`matches snapshot with session 1`] = `
             }
           >
             Users
+          </span>
+        </a>
+      </li>
+      <li
+        className="nav-tabs"
+      >
+        <a
+          aria-current={false}
+          className={undefined}
+          href="/roles"
+          onClick={[Function]}
+          style={undefined}
+        >
+          <img
+            alt="roles"
+            src="admin-icon.svg"
+          />
+          <span
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+          >
+            roles
           </span>
         </a>
       </li>

@@ -7,7 +7,7 @@ import { role, list, error } from "./schemas";
 const { fetchEntitiesTypes, saveTypes } = actions;
 
 const ROLE = "ROLE";
-const ROLES = "ROLE";
+const ROLES = "ROLES";
 
 const restPath = body => (body.id ? `/${body.id}` : "");
 
@@ -19,11 +19,12 @@ export const saveRole = (body: Object) => ({
     update: body.id != null,
     key: "roles",
     errorSchema: error,
-    after: dispatch => dispatch(push("/roles"))
+    after: dispatch => dispatch(push("/roles")),
+    invalidatesCache: true
   }
 });
 
-export const fetchRole = id => ({
+export const fetchRole = (id: number) => ({
   [CALL_API]: {
     types: fetchEntitiesTypes(ROLE),
     endpoint: `/user/role/${id}`,

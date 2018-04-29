@@ -8,7 +8,7 @@ import { Loading } from "src/components";
 
 type Props = {
   item: Object,
-  // saveRole: (Object) => void,
+  saveRole: (Object) => void,
   saving: boolean,
   edit: boolean,
   returnToList: (Event) => void
@@ -89,6 +89,7 @@ const Component = (props: Props) => {
     item,
     returnToList,
     saving,
+    saveRole,
     edit = item.id
   } = props;
   return (
@@ -102,7 +103,7 @@ const Component = (props: Props) => {
         </h4>
         <div className="add-pnl-cnt">
           <Form
-            onSubmit={submittedValues => console.log(submittedValues)}
+            onSubmit={saveRole}
             defaultValues={{ ...item, checked: item.businessUnitId ? "1" : "" }}
             preValidate={preValidate}
             validate={validate}

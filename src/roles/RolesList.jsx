@@ -27,7 +27,7 @@ const Component = ({ roles, showDetails }: Props) => (
   <ReactTable
     data={data(roles)}
     columns={columns}
-    className="-striped -highlight tbl-wrapper table table-striped"
+    className="-striped -highlight table table-striped"
     noDataText={(roles.error && roles.error.expected && roles.error.message) || "No data to show"}
     defaultPageSize={10}
     getTrProps={(state, rowInfo) => (

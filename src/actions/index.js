@@ -30,7 +30,7 @@ const login = ({ username, password }: UserInfo) => ({
   [CALL_API]: {
     types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
     endpoint: "/authenticate/generate-token",
-    body: { user: username, password },
+    body: { user: username, password }
   }
 });
 

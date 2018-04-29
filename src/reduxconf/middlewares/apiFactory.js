@@ -35,20 +35,28 @@ const callApi = (endpoint, dispatch, optParams) => {
       "content-type": body ? "application/json" : "text/plain"
     }
   };
+
+  const jsonOrText = resp => (
+    (resp.headers.get("content-type") === "application/json") ?
+      resp.json()
+      : resp.text()
+  );
+
   const jsonError = (json, { status }) => {
     if (errorSchema) {
       return errorSchema(json, status);
     }
     return json;
   };
+
   const checkStatus = (response) => {
     if (!response.ok) {
-      return response.json()
+      return jsonOrText(response)
         .then(error => jsonError(error, response))
         .catch(Promise.reject)
         .then(json => Promise.reject(json));
     }
-    return response.json();
+    return jsonOrText(response);
   };
   const doNormalize = json => (
     schema ? normalize(camelizeKeys(json), schema) : camelizeKeys(json)
