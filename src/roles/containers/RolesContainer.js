@@ -4,7 +4,7 @@ import { push } from "react-router-redux";
 
 import Roles from "../Roles";
 
-const mapStateToProps = ({ ui: { editionItem } }) => ({ editionItem });
+const mapStateToProps = () => ({});
 
 const openForm = () => push("/new/roles");
 

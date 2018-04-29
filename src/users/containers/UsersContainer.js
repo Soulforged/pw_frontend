@@ -5,7 +5,7 @@ import { fetchUserByCriteria } from "../actions";
 
 import Users from "../Users";
 
-const mapStateToProps = ({ ui: { editionItem } }) => ({ editionItem });
+const mapStateToProps = () => ({});
 
 const openForm = () => push("/new/users");
 
