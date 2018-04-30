@@ -25,6 +25,17 @@ const ButtonOrLoading = ({ saving }: { saving: boolean }) => (
   saving ? <Loading loading /> : <button type="submit" className="btn btn-default">SAVE</button>
 );
 
+type FormApiProps = {
+  errors: Object,
+  touched: Object
+};
+
+const ErrorMessages = ({ errors, touched }: FormApiProps) => (
+  <div>
+    {errors && Object.keys(errors).map(k => touched[k] && <div key={k}>{errors[k]}</div>)}
+  </div>
+);
+
 const Component = ({ item, saveUser, saving }: Props) => (
   <div id="main-pnl" className="pnls">
     <h4>{item.id ? `Edit user ${item.id}` : "New user"}</h4>
@@ -124,6 +135,8 @@ const Component = ({ item, saveUser, saving }: Props) => (
                 />
               </label>
             </div>
+            <hr />
+            <ErrorMessages errors={formApi.errors} touched={formApi.touched} />
             <article className="row modal-p pull-right">
               <ButtonOrLoading saving={saving} />
             </article>

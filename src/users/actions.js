@@ -1,7 +1,6 @@
 //@flow
 import { push } from "react-router-redux";
 import { CALL_API } from "src/constants";
-import mocks from "src/mocks";
 import actions from "src/actions";
 import { user, list, error } from "./schemas";
 import type { User } from "./types";
@@ -26,7 +25,6 @@ export const saveUser = (body: User) => ({
     update: body.id != null,
     key: "users",
     errorSchema: error,
-    mock: mocks.userCreate,
     after: dispatch => dispatch(push("/users")),
     invalidatesCache: true
   }
@@ -39,7 +37,6 @@ export const fetchUser = (id: number) => ({
     schema: user,
     errorSchema: error,
     key: "users",
-    mock: mocks.user
   }
 });
 
@@ -50,7 +47,6 @@ export const fetchUsers = () => ({
     schema: list(user),
     errorSchema: error,
     key: "users",
-    mock: mocks.users
   }
 });
 
@@ -65,7 +61,6 @@ export const fetchUserByCriteria = ({ criteria, filter }: Params) => {
       schema: user,
       errorSchema: error,
       key: "users",
-      mock: mocks.users
     }
   };
 };

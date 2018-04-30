@@ -13,8 +13,8 @@ const initialState: State = {
 };
 
 export default (state: State = initialState, action: Object) => {
-  if (action.type === setError().type) {
-    const error = action.payload;
+  if (action.type === setError().type || action.error) {
+    const error = action.payload || action.error;
     return error ? { ...state, error } : { ...state, error: false };
   }
   return state;

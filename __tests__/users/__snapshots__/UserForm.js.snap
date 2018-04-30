@@ -226,6 +226,8 @@ exports[`matches snapshot while not saving 1`] = `
           </select>
         </label>
       </div>
+      <hr />
+      <div />
       <article
         className="row modal-p pull-right"
       >
@@ -445,6 +447,8 @@ exports[`matches snapshot while saving 1`] = `
           </select>
         </label>
       </div>
+      <hr />
+      <div />
       <article
         className="row modal-p pull-right"
       >

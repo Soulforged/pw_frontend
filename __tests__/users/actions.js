@@ -2,6 +2,7 @@
 import fetchMock from "fetch-mock";
 import mockStore from "test/setupStoreMock";
 import actions from "src/actions";
+import { omit } from "lodash";
 import {
   saveUser,
   fetchUser,
@@ -77,7 +78,8 @@ describe("users actions", () => {
     );
     const expectedActions = saveTypes("USER").slice(0, 2);
     const store = mockStore({ entities: { users: {} } });
-    return store.dispatch(saveUser(mocks.user)).then(() => (
+    const newUser = omit(mocks.user, "id");
+    return store.dispatch(saveUser(newUser)).then(() => (
       expect(store.getActions().map(a => a.type)).toEqual(expectedActions)
     ));
   });

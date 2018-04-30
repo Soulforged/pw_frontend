@@ -16,6 +16,12 @@ async function emulate(mock) {
   return mock;
 }
 
+const jsonOrText = resp => (
+  resp.headers.get("content-type") === "application/json" ?
+    resp.json()
+    : resp.text()
+);
+
 const callApi = (endpoint, dispatch, optParams) => {
   const {
     schema,
@@ -35,20 +41,19 @@ const callApi = (endpoint, dispatch, optParams) => {
       "content-type": body ? "application/json" : "text/plain"
     }
   };
-  const jsonError = (json, { status }) => {
+  const error = (originalError, { status }) => {
     if (errorSchema) {
-      return errorSchema(json, status);
+      return errorSchema(originalError, status);
     }
-    return json;
+    return originalError;
   };
   const checkStatus = (response) => {
     if (!response.ok) {
-      return response.json()
-        .then(error => jsonError(error, response))
-        .catch(Promise.reject)
-        .then(json => Promise.reject(json));
+      return jsonOrText(response)
+        .then(originalError => error(originalError, response))
+        .then(e => Promise.reject(e));
     }
-    return response.json();
+    return jsonOrText(response);
   };
   const doNormalize = json => (
     schema ? normalize(camelizeKeys(json), schema) : camelizeKeys(json)
