@@ -1,6 +1,7 @@
 //@flow
 import { Dashboard } from "src/dashboard";
 import { Users, UserForm, UserDetails } from "src/users";
+import { Roles, RoleForm, RoleDetails } from "src/roles";
 
 export default [
   {
@@ -47,6 +48,39 @@ export default [
     name: "users_create",
     title: "New user",
     component: UserForm,
+    hidden: true,
+    exact: true,
+    strict: true
+  },
+  {
+    path: "/roles",
+    name: "roles",
+    title: "roles",
+    component: Roles,
+  },
+  {
+    path: "/roles/:id",
+    name: "role",
+    title: "Role details",
+    component: RoleDetails,
+    hidden: true,
+    strict: true,
+    exact: true
+  },
+  {
+    path: "/edit/roles/:id",
+    name: "roles_edit",
+    title: "Role edition",
+    component: RoleForm,
+    hidden: true,
+    exact: true,
+    strict: true
+  },
+  {
+    path: "/new/roles",
+    name: "roles_create",
+    title: "New role",
+    component: RoleForm,
     hidden: true,
     exact: true,
     strict: true

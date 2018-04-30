@@ -91,7 +91,7 @@ input[type=radio]+label {
   font-size: 15px;
   margin-bottom: 10px;
   font-weight: normal;
-  width: 45%;
+  /* width: 45%; */
 }
 
 input[type=radio]+label:before {
@@ -143,6 +143,10 @@ hr {
 
 .theme {
   color: #f05323 !important;
+}
+
+p {
+  margin: 0 0 10px;
 }
 
 .btn {
@@ -248,12 +252,17 @@ hr {
   margin-right: 5px;
 }
 
+.left-up, .left-down, .usrnm-div {
+  padding: 5px;
+}
+
 .usrnm-div {
   width: 100%;
-  height: 0px;
   z-index: 1;
   background-color: #666666;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  position: absolute;
+  padding-top: 15px;
 }
 
 .usrnm-div a {
@@ -334,6 +343,7 @@ hr {
   width: 100%;
   overflow-x: auto;
   min-height: 100px;
+  padding-top: 5px;
 }
 
 .tbl-wrapper table {
@@ -344,6 +354,15 @@ hr {
 .table-striped {
   border-collapse: separate;
   border-spacing: 0px 4px;
+}
+
+.ReactTable .rt-thead.-header {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.ReactTable .rt-thead .rt-th {
+  padding: 8px 5px;
 }
 
 .table>thead>tr>td, .table>thead>tr>th {
@@ -482,7 +501,7 @@ hr {
   border-bottom: 1px solid #ccc;
   padding: 15px 15px 10px;
   margin: 0 -10px;
-  font-size: 0.95vw;
+  font-size: 1.6vw;
 }
 
 #csv-export {
@@ -767,6 +786,36 @@ hr {
   padding: 10px 3px;
 }
 
+.add-new-btn, .add-new{
+  background: transparent;
+  border: none;
+}
+.add-new-btn i{
+  margin-right: 5px;
+}
+
+.edit-pnl {
+  background-color: #fff !important;
+  cursor: default !important;
+}
+
+.edit-pnl:hover {
+  text-shadow: none !important;
+  color: inherit !important;
+}
+
+.inline-add-pnl-cnt {
+  width: 100%;
+  margin: 15px auto;
+  min-height: 150px;
+}
+
+.edit-pnl-cnt, .add-pnl-cnt {
+  width: 100%;
+  margin: 5px auto;
+  max-width: 700px;
+}
+
 .add-pnl-cnt {
   padding: 20px;
   margin: 20px auto;
@@ -775,7 +824,7 @@ hr {
 .pnls {
   border: 1px solid #ddd;
   border-radius: 3px;
-  padding: 10px;
+  padding: 0 10px;
   box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2);
   background: #fff;
   margin-bottom: 10px;
@@ -784,6 +833,62 @@ hr {
 
 #main-pnl {
   height: 100%;
+}
+
+#main-pnl tbody .assign, #main-pnl tbody .edit, #main-pnl tbody .edit-btn, #main-pnl .rt-td .edit {
+  cursor: pointer;
+  padding: 5px;
+  margin: -5px;
+}
+
+#main-pnl tbody .remove:hover {
+  color: #F15930;
+}
+
+#aggregations {
+  margin: 15px 0 -5px;
+}
+
+#aggregations .col-md-4 {
+  width: auto;
+  padding: 10px 25px 0;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
+#aggregations .cashin {
+  border: 2px solid #5cb85c;
+  background: #d8eedd;
+}
+
+#aggregations .cashout {
+  border: 2px solid #F15930;
+  background: #f8bfab;
+}
+
+#aggregations .netinout {
+  border: 2px solid #f1bf30;
+  background: #f8de9b;
+}
+
+#aggregations .netinout p {
+  line-height: 42px;
+}
+
+#search-pnl #filter, #search-pnl .lbl {
+  max-width: 250px;
+}
+
+#rows {
+  max-width: 90px;
+}
+
+#add-btn {
+  margin-top: 30px;
+  border-radius: 50%;
+  padding: 8px 9px;
+  border: 2px solid;
+  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2);
 }
 
 #alertdiv2 {
@@ -843,6 +948,10 @@ hr {
   display: inline-block;
   width: 46px;
   height: 24px;
+}
+
+.switch input {
+  display: none;
 }
 
 .slider {
@@ -1010,9 +1119,9 @@ label > select {
 }
 
 .details {
-  font-size: 0.9vw;
+  font-size: 1.0vw;
 }
 
 .details .row {
-  margin: 0.5vw;
+  margin: 0 0 1.2vw;
 }

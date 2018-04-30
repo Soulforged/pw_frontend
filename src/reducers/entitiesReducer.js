@@ -26,7 +26,8 @@ const {
 } = actions;
 
 const initialState: State = {
-  users: {}
+  users: {},
+  roles: {}
 };
 
 const entitiesRegex = new RegExp(`^${ENTITIES}/([\\w_]+)_.*$`);

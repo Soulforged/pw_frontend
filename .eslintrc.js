@@ -50,6 +50,11 @@ module.exports = {
     "immutable/no-let": ["error"],
     "immutable/no-this": ["error"],
     "immutable/no-mutation": "off",
+    "jsx-a11y/label-has-for": {
+      "required": {
+        "some": [ "nesting", "id" ]
+      }
+    },
   },
   "settings": {
     "import/resolver": {

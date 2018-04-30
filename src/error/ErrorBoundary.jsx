@@ -1,4 +1,5 @@
 //@flow
+
 import * as React from "react";
 import type { AppError } from "src/types";
 import { compose, withHandlers } from "recompose";

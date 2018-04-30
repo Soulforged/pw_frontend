@@ -38,7 +38,7 @@ const UserMenuIcon = (props: UserMenuIconProps) => {
   ) : (
     <div className="usrnm-big">
       <span>{userName}</span>
-      <button className={`fa fa-chevron-${userMenuCollapsed ? "up" : "down"} pointer`} onClick={toggleUserMenu} />
+      <button className={`fa fa-chevron-${userMenuCollapsed ? "up" : "down"} pointer icon-button`} onClick={toggleUserMenu} />
     </div>
   );
 };
@@ -47,7 +47,7 @@ const UserMenu = ({ show, onSignOut }: UserMenuProps) => (
   show ? (
     <div
       className="usrnm-div animate"
-      style={show ? { height: "80px", opacity: 1 } : { height: 0, opacity: 0 }}
+      style={show ? { opacity: 1 } : { opacity: 0 }}
     >
       <p>
         <a href="/#" className="change-pswd">Change Password</a>

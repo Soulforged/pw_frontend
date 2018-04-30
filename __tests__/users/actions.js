@@ -22,7 +22,7 @@ describe("users actions", () => {
   it("supports fetchUsers action", () => {
     fetchMock.getOnce(
       `end:/user/backofficeuser`,
-      { body: mocks.summary, headers: { "content-type": "application/json" } }
+      { body: mocks.users, headers: { "content-type": "application/json" } }
     );
     const expectedActions = fetchEntitiesTypes("USERS").slice(0, 2);
     const store = mockStore({ entities: { users: {} } });
@@ -34,7 +34,7 @@ describe("users actions", () => {
   it("supports fetchUser action", () => {
     fetchMock.getOnce(
       `end:/user/backofficeuser/1`,
-      { body: mocks.summary, headers: { "content-type": "application/json" } }
+      { body: mocks.user, headers: { "content-type": "application/json" } }
     );
     const expectedActions = fetchEntitiesTypes("USER").slice(0, 2);
     const store = mockStore({ entities: { users: {} } });
@@ -71,9 +71,21 @@ describe("users actions", () => {
     ));
   });
 
+  it("supports saveUser action with update", () => {
+    fetchMock.putOnce(
+      `end:/user/backofficeuser/117`,
+      { body: "ok" }
+    );
+    const expectedActions = saveTypes("USER").slice(0, 2);
+    const store = mockStore({ entities: { users: {} } });
+    return store.dispatch(saveUser(mocks.user)).then(() => (
+      expect(store.getActions().map(a => a.type)).toEqual(expectedActions)
+    ));
+  });
+
   it("supports saveUser action", () => {
     fetchMock.postOnce(
-      `end:/user/backofficeuser`, mocks.user,
+      `end:/user/backofficeuser`,
       { body: { id: 1 }, headers: { "content-type": "application/json" } }
     );
     const expectedActions = saveTypes("USER").slice(0, 2);

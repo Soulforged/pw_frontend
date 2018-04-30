@@ -63,7 +63,8 @@ const callApi = (endpoint, dispatch, optParams) => {
   }
   return fetch(endpoint, options)
     .then(checkStatus)
-    .then(doNormalize);
+    .then(doNormalize)
+    .catch(err => Promise.reject(err));
 };
 
 const shouldUseCache = (store, key, invalidatesCache) => (

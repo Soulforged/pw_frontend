@@ -11,6 +11,7 @@ export default {
   login: require("./data/login.json"),
   user: require("./data/user.json"),
   userCreate: require("./data/userCreate.json"),
+  role: require("./data/role.json")
 };
 
 /* eslint-disable */

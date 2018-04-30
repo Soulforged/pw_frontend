@@ -54,7 +54,7 @@ exports[`shows home (dashboard) when logged in 1`] = `
               >
                 <span />
                 <button
-                  className="fa fa-chevron-down pointer"
+                  className="fa fa-chevron-down pointer icon-button"
                   onClick={[Function]}
                 />
               </div>
@@ -113,6 +113,31 @@ exports[`shows home (dashboard) when logged in 1`] = `
                     }
                   >
                     Users
+                  </span>
+                </a>
+              </li>
+              <li
+                className="nav-tabs"
+              >
+                <a
+                  aria-current={false}
+                  className={undefined}
+                  href="/roles"
+                  onClick={[Function]}
+                  style={undefined}
+                >
+                  <img
+                    alt="roles"
+                    src="admin-icon.svg"
+                  />
+                  <span
+                    style={
+                      Object {
+                        "display": "inline",
+                      }
+                    }
+                  >
+                    roles
                   </span>
                 </a>
               </li>
