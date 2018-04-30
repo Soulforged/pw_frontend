@@ -5,7 +5,9 @@ import renderer from "react-test-renderer";
 import mocks from "src/mocks";
 
 it("matches snapshot while fetching", () => {
-  const rendered = renderer.create(<BusinessUnitForm getBusinessUnit={jest.fn()} fetching />).toJSON();
+  const rendered = renderer.create((
+    <BusinessUnitForm getBusinessUnit={jest.fn()} fetching />
+  )).toJSON();
   expect(rendered).toMatchSnapshot();
 });
 
@@ -22,6 +24,8 @@ it("matches snapshot while saving", () => {
 });
 
 it("matches snapshot while not saving", () => {
-  const rendered = renderer.create(<BusinessUnitForm getBusinessUnit={jest.fn()} item={mocks.BunitCreate} />).toJSON();
+  const rendered = renderer.create((
+    <BusinessUnitForm getBusinessUnit={jest.fn()} item={mocks.BunitCreate} />
+  )).toJSON();
   expect(rendered).toMatchSnapshot();
 });
