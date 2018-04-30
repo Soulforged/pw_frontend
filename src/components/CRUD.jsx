@@ -1,12 +1,16 @@
 //@flow
 import * as React from "react";
+import CRUDList from "./CRUDList";
 
 type Props = {
   title: string,
   createButtonTitle: string,
   openForm: () => void,
-  children?: React.Node,
-  filter?: React.Node
+  columns: Object,
+  showDetails: () => void,
+  entities: Array<Object>,
+  loader: (Object) => void,
+  filter?: React.Node,
 }
 
 const CRUD = (props: Props) => (
@@ -22,7 +26,7 @@ const CRUD = (props: Props) => (
         </h4>
 
         <div className="tbl-wrapper">
-          {props.children}
+          <CRUDList {...props} />
         </div>
       </div>
     </div>

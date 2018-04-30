@@ -1,12 +1,20 @@
 //@flow
 import React from "react";
-import { CRUD, CRUDFilter } from "src/components";
-import BusinessUnitList from "./containers/BusinessUnitListContainer";
+import { CRUD, CRUDFilter, ActiveCell } from "src/components";
 
 type Props = {
   openForm: () => void,
-  fetchBusinessUnits: (Object) => void
+  fetchBusinessUnits: (Object) => void,
+  businessUnits: Object,
+  showDetails: (id: number) => void
 };
+
+const columns = [
+  { Header: "ID", accessor: "id" },
+  { Header: "Name", accessor: "name" },
+  { Header: "Company Type", accessor: "companyType" },
+  { Header: "Status", accessor: "status", Cell: ActiveCell },
+];
 
 const Filter = ({ fetchBusinessUnits }: { fetchBusinessUnits: (Object) => void }) => (
   <CRUDFilter filter={fetchBusinessUnits}>
@@ -25,7 +33,9 @@ export default (props: Props) => (
     createButtonTitle="New Business Unit"
     openForm={props.openForm}
     filter={<Filter {...props} />}
-  >
-    <BusinessUnitList />
-  </CRUD>
+    columns={columns}
+    showDetails={props.showDetails}
+    entities={props.businessUnits}
+    loader={props.fetchBusinessUnits}
+  />
 );

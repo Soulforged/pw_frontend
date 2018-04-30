@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 body {
     background-color: #1a1a1a;
-    color: #fff;
+    color: #fff !important;
 }
 table, .modal-content{
     color: #333;

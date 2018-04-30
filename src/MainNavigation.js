@@ -9,7 +9,7 @@ type Props = {
 };
 
 const Component = ({ routes }: Props) => (
-  <div className="animate">
+  <div>
     {routes.map(route => (
       <Route key={route.name} {...route} />
     ))}

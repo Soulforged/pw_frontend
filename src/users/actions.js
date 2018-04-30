@@ -47,6 +47,7 @@ export const fetchUsers = () => ({
     schema: list(user),
     errorSchema: error,
     key: "users",
+    invalidatesCache: true
   }
 });
 

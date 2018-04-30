@@ -1,6 +1,7 @@
 //@flow
 import { connect } from "react-redux";
 import { matchPath } from "react-router";
+import { push } from "react-router-redux";
 import { fetchUser, saveUser } from "../actions";
 import UserForm from "../UserForm";
 
@@ -17,6 +18,8 @@ const mapStateToProps = ({ routing: { location: { pathname } }, entities: { user
   };
 };
 
-const mapDispatchToProps = { fetchUser, saveUser };
+const returnToList = () => push("/users");
+
+const mapDispatchToProps = { fetchUser, saveUser, returnToList };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserForm);

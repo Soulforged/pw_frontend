@@ -21,51 +21,57 @@ exports[`details matches snapshot with data 1`] = `
   <div
     className="details"
   >
-    <h5>
+    <h5
+      className="form-header trebuchet text-center bold"
+    >
       Details for 
       1
+      <button
+        className="add-new-btn pointer pull-right bold"
+        onClick={[Function]}
+        title="Edit"
+      >
+        <i
+          className="edit fa fa-pencil theme"
+        />
+        Edit Business Unit
+      </button>
     </h5>
-    <button
-      className="btn btn-default pull-right"
-      onClick={[Function]}
-      title="Edit"
-    >
-      <span
-        className="edit fa fa-pencil theme"
-      />
-      Edit user
-    </button>
     <div
-      className="row"
+      className="details"
     >
       <div
-        className="col-sm-3"
+        className="row"
       >
-        Name:
-      </div>
-      <div
-        className="col-sm-3"
-      />
-    </div>
-    <div
-      className="row"
-    >
-      <div
-        className="col-sm-3"
-      >
-        Status:
-      </div>
-      <div
-        className="col-sm-3"
-      >
-        <span
-          className="td-error"
+        <div
+          className="col-sm-3"
         >
-          <i
-            className="fa fa-circle"
-          />
-          Inactive
-        </span>
+          Name:
+        </div>
+        <div
+          className="col-sm-3"
+        />
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-sm-3"
+        >
+          Status:
+        </div>
+        <div
+          className="col-sm-3"
+        >
+          <span
+            className="td-error"
+          >
+            <i
+              className="fa fa-circle"
+            />
+            Inactive
+          </span>
+        </div>
       </div>
     </div>
   </div>

@@ -28,7 +28,7 @@ const App = ({ store, history }: Props) => (
   <Provider store={store}>
     <ErrorBoundary>
       <ConnectedRouter history={history}>
-        <div className="animate">
+        <div>
           <ThemeLink />
           <Switch>
             <Route path="/login" component={Login} />

@@ -23,323 +23,319 @@ exports[`matches snapshot while fetching 1`] = `
 `;
 
 exports[`matches snapshot while not saving 1`] = `
-<div>
-  <div
-    className="pnls"
-    id="main-pnl"
+<div
+  className="pnls"
+  id="main-pnl"
+>
+  <h4
+    className="form-header trebuchet text-center bold"
   >
-    <h4
-      className="form-header trebuchet text-center bold"
+    Edit Role 1
+    <button
+      className="add-new pointer pull-right bold"
+      onClick={undefined}
     >
-      Edit Role 1
-      <button
-        className="add-new pointer pull-right bold"
-        onClick={undefined}
-      >
-        <i
-          className="fa fa-close theme"
-        />
-      </button>
-    </h4>
-    <div
-      className="add-pnl-cnt"
+      <i
+        className="fa fa-close theme"
+      />
+    </button>
+  </h4>
+  <div
+    className="add-pnl-cnt"
+  >
+    <form
+      id="role_frm"
+      onSubmit={[Function]}
     >
-      <form
-        id="role_frm"
-        onSubmit={[Function]}
+      <div
+        className="row modal-p"
       >
         <div
-          className="row modal-p"
+          className="col-md-6 col-sm-6"
         >
-          <div
-            className="col-md-6 col-sm-6"
+          <label
+            htmlFor="roleName"
           >
-            <label
-              htmlFor="roleName"
-            >
-              Role Name:
-            </label>
-          </div>
-          <div
-            className="col-md-6 col-sm-6"
+            Role Name:
+          </label>
+        </div>
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <input
+            className="form-control"
+            id="roleName"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Role name"
+            required={true}
+            value="role"
+          />
+        </div>
+      </div>
+      <div
+        className="row modal-p"
+      >
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <label
+            htmlFor="roleType"
           >
+            Role Type:
+          </label>
+        </div>
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <div>
             <input
-              className="form-control"
-              id="roleName"
+              checked={true}
+              id="radioCompany"
               onBlur={[Function]}
               onChange={[Function]}
-              placeholder="Role name"
-              required={true}
-              value="role"
+              type="radio"
+              value=""
             />
-          </div>
-        </div>
-        <div
-          className="row modal-p"
-        >
-          <div
-            className="col-md-6 col-sm-6"
-          >
             <label
-              htmlFor="roleType"
+              htmlFor="radioCompany"
             >
-              Role Type:
+              Company Wide
             </label>
-          </div>
-          <div
-            className="col-md-6 col-sm-6"
-          >
-            <div>
-              <input
-                checked={true}
-                id="radioCompany"
-                onBlur={[Function]}
-                onChange={[Function]}
-                type="radio"
-                value=""
-              />
-              <label
-                htmlFor="radioCompany"
-              >
-                Company Wide
-              </label>
-              <input
-                checked={false}
-                id="radioBu"
-                onBlur={[Function]}
-                onChange={[Function]}
-                type="radio"
-                value="1"
-              />
-              <label
-                htmlFor="radioBu"
-              >
-                Business Unit Specific
-              </label>
-            </div>
-          </div>
-        </div>
-        
-        <div
-          className="row modal-p"
-        >
-          <div
-            className="col-md-6 col-sm-6"
-          >
-            <label
-              htmlFor="status"
-            >
-              Status:
-            </label>
-          </div>
-          <div
-            className="col-md-6 col-sm-6"
-          >
-            <select
-              className="form-control"
-              id="status"
+            <input
+              checked={false}
+              id="radioBu"
               onBlur={[Function]}
               onChange={[Function]}
+              type="radio"
+              value="1"
+            />
+            <label
+              htmlFor="radioBu"
+            >
+              Business Unit Specific
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div
+        className="row modal-p"
+      >
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <label
+            htmlFor="status"
+          >
+            Status:
+          </label>
+        </div>
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <select
+            className="form-control"
+            id="status"
+            onBlur={[Function]}
+            onChange={[Function]}
+            value={1}
+          >
+            <option
+              disabled={true}
+              value={0}
+            >
+              Select One...
+            </option>
+            <option
+              disabled={undefined}
               value={1}
             >
-              <option
-                disabled={true}
-                value={0}
-              >
-                Select One...
-              </option>
-              <option
-                disabled={undefined}
-                value={1}
-              >
-                Active
-              </option>
-              <option
-                disabled={undefined}
-                value={2}
-              >
-                Inactive
-              </option>
-            </select>
-          </div>
+              Active
+            </option>
+            <option
+              disabled={undefined}
+              value={2}
+            >
+              Inactive
+            </option>
+          </select>
         </div>
-        <hr />
-        <div />
-        <article
-          className="modal-p text-center"
+      </div>
+      <hr />
+      <div />
+      <article
+        className="modal-p text-center"
+      >
+        <button
+          className="btn btn-default"
+          type="submit"
         >
-          <button
-            className="btn btn-default"
-            type="submit"
-          >
-            SAVE
-          </button>
-        </article>
-      </form>
-    </div>
+          SAVE
+        </button>
+      </article>
+    </form>
   </div>
 </div>
 `;
 
 exports[`matches snapshot while saving 1`] = `
-<div>
-  <div
-    className="pnls"
-    id="main-pnl"
+<div
+  className="pnls"
+  id="main-pnl"
+>
+  <h4
+    className="form-header trebuchet text-center bold"
   >
-    <h4
-      className="form-header trebuchet text-center bold"
+    Edit Role 1
+    <button
+      className="add-new pointer pull-right bold"
+      onClick={undefined}
     >
-      Edit Role 1
-      <button
-        className="add-new pointer pull-right bold"
-        onClick={undefined}
-      >
-        <i
-          className="fa fa-close theme"
-        />
-      </button>
-    </h4>
-    <div
-      className="add-pnl-cnt"
+      <i
+        className="fa fa-close theme"
+      />
+    </button>
+  </h4>
+  <div
+    className="add-pnl-cnt"
+  >
+    <form
+      id="role_frm"
+      onSubmit={[Function]}
     >
-      <form
-        id="role_frm"
-        onSubmit={[Function]}
+      <div
+        className="row modal-p"
       >
         <div
-          className="row modal-p"
+          className="col-md-6 col-sm-6"
         >
-          <div
-            className="col-md-6 col-sm-6"
+          <label
+            htmlFor="roleName"
           >
-            <label
-              htmlFor="roleName"
-            >
-              Role Name:
-            </label>
-          </div>
-          <div
-            className="col-md-6 col-sm-6"
+            Role Name:
+          </label>
+        </div>
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <input
+            className="form-control"
+            id="roleName"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Role name"
+            required={true}
+            value="role"
+          />
+        </div>
+      </div>
+      <div
+        className="row modal-p"
+      >
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <label
+            htmlFor="roleType"
           >
+            Role Type:
+          </label>
+        </div>
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <div>
             <input
-              className="form-control"
-              id="roleName"
+              checked={true}
+              id="radioCompany"
               onBlur={[Function]}
               onChange={[Function]}
-              placeholder="Role name"
-              required={true}
-              value="role"
+              type="radio"
+              value=""
             />
-          </div>
-        </div>
-        <div
-          className="row modal-p"
-        >
-          <div
-            className="col-md-6 col-sm-6"
-          >
             <label
-              htmlFor="roleType"
+              htmlFor="radioCompany"
             >
-              Role Type:
+              Company Wide
             </label>
-          </div>
-          <div
-            className="col-md-6 col-sm-6"
-          >
-            <div>
-              <input
-                checked={true}
-                id="radioCompany"
-                onBlur={[Function]}
-                onChange={[Function]}
-                type="radio"
-                value=""
-              />
-              <label
-                htmlFor="radioCompany"
-              >
-                Company Wide
-              </label>
-              <input
-                checked={false}
-                id="radioBu"
-                onBlur={[Function]}
-                onChange={[Function]}
-                type="radio"
-                value="1"
-              />
-              <label
-                htmlFor="radioBu"
-              >
-                Business Unit Specific
-              </label>
-            </div>
-          </div>
-        </div>
-        
-        <div
-          className="row modal-p"
-        >
-          <div
-            className="col-md-6 col-sm-6"
-          >
-            <label
-              htmlFor="status"
-            >
-              Status:
-            </label>
-          </div>
-          <div
-            className="col-md-6 col-sm-6"
-          >
-            <select
-              className="form-control"
-              id="status"
+            <input
+              checked={false}
+              id="radioBu"
               onBlur={[Function]}
               onChange={[Function]}
+              type="radio"
+              value="1"
+            />
+            <label
+              htmlFor="radioBu"
+            >
+              Business Unit Specific
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div
+        className="row modal-p"
+      >
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <label
+            htmlFor="status"
+          >
+            Status:
+          </label>
+        </div>
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <select
+            className="form-control"
+            id="status"
+            onBlur={[Function]}
+            onChange={[Function]}
+            value={1}
+          >
+            <option
+              disabled={true}
+              value={0}
+            >
+              Select One...
+            </option>
+            <option
+              disabled={undefined}
               value={1}
             >
-              <option
-                disabled={true}
-                value={0}
-              >
-                Select One...
-              </option>
-              <option
-                disabled={undefined}
-                value={1}
-              >
-                Active
-              </option>
-              <option
-                disabled={undefined}
-                value={2}
-              >
-                Inactive
-              </option>
-            </select>
-          </div>
+              Active
+            </option>
+            <option
+              disabled={undefined}
+              value={2}
+            >
+              Inactive
+            </option>
+          </select>
         </div>
-        <hr />
-        <div />
-        <article
-          className="modal-p text-center"
+      </div>
+      <hr />
+      <div />
+      <article
+        className="modal-p text-center"
+      >
+        <div
+          id="loader"
+          style={Object {}}
         >
-          <div
-            id="loader"
-            style={Object {}}
-          >
-            <img
-              alt="loading something..."
-              className="loader"
-              src="loader.gif"
-            />
-          </div>
-        </article>
-      </form>
-    </div>
+          <img
+            alt="loading something..."
+            className="loader"
+            src="loader.gif"
+          />
+        </div>
+      </article>
+    </form>
   </div>
 </div>
 `;

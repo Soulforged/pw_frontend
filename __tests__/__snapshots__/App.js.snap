@@ -2,9 +2,7 @@
 
 exports[`shows home (dashboard) when logged in 1`] = `
 <div>
-  <div
-    className="animate"
-  >
+  <div>
     <div
       id="wrapper"
     >
@@ -216,9 +214,7 @@ exports[`shows home (dashboard) when logged in 1`] = `
           }
         }
       >
-        <div
-          className="animate"
-        >
+        <div>
           <div
             id="dashboard"
           >
@@ -615,9 +611,7 @@ exports[`shows home (dashboard) when logged in 1`] = `
 
 exports[`shows login when not logged in 1`] = `
 <div>
-  <div
-    className="animate"
-  >
+  <div>
     <div
       id="login-wrapper"
     >

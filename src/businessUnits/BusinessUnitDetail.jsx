@@ -1,44 +1,35 @@
 //@flow
 import React from "react";
-import { withHandlers, compose } from "recompose";
-import { boundLifecycle } from "src/recompose-ext";
-import ActiveCells from "./ActiveCells";
+import { CRUDDetails, ActiveCell } from "src/components";
 
 type Props = {
+  id: number,
   item: Object,
-  editItem: () => void
+  openForm: (number) => void,
+  getBusinessUnit: (number) => void
 };
 
-const Details = ({ item, editItem }: Props) => (
-  item ?
+export default ({
+  id, item, openForm, getBusinessUnit
+}: Props) => (
+  <CRUDDetails
+    id={id}
+    item={item}
+    openForm={openForm}
+    loader={getBusinessUnit}
+    editButtonTitle="Edit Business Unit"
+  >
+    {item &&
     <div className="details">
-      <h5>Details for {item.id}</h5>
-      <button title="Edit" className="btn btn-default pull-right" onClick={editItem}>
-        <span className="edit fa fa-pencil theme" />Edit user
-      </button>
       <div className="row">
         <div className="col-sm-3">Name:</div>
         <div className="col-sm-3">{item.name}</div>
       </div>
       <div className="row">
         <div className="col-sm-3">Status:</div>
-        <div className="col-sm-3"><ActiveCells value={item.status} /></div>
+        <div className="col-sm-3"><ActiveCell value={item.status} /></div>
       </div>
-    </div>
-    : <div className="modal-p details">Not found</div>
-);
+    </div>}
 
-const Component = ({ item, editItem }: { item: Object, editItem: () => void }) => (
-  <div id="main-pnl" className="details pnls">
-    <Details item={item} editItem={editItem} />
-  </div>
+  </CRUDDetails>
 );
-
-export default compose(
-  boundLifecycle({
-    didMount: ({ id, item, getBusinessUnit }) => !item && getBusinessUnit(id)
-  }),
-  withHandlers({
-    editItem: props => () => props.openForm(props.item.id)
-  })
-)(Component);

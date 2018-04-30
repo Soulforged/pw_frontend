@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches edit item snapshot 1`] = `
+<div
+  className="pnls"
+  id="main-pnl"
+>
+  <h4
+    className="form-header trebuchet text-center bold"
+  >
+    Edit undefined 1
+    <button
+      className="add-new pointer pull-right bold"
+      onClick={[MockFunction]}
+    >
+      <i
+        className="fa fa-close theme"
+      />
+    </button>
+  </h4>
+  <div
+    className="add-pnl-cnt"
+  >
+    <form
+      id="user_frm"
+      onSubmit={[Function]}
+    >
+      <hr />
+      <div />
+      <article
+        className="row modal-p pull-right"
+      >
+        <button
+          className="btn btn-default"
+          type="submit"
+        >
+          SAVE
+        </button>
+      </article>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`matches new item snapshot 1`] = `
+<div
+  className="pnls"
+  id="main-pnl"
+>
+  <h4
+    className="form-header trebuchet text-center bold"
+  >
+    New undefined
+    <button
+      className="add-new pointer pull-right bold"
+      onClick={[MockFunction]}
+    >
+      <i
+        className="fa fa-close theme"
+      />
+    </button>
+  </h4>
+  <div
+    className="add-pnl-cnt"
+  >
+    <form
+      id="user_frm"
+      onSubmit={[Function]}
+    >
+      <hr />
+      <div />
+      <article
+        className="row modal-p pull-right"
+      >
+        <button
+          className="btn btn-default"
+          type="submit"
+        >
+          SAVE
+        </button>
+      </article>
+    </form>
+  </div>
+</div>
+`;

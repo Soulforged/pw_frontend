@@ -1,18 +1,28 @@
 //@flow
 import React from "react";
-import { CRUD } from "src/components";
-import RolesList from "./containers/RolesListContainer";
+import { CRUD, ActiveCell } from "src/components";
 
 type Props = {
-  openForm: () => void
+  openForm: () => void,
+  roles: Object,
+  showDetails: (id: number) => void,
+  fetchRoles: (Object) => void
 };
+
+const columns = [
+  { Header: "ID", accessor: "id", maxWidth: 50 },
+  { Header: "Role Name", accessor: "name" },
+  { Header: "Status", accessor: "status", Cell: row => <ActiveCell value={row.value} /> }
+];
 
 export default (props: Props) => (
   <CRUD
     title="User Role(s) List"
     createButtonTitle="New Role"
     openForm={props.openForm}
-  >
-    <RolesList />
-  </CRUD>
+    columns={columns}
+    showDetails={props.showDetails}
+    entities={props.roles}
+    loader={props.fetchRoles}
+  />
 );

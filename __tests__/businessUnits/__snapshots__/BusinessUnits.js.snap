@@ -24,7 +24,32 @@ exports[`matches snapshot 1`] = `
       <div
         className="tbl-wrapper"
       >
-        <Connect(lifecycle(branch(Component))) />
+        <lifecycle(branch(Component))
+          columns={
+            Array [
+              Object {
+                "Header": "ID",
+                "accessor": "id",
+              },
+              Object {
+                "Header": "Name",
+                "accessor": "name",
+              },
+              Object {
+                "Header": "Company Type",
+                "accessor": "companyType",
+              },
+              Object {
+                "Cell": [Function],
+                "Header": "Status",
+                "accessor": "status",
+              },
+            ]
+          }
+          createButtonTitle="New Business Unit"
+          filter={<Filter />}
+          title="Business Unit List"
+        />
       </div>
     </div>
   </div>

@@ -23,7 +23,29 @@ exports[`matches snapshot 1`] = `
       <div
         className="tbl-wrapper"
       >
-        <Connect(lifecycle(branch(Component))) />
+        <lifecycle(branch(Component))
+          columns={
+            Array [
+              Object {
+                "Header": "ID",
+                "accessor": "id",
+                "maxWidth": 50,
+              },
+              Object {
+                "Header": "Role Name",
+                "accessor": "name",
+              },
+              Object {
+                "Cell": [Function],
+                "Header": "Status",
+                "accessor": "status",
+              },
+            ]
+          }
+          createButtonTitle="New Role"
+          filter={false}
+          title="User Role(s) List"
+        />
       </div>
     </div>
   </div>

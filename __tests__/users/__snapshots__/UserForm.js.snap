@@ -5,7 +5,7 @@ exports[`matches snapshot no data 1`] = `
   className="pnls"
   id="main-pnl"
 >
-  User not found
+  Not found
 </div>
 `;
 
@@ -27,14 +27,23 @@ exports[`matches snapshot while not saving 1`] = `
   className="pnls"
   id="main-pnl"
 >
-  <h4>
+  <h4
+    className="form-header trebuchet text-center bold"
+  >
     Edit user 117
+    <button
+      className="add-new pointer pull-right bold"
+      onClick={undefined}
+    >
+      <i
+        className="fa fa-close theme"
+      />
+    </button>
   </h4>
   <div
     className="add-pnl-cnt"
   >
     <form
-      disabled={true}
       id="user_frm"
       onSubmit={[Function]}
     >
@@ -248,14 +257,23 @@ exports[`matches snapshot while saving 1`] = `
   className="pnls"
   id="main-pnl"
 >
-  <h4>
+  <h4
+    className="form-header trebuchet text-center bold"
+  >
     Edit user 117
+    <button
+      className="add-new pointer pull-right bold"
+      onClick={undefined}
+    >
+      <i
+        className="fa fa-close theme"
+      />
+    </button>
   </h4>
   <div
     className="add-pnl-cnt"
   >
     <form
-      disabled={true}
       id="user_frm"
       onSubmit={[Function]}
     >
