@@ -1,0 +1,21 @@
+{
+    "id": 1,
+    "name": "Managers and comanagers",
+    "companyType": "Merchant",
+    "companyId": 1,
+    "status": 1,
+    "roles": [
+      {
+        "id": 295,
+        "name": "aTest role",
+        "status": 1,
+        "businessUnitId": 1
+      },
+      {
+        "id": 296,
+        "name": "bTest role",
+        "status": 1,
+        "businessUnitId": 1
+      }
+    ]
+  }

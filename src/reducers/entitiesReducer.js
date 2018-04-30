@@ -27,7 +27,8 @@ const {
 
 const initialState: State = {
   users: {},
-  roles: {}
+  roles: {},
+  businessUnits: {}
 };
 
 const entitiesRegex = new RegExp(`^${ENTITIES}/([\\w_]+)_.*$`);

@@ -9,6 +9,7 @@ export const images = {
   dashboard: require("assets/img/dashboard.svg"),
   users: require("assets/img/admin-icon.svg"),
   roles: require("assets/img/admin-icon.svg"),
+  business_units: require("assets/img/admin-icon.svg"),
   loader: require("assets/img/loader.gif")
 };
 

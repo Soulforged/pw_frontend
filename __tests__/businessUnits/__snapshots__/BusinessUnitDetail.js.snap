@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`details matches snapshot 1`] = `
+<div
+  className="details pnls"
+  id="main-pnl"
+>
+  <div
+    className="modal-p details"
+  >
+    Not found
+  </div>
+</div>
+`;
+
+exports[`details matches snapshot with data 1`] = `
+<div
+  className="details pnls"
+  id="main-pnl"
+>
+  <div
+    className="details"
+  >
+    <h5>
+      Details for 
+      1
+    </h5>
+    <button
+      className="btn btn-default pull-right"
+      onClick={[Function]}
+      title="Edit"
+    >
+      <span
+        className="edit fa fa-pencil theme"
+      />
+      Edit user
+    </button>
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-3"
+      >
+        Name:
+      </div>
+      <div
+        className="col-sm-3"
+      />
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col-sm-3"
+      >
+        Status:
+      </div>
+      <div
+        className="col-sm-3"
+      >
+        <span
+          className="td-error"
+        >
+          <i
+            className="fa fa-circle"
+          />
+          Inactive
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

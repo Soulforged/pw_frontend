@@ -267,6 +267,31 @@ exports[`matches snapshot with session 1`] = `
           </span>
         </a>
       </li>
+      <li
+        className="nav-tabs"
+      >
+        <a
+          aria-current={false}
+          className={undefined}
+          href="/business_units"
+          onClick={[Function]}
+          style={undefined}
+        >
+          <img
+            alt="business_units"
+            src="admin-icon.svg"
+          />
+          <span
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+          >
+            Business Units
+          </span>
+        </a>
+      </li>
     </ul>
   </div>
   <div

@@ -46,7 +46,7 @@ export const fetchUsers = () => ({
     endpoint: "/user/backofficeuser",
     schema: list(user),
     errorSchema: error,
-    key: "users"
+    key: "users",
   }
 });
 
@@ -60,7 +60,8 @@ export const fetchUserByCriteria = ({ criteria, filter }: Params) => {
       endpoint: `/user/backofficeuser/${criteria}/${filter}`,
       schema: user,
       errorSchema: error,
-      key: "users"
+      key: "users",
+      invalidatesCache: true
     }
   };
 };

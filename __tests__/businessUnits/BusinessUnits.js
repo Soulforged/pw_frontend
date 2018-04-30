@@ -1,9 +1,9 @@
 //@flow
 import React from "react";
+import BusinessUnits from "src/businessUnits/BusinessUnits";
 import { shallow } from "enzyme";
-import Roles from "src/roles/Roles";
 
 it("matches snapshot", () => {
-  const render = shallow(<Roles />).dive();
+  const render = shallow(<BusinessUnits />).dive();
   expect(render).toMatchSnapshot();
 });

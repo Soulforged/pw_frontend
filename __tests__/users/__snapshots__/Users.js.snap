@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div>
+  <Filter />
+  <div
+    className="pnls"
+    id="main-pnl"
+  >
+    <div>
+      <h4
+        className="form-header trebuchet bold"
+      >
+        Back office users
+        <button
+          className="add-new-btn pointer pull-right bold"
+        >
+          <i
+            className="fa fa-plus theme"
+          />
+          New user
+        </button>
+      </h4>
+      <div
+        className="tbl-wrapper"
+      >
+        <Connect(lifecycle(branch(Component))) />
+      </div>
+    </div>
+  </div>
+</div>
+`;
