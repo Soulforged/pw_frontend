@@ -7,11 +7,11 @@ import { businessUnit, list, error } from "./schemas";
 const { fetchEntitiesTypes, saveTypes } = actions;
 
 const BUSINESSUNIT = "BUSINESSUNIT";
-const BUSINESSUNITS = "BUSINESSUNIT";
+const BUSINESSUNITS = "BUSINESSUNITS";
 
 const restPath = body => (body.id ? `/${body.id}` : "");
 
-export const saveBusinessUnit = body => ({
+export const saveBusinessUnit = (body: Object) => ({
   [CALL_API]: {
     types: saveTypes(BUSINESSUNIT),
     endpoint: `/user/businessunit${restPath(body)}`,
@@ -33,7 +33,7 @@ const fetchAllBusinessUnits = () => ({
   }
 });
 
-export const fetchBusinessUnits = ({ name } = {}) => {
+export const fetchBusinessUnits = ({ name }: { name: string } = {}) => {
   if (!name) {
     return fetchAllBusinessUnits();
   }
@@ -48,7 +48,7 @@ export const fetchBusinessUnits = ({ name } = {}) => {
   });
 };
 
-export const getBusinessUnit = id => ({
+export const getBusinessUnit = (id: number) => ({
   [CALL_API]: {
     types: fetchEntitiesTypes(BUSINESSUNIT),
     endpoint: `/user/businessunit/${id}`,

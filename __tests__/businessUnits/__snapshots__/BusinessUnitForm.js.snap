@@ -1,0 +1,391 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot no data 1`] = `
+<div
+  className="pnls"
+  id="main-pnl"
+>
+  Not found
+</div>
+`;
+
+exports[`matches snapshot while fetching 1`] = `
+<div
+  id="loader"
+  style={Object {}}
+>
+  <img
+    alt="loading something..."
+    className="loader"
+    src="loader.gif"
+  />
+</div>
+`;
+
+exports[`matches snapshot while not saving 1`] = `
+<div
+  id="trans-new"
+>
+  <h2
+    className="form-header trebuchet text-center bold"
+  >
+    New Business Unit
+    <button
+      className="add-new pointer pull-right bold"
+      onClick={undefined}
+    >
+      <i
+        className="fa fa-close theme"
+      />
+    </button>
+  </h2>
+  <div
+    className="add-pnl-cnt"
+  >
+    <form
+      id="business_unit_frm"
+      onSubmit={[Function]}
+    >
+      <article
+        className="row modal-p"
+      >
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <label
+            htmlFor="name"
+          >
+            Name:
+          </label>
+        </div>
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <input
+            className="form-control"
+            id="name"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Business Unit Name"
+            required={true}
+            value="Managers and comanagers"
+          />
+        </div>
+      </article>
+      <article
+        className="row modal-p"
+      >
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <label>
+            Company Type
+          </label>
+        </div>
+        <div
+          className="col-md-6 col-sm-6 radios"
+        >
+          <div>
+            <input
+              checked={true}
+              id="merchantRadio"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="radio"
+              value="Merchant"
+            />
+            <label
+              htmlFor="merchantRadio"
+            >
+              Merchant
+            </label>
+            <input
+              checked={false}
+              id="instRadio"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="radio"
+              value="Institution"
+            />
+            <label
+              htmlFor="instRadio"
+            >
+              Institution
+            </label>
+          </div>
+        </div>
+      </article>
+      <article
+        className="row modal-p"
+        id="merchant-div"
+      >
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <label>
+            Merchant
+          </label>
+        </div>
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <select
+            className="form-control"
+            id="merchant"
+            onBlur={[Function]}
+            onChange={[Function]}
+            value={0}
+          >
+            <option
+              disabled={true}
+              value={0}
+            >
+              Select One...
+            </option>
+            <option
+              disabled={undefined}
+              value={1}
+            >
+              SPORTPESA
+            </option>
+            <option
+              disabled={undefined}
+              value={2}
+            >
+              Me2rchant Name
+            </option>
+            <option
+              disabled={undefined}
+              value={3}
+            >
+              80Merchant Name
+            </option>
+            <option
+              disabled={undefined}
+              value={4}
+            >
+              81Merchant Name
+            </option>
+            <option
+              disabled={undefined}
+              value={5}
+            >
+              4Merchant Name
+            </option>
+            <option
+              disabled={undefined}
+              value={6}
+            >
+              13Merchant Name
+            </option>
+            <option
+              disabled={undefined}
+              value={7}
+            >
+              r8Merchant Name
+            </option>
+          </select>
+        </div>
+      </article>
+      <div />
+      <hr />
+      <article
+        className="row modal-p text-center"
+      >
+        <button
+          className="btn btn-default"
+          type="submit"
+        >
+          SAVE
+        </button>
+      </article>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`matches snapshot while saving 1`] = `
+<div
+  id="trans-new"
+>
+  <h2
+    className="form-header trebuchet text-center bold"
+  >
+    New Business Unit
+    <button
+      className="add-new pointer pull-right bold"
+      onClick={undefined}
+    >
+      <i
+        className="fa fa-close theme"
+      />
+    </button>
+  </h2>
+  <div
+    className="add-pnl-cnt"
+  >
+    <form
+      id="business_unit_frm"
+      onSubmit={[Function]}
+    >
+      <article
+        className="row modal-p"
+      >
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <label
+            htmlFor="name"
+          >
+            Name:
+          </label>
+        </div>
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <input
+            className="form-control"
+            id="name"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Business Unit Name"
+            required={true}
+            value="Managers and comanagers"
+          />
+        </div>
+      </article>
+      <article
+        className="row modal-p"
+      >
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <label>
+            Company Type
+          </label>
+        </div>
+        <div
+          className="col-md-6 col-sm-6 radios"
+        >
+          <div>
+            <input
+              checked={true}
+              id="merchantRadio"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="radio"
+              value="Merchant"
+            />
+            <label
+              htmlFor="merchantRadio"
+            >
+              Merchant
+            </label>
+            <input
+              checked={false}
+              id="instRadio"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="radio"
+              value="Institution"
+            />
+            <label
+              htmlFor="instRadio"
+            >
+              Institution
+            </label>
+          </div>
+        </div>
+      </article>
+      <article
+        className="row modal-p"
+        id="merchant-div"
+      >
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <label>
+            Merchant
+          </label>
+        </div>
+        <div
+          className="col-md-6 col-sm-6"
+        >
+          <select
+            className="form-control"
+            id="merchant"
+            onBlur={[Function]}
+            onChange={[Function]}
+            value={0}
+          >
+            <option
+              disabled={true}
+              value={0}
+            >
+              Select One...
+            </option>
+            <option
+              disabled={undefined}
+              value={1}
+            >
+              SPORTPESA
+            </option>
+            <option
+              disabled={undefined}
+              value={2}
+            >
+              Me2rchant Name
+            </option>
+            <option
+              disabled={undefined}
+              value={3}
+            >
+              80Merchant Name
+            </option>
+            <option
+              disabled={undefined}
+              value={4}
+            >
+              81Merchant Name
+            </option>
+            <option
+              disabled={undefined}
+              value={5}
+            >
+              4Merchant Name
+            </option>
+            <option
+              disabled={undefined}
+              value={6}
+            >
+              13Merchant Name
+            </option>
+            <option
+              disabled={undefined}
+              value={7}
+            >
+              r8Merchant Name
+            </option>
+          </select>
+        </div>
+      </article>
+      <div />
+      <hr />
+      <article
+        className="row modal-p text-center"
+      >
+        <div
+          id="loader"
+          style={Object {}}
+        >
+          <img
+            alt="loading something..."
+            className="loader"
+            src="loader.gif"
+          />
+        </div>
+      </article>
+    </form>
+  </div>
+</div>
+`;
