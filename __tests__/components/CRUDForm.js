@@ -10,9 +10,7 @@ it("bahaves as expected", () => {
     onClose: jest.fn(),
     loader: jest.fn(),
     item: { id: 1, text: "asasd" },
-    save: jest.fn(),
-    validate: jest.fn(),
-    preValidate: jest.fn()
+    save: jest.fn()
   };
   const wrapper = mount((
     <CRUDForm {...props}>
@@ -21,11 +19,8 @@ it("bahaves as expected", () => {
   ));
   wrapper.find("button.add-new").props().onClick();
   expect(props.onClose).toHaveBeenCalledTimes(1);
-  console.log(wrapper.find("form").props());
-  wrapper.find("form").props().onSubmit();
+  wrapper.find("Form").props().onSubmit();
   expect(props.save).toHaveBeenCalledTimes(1);
-  // expect(props.validate).toHaveBeenCalledTimes(1);
-  // expect(props.preValidate).toHaveBeenCalledTimes(1);
 });
 
 it("matches new item snapshot", () => {
