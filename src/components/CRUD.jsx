@@ -6,12 +6,12 @@ type Props = {
   title: string,
   createButtonTitle: string,
   openForm: () => void,
-  columns: Object,
-  showDetails: () => void,
-  entities: Array<Object>,
+  columns: Array<Object>,
+  showDetails: (number) => void,
+  entities: Object,
   loader: (Object) => void,
   filter?: React.Node,
-}
+};
 
 const CRUD = (props: Props) => (
   <div>

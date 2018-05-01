@@ -11,7 +11,7 @@ type Props = {
   saving: boolean,
   entityName: string,
   onClose: () => void,
-  children: React.Node,
+  children?: React.Node,
   preValidate?: (Object) => Object,
   validate?: (Object) => Object
 };
@@ -63,7 +63,8 @@ const Component = (props: Props) => (
 
 Component.defaultProps = {
   preValidate: values => values,
-  validate: () => ({})
+  validate: () => ({}),
+  children: false
 };
 
 const SpecLoading = () => <Loading loading />;

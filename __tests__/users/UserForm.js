@@ -5,6 +5,6 @@ import renderer from "react-test-renderer";
 import mocks from "src/mocks";
 
 it("matches snapshot", () => {
-  const rendered = renderer.create(<UserForm fetchUser={jest.fn()} />).toJSON();
+  const rendered = renderer.create(<UserForm fetchUser={jest.fn()} item={mocks.user} />).toJSON();
   expect(rendered).toMatchSnapshot();
 });

@@ -24,7 +24,7 @@ describe("crud list tests", () => {
         entities={{ fetching: true }}
         columns={columns}
       />
-    )
+    );
     const rendered = renderer.create(component).toJSON();
     expect(rendered).toMatchSnapshot();
   });

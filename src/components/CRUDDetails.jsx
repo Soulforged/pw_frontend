@@ -1,12 +1,12 @@
 //@flow
-import React from "react";
+import * as React from "react";
 import { withHandlers, compose } from "recompose";
 import { boundLifecycle } from "src/recompose-ext";
 
 type Props = {
   item: Object,
   editItem: () => void,
-  children: React.Node,
+  children?: React.Node,
   editButtonTitle: string
 };
 
@@ -28,6 +28,10 @@ const Component = props => (
     <Details {...props} />
   </div>
 );
+
+Component.defaultProps = {
+  children: false
+};
 
 export default compose(
   boundLifecycle({

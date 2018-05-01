@@ -22,38 +22,40 @@ const columns = [
   { Header: "Status", accessor: "status", Cell: ActiveCell },
 ];
 
-const Filter = ({ fetchUserByCriteria }: { fetchUserByCriteria: (Object) => void }) => (
-  <CRUDFilter filter={fetchUserByCriteria}>
-    <div className="col-md-3 col-sm-3">
-      <label htmlFor="criteria">
-        Search criteria
-        <select id="criteria" className="form-control" name="criteria" defaultValue="userName">
-          <option value="userName">User Name</option>
-          <option value="businessunit">Business Unit</option>
-        </select>
-      </label>
-    </div>
-    <div className="col-md-4 col-sm-4 txt-div">
-      <label htmlFor="filter" className="lbl">
-        Search text
-        <input name="filter" className="form-control" placeholder="Text to search" />
-      </label>
-    </div>
-    <div className="col-md-4 col-sm-4 slct-div hidden">
-      <label htmlFor="srch-bunit" className="lbl">
-        Business unit
-        <select className="form-control" name="srch-bunit" />
-      </label>
-    </div>
-  </CRUDFilter>
-);
+const filterFields = [
+  {
+    name: "criteria",
+    label: "Search criteria",
+    type: "select",
+    options: [
+      { value: "userName", label: "User name" },
+      { value: "businessunit", label: "Business unit" },
+    ]
+  },
+  {
+    name: "filter",
+    label: "Search text"
+  },
+  {
+    name: "filter",
+    label: "Business unit",
+    type: "select",
+    state: "entities.businessUnits"
+  }
+];
+
+// const Filter = ({ fetchUserByCriteria }: { fetchUserByCriteria: (Object) => void }) => (
+//   <CRUDFilter filter={fetchUserByCriteria}>
+//
+//   </CRUDFilter>
+// );
 
 export default (props: Props) => (
   <CRUD
     title="Back office users"
     createButtonTitle="New user"
     openForm={props.openForm}
-    filter={<Filter {...props} />}
+    filter={<CRUDFilter filter={props.fetchUserByCriteria} fields={filterFields} />}
     columns={columns}
     showDetails={props.showDetails}
     entities={props.users}
