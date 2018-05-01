@@ -40,7 +40,7 @@ const filterFields = [
     name: "filter",
     label: "Business unit",
     type: "select",
-    state: "entities.businessUnits"
+    options: []
   }
 ];
 

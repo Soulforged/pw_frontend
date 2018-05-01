@@ -29,7 +29,7 @@ const Component = props => (
   </div>
 );
 
-Component.defaultProps = {
+Details.defaultProps = {
   children: false
 };
 

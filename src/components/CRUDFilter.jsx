@@ -1,9 +1,6 @@
 //@flow
 import * as React from "react";
 import { Form, Text, Select } from "react-form";
-import { connect } from "react-redux";
-import { withHandlers } from "recompose";
-import serialize from "form-serialize";
 
 type FilterField = {
   type: string,
@@ -15,49 +12,68 @@ type FilterField = {
 };
 
 type Props = {
-  onFilter: (Event) => void,
   children?: React.Node,
-  fields: Array<FilterField>
+  fields: Array<FilterField>,
+  filter: (Object) => void
 };
 
-const component = ({ type }) => (
-  switch(type) {
-    "select": <Select />;
-    default: <Text />;
-  };
-);
+const fieldMap = (type) => {
+  switch (type) {
+  case "select": return Select;
+  default: return Text;
+  }
+};
 
-const shouldConnect = ({ state }, Component) => (
-  state ?
-    connect((storeState) => storeState[state], () => ({}))(Component)
-    : Component
+const component = ({ type, Component }) => (
+  Component || fieldMap(type)
 );
 
 const factory = (field) => {
   const Component = component(field);
-  const Component1 = shouldConnect(field, Component); 
   return (
-    <Component1 field={field.name} className="form-control" placeholder={field.placeholder} options={field.options} />
+    <Component
+      field={field.name}
+      className="form-control"
+      {...field}
+      required={true && field.required !== false}
+    />
   );
+};
+
+const colSize = size => Math.round(11 / Math.max(size, 1));
+
+const fieldFactory = (f, size) => (
+  <div className={`col-md-${size}`}>
+    <label htmlFor={f.name} className="lbl">
+      {f.label ? f.label : f.name }
+      {factory(f)}
+    </label>
+  </div>
+);
+
+const mapReduceFields = (fields) => {
+  fields.reduce(({ render, rem }, f) => (
+    {
+      render: [...render, fieldFactory(f, colSize(fields.size))],
+      rem
+
+    }), { render: [], rem: 11 });
 };
 
 const Filter = (props: Props) => (
   <div id="search-pnl" className="text-left">
     <div id="filter-row">
-      <form onSubmit={props.onFilter} className="row">
-        {props.fields && props.fields.map(f => (
-          <div className={`col-md-${ 11 / props.fields.length }`}>
-            <label htmlFor={f.name} className="lbl">
-              {f.label ? f.label : f.name }
-              {factory(f)}
-            </label>
-          </div>
-        ))}
-        {props.children}
-        <div className="col-md-1 col-sm-1 text-right pull-right">
-          <button id="filter-btn" className="btn" type="submit">GO</button>
-        </div>
-      </form>
+      <Form onSubmit={props.filter}>
+        {formApi => (
+          <form onSubmit={formApi.submitForm} className="row">
+            {props.fields && mapReduceFields(fields)}
+            {props.children}
+            <div className="col-md-1 col-sm-1 text-right pull-right">
+              <button id="filter-btn" className="btn" type="submit">GO</button>
+            </div>
+          </form>
+        )}
+      </Form>
     </div>
   </div>
 );
@@ -66,10 +82,4 @@ Filter.defaultProps = {
   children: false
 };
 
-export default withHandlers({
-  onFilter: props => (event) => {
-    event.preventDefault();
-    const params = serialize(event.target, { hash: true });
-    props.filter(params);
-  }
-})(Filter);
+export default Filter;
