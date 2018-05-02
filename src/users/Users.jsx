@@ -1,13 +1,14 @@
 //@flow
 import React from "react";
-import { CRUD, CRUDFilter, ActiveCell } from "src/components";
+import { CRUD, ActiveCell } from "src/components";
 
 type Props = {
   openForm: () => void,
-  fetchUserByCriteria: (Object) => void,
   users: Object,
   showDetails: (id: number) => void,
-  fetchUsers: (Object) => void
+  fetchUsers: (Object) => void,
+  fetchUserByCriteria: (Object) => void,
+  fetchBusinessUnits: () => void
 }
 
 const columns = [
@@ -22,7 +23,7 @@ const columns = [
   { Header: "Status", accessor: "status", Cell: ActiveCell },
 ];
 
-const filterFields = [
+const filterFields = ({ businessUnits }) => [
   {
     name: "criteria",
     label: "Search criteria",
@@ -34,31 +35,30 @@ const filterFields = [
   },
   {
     name: "filter",
-    label: "Search text"
+    label: "User name",
+    type: "text",
+    condition: form => form.values.criteria === "userName"
   },
   {
     name: "filter",
     label: "Business unit",
     type: "select",
-    options: []
+    condition: form => form.values.criteria === "businessunit",
+    options: businessUnits.ids.map(id => ({ value: id, label: businessUnits.byId[id].name }))
   }
 ];
-
-// const Filter = ({ fetchUserByCriteria }: { fetchUserByCriteria: (Object) => void }) => (
-//   <CRUDFilter filter={fetchUserByCriteria}>
-//
-//   </CRUDFilter>
-// );
 
 export default (props: Props) => (
   <CRUD
     title="Back office users"
     createButtonTitle="New user"
     openForm={props.openForm}
-    filter={<CRUDFilter filter={props.fetchUserByCriteria} fields={filterFields} />}
+    filter={props.fetchUserByCriteria}
+    filterFields={filterFields(props)}
+    defaultFilter={{ criteria: "userName" }}
     columns={columns}
     showDetails={props.showDetails}
     entities={props.users}
-    loader={props.fetchUsers}
+    loader={() => props.fetchUsers() && props.fetchBusinessUnits()}
   />
 );

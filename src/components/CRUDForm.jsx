@@ -1,6 +1,8 @@
 //@flow
 import * as React from "react";
-import { Form } from "react-form";
+import { decamelize } from "humps";
+import S from "string";
+import { Form, Select, Text } from "react-form";
 import { branch, compose, renderComponent } from "recompose";
 import { boundLifecycle } from "src/recompose-ext";
 import { Loading } from "src/components";
@@ -11,6 +13,7 @@ type Props = {
   saving: boolean,
   entityName: string,
   onClose: () => void,
+  fields?: Array<Object>,
   children?: React.Node,
   preValidate?: (Object) => Object,
   validate?: (Object) => Object
@@ -31,6 +34,48 @@ const ErrorMessages = ({ errors, touched }: FormApiProps) => (
   </div>
 );
 
+const fieldMap = (type) => {
+  switch (type) {
+  case "select": return Select;
+  default: return Text;
+  }
+};
+
+const createComponent = ({ type, component }) => (
+  component || fieldMap(type)
+);
+
+const ifOptions = options => (options ? { options } : {});
+
+const createLabel = (name, label) => (
+  label || S(decamelize(name, { separator: " " })).capitalize().s
+);
+
+const factory = (field) => {
+  const Component = createComponent(field);
+  return (
+    <Component
+      id={field.name}
+      field={field.name}
+      className="form-control"
+      placeholder={createLabel(field.name, field.label)}
+      {...ifOptions(field.options)}
+      required={true && field.required !== false}
+    />
+  );
+};
+
+const fieldFactory = f => (
+  <div className="row modal-p" key={f.name}>
+    <div className="col-md-6 col-sm-6">
+      <label htmlFor={f.name}>{createLabel(f.name, f.label)}</label>
+    </div>
+    <div className="col-md-6 col-sm-6">
+      {factory(f)}
+    </div>
+  </div>
+);
+
 const Component = (props: Props) => (
   <div id="main-pnl" className="pnls">
     <h4 className="form-header trebuchet text-center bold">
@@ -48,6 +93,7 @@ const Component = (props: Props) => (
       >
         {formApi => (
           <form id="user_frm" onSubmit={formApi.submitForm}>
+            {props.fields && props.fields(props).map(fieldFactory)}
             {props.children}
             <hr />
             <ErrorMessages errors={formApi.errors} touched={formApi.touched} />
@@ -64,7 +110,8 @@ const Component = (props: Props) => (
 Component.defaultProps = {
   preValidate: values => values,
   validate: () => ({}),
-  children: false
+  children: false,
+  fields: []
 };
 
 const SpecLoading = () => <Loading loading />;
@@ -72,7 +119,7 @@ const NoData = () => <div id="main-pnl" className="pnls">Not found</div>;
 
 export default compose(
   boundLifecycle({
-    didMount: ({ id, loader, item }) => !item && loader(id)
+    didMount: ({ id, loader }) => loader(id)
   }),
   branch(({ fetching }) => fetching, renderComponent(SpecLoading)),
   branch(({ item }) => item == null, renderComponent(NoData))

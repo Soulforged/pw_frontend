@@ -26,9 +26,9 @@ const {
 } = actions;
 
 const initialState: State = {
-  users: {},
-  roles: {},
-  businessUnits: {}
+  users: { ids: [], byId: {} },
+  roles: { ids: [], byId: {} },
+  businessUnits: { ids: [], byId: {} }
 };
 
 const entitiesRegex = new RegExp(`^${ENTITIES}/([\\w_]+)_.*$`);
@@ -63,7 +63,7 @@ const handleFetch = (action: EntityAction, entityName, state) => {
   const { entities } = action.response;
   const byId = entities ? entities[entityName] : {};
   const ids = getIds(action.response, entityName);
-  const ids1 = (ids instanceof Array) ? ids : [ids];
+  const ids1 = ids && !(ids instanceof Array) ? [ids] : ids;
   const newState = { [entityName]: { byId, ids, fetching: false } };
   const merged = merge({}, state, newState);
   const merged1 = {

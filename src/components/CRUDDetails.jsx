@@ -1,14 +1,29 @@
 //@flow
 import * as React from "react";
+import S from "string";
+import { decamelize } from "humps";
 import { withHandlers, compose } from "recompose";
 import { boundLifecycle } from "src/recompose-ext";
 
 type Props = {
   item: Object,
   editItem: () => void,
-  children?: React.Node,
-  editButtonTitle: string
+  editButtonTitle: string,
+  fields?: Object,
+  children?: React.Node
 };
+
+const createLabel = (name, field) => (
+  field && field.label ?
+    field.label
+    : S(decamelize(name, { separator: " " })).capitalize().s
+);
+
+const createContent = (name, item, field) => (
+  field && field.component ?
+    <component item={item} />
+    : item[name]
+);
 
 const Details = (props: Props) => (
   props.item ?
@@ -18,7 +33,15 @@ const Details = (props: Props) => (
           <i className="edit fa fa-pencil theme" />{props.editButtonTitle}
         </button>
       </h5>
-      {props.children}
+      <div className="edit-pnl-cnt">
+        {Object.keys(props.item).map(f => (
+          <div className="row" key={f}>
+            <div className="col-sm-6">{createLabel(f, props.fields[f])}:</div>
+            <div className="col-sm-6">{createContent(f, props.item, props.fields[f])}</div>
+          </div>
+        ))}
+        {props.children}
+      </div>
     </div>
     : <div className="modal-p details">Not found</div>
 );
@@ -30,7 +53,8 @@ const Component = props => (
 );
 
 Details.defaultProps = {
-  children: false
+  children: false,
+  fields: {}
 };
 
 export default compose(

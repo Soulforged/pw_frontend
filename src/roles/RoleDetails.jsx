@@ -6,7 +6,13 @@ type Props = {
   id: number,
   item: Object,
   openForm: (number) => void,
-  fetchRole: (number) => void
+  fetchRole: (number) => void,
+};
+
+const fields = {
+  status: {
+    component: ({ status }: { status: string }) => <ActiveCell value={status} />
+  }
 };
 
 export default ({
@@ -17,18 +23,7 @@ export default ({
     item={item}
     openForm={openForm}
     loader={fetchRole}
+    fields={fields}
     editButtonTitle="Edit Role"
-  >
-    {item &&
-    <div className="edit-pnl-cnt">
-      <div className="row">
-        <div className="col-md-6 col-sm-6">Role name:</div>
-        <div className="col-md-6 col-sm-6">{item.name}</div>
-      </div>
-      <div className="row">
-        <div className="col-md-6 col-sm-6">Status:</div>
-        <div className="col-md-6 col-sm-6"><ActiveCell value={item.status} /></div>
-      </div>
-    </div>}
-  </CRUDDetails>
+  />
 );

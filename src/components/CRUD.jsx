@@ -1,6 +1,7 @@
 //@flow
 import * as React from "react";
 import CRUDList from "./CRUDList";
+import CRUDFilter from "./CRUDFilter";
 
 type Props = {
   title: string,
@@ -11,11 +12,19 @@ type Props = {
   entities: Object,
   loader: (Object) => void,
   filter?: React.Node,
+  filterFields?: Array<Object>,
+  defaultFilter?: Object
 };
 
 const CRUD = (props: Props) => (
   <div>
-    {props.filter}
+    {props.filter && (
+      <CRUDFilter
+        filter={props.filter}
+        fields={props.filterFields}
+        defaultFilter={props.defaultFilter}
+      />
+    )}
     <div id="main-pnl" className="pnls">
       <div>
         <h4 className="form-header trebuchet bold">{props.title}
@@ -34,7 +43,9 @@ const CRUD = (props: Props) => (
 );
 
 CRUD.defaultProps = {
-  filter: false
+  filter: false,
+  filterFields: [],
+  defaultFilter: {}
 };
 
 export default CRUD;
