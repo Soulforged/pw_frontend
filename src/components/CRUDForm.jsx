@@ -95,7 +95,7 @@ const Component = (props: Props) => (
             {props.children}
             <hr />
             <ErrorMessages errors={formApi.errors} touched={formApi.touched} />
-            <article className="row modal-p pull-right">
+            <article className="modal-p text-center">
               <ButtonOrLoading saving={props.saving} />
             </article>
           </form>

@@ -1,9 +1,7 @@
 //@flow
 import React from "react";
-import { Form, Text, Select, RadioGroup, Radio } from "react-form";
-import { branch, compose, renderComponent } from "recompose";
-import { boundLifecycle } from "src/recompose-ext";
-import { Loading } from "src/components";
+import { Text, Select, RadioGroup, Radio } from "react-form";
+import { CRUDForm } from "src/components";
 
 const statusOptions = [
   { label: "Active", value: 1 },
@@ -15,7 +13,8 @@ type Props = {
   saveBusinessUnit: (Object) => void,
   saving: boolean,
   edition: boolean,
-  closeForm: () => void
+  closeForm: () => void,
+  getBusinessUnit: (number) => void
 };
 
 const institutionOption = [
@@ -38,10 +37,6 @@ const merchantOptions = [
   { value: 5609, label: "r8Merchant Name" }
 ];
 
-const ButtonOrLoading = ({ saving }: { saving: boolean }) => (
-  saving ? <Loading loading /> : <button type="submit" className="btn btn-default">SAVE</button>
-);
-
 const additinionalValues = values => ({ ...values, status: 1, companyId: 1 });
 
 const validate = values => (
@@ -55,119 +50,97 @@ const validate = values => (
   }
 );
 
-const Component = (props: Props) => {
-  const {
-    item,
-    saving,
-    saveBusinessUnit,
-    edition = item.id,
-    closeForm
-  } = props;
-  return (
-    <div id="trans-new">
-      <h2 className="form-header trebuchet text-center bold">
-        New Business Unit
-        <button onClick={closeForm} className="add-new pointer pull-right bold">
-          <i className="fa fa-close theme" />
-        </button>
-      </h2>
-      <div className="add-pnl-cnt">
-        <Form
-          defaultValues={{ ...item, companyType: item.companyType || "Merchant" }}
-          onSubmit={saveBusinessUnit}
-          preValidate={additinionalValues}
-          validate={validate}
-        >
-          {formApi => (
-            <form id="business_unit_frm" onSubmit={formApi.submitForm}>
-              <article className="row modal-p">
-                <div className="col-md-6 col-sm-6">
-                  <label htmlFor="name">Name:</label>
-                </div>
-                <div className="col-md-6 col-sm-6">
-                  <Text
-                    id="name"
-                    className="form-control"
-                    field="name"
-                    required
-                    placeholder="Business Unit Name"
-                  />
-                </div>
-              </article>
-              {edition &&
-              <article className="row modal-p hidden">
-                <div className="col-md-6 col-sm-6">
-                  <label htmlFor="status">Status</label>
-                </div>
-                <div className="col-md-6 col-sm-6">
-                  <Select
-                    id="status"
-                    className="form-control"
-                    field="status"
-                    options={statusOptions}
-                  />
-                </div>
-              </article>}
-              {!edition &&
-              <article className="row modal-p">
-                <div className="col-md-6 col-sm-6"><label>Company Type</label></div>
-                <div className="col-md-6 col-sm-6 radios">
-                  <RadioGroup field="companyType">
-                    <Radio id="merchantRadio" value="Merchant" />
-                    <label htmlFor="merchantRadio">Merchant</label>
-                    <Radio id="instRadio" value="Institution" />
-                    <label htmlFor="instRadio">Institution</label>
-                  </RadioGroup>
-                </div>
-              </article>}
-              {!edition && formApi.values.companyType === "Merchant" &&
-              <article id="merchant-div" className="row modal-p">
-                <div className="col-md-6 col-sm-6"><label>Merchant</label></div>
-                <div className="col-md-6 col-sm-6">
-                  <Select
-                    id="merchant"
-                    className="form-control"
-                    field="merchantId"
-                    options={merchantOptions}
-                  />
-                </div>
-              </article>}
-              {!edition && formApi.values.companyType === "Institution" &&
-              <article id="instut-div" className="row modal-p hidden">
-                <div className="col-md-6 col-sm-6"><label>Institution</label></div>
-                <div className="col-md-6 col-sm-6">
-                  <Select
-                    id="instut"
-                    className="form-control"
-                    field="institutionId"
-                    options={institutionOption}
-                  />
-                </div>
-              </article>}
-              <div>
-                {formApi.errors &&
-                  Object.keys(formApi.errors)
-                    .map(k => formApi.touched[k] && <div key={k}>{formApi.errors[k]}</div>)}
-              </div>
-              <hr />
-              <article className="row modal-p text-center">
-                <ButtonOrLoading saving={saving} />
-              </article>
-            </form>
-          )}
-        </Form>
-      </div>
+const StatusSelect = ({ item }: Item) => (
+  <article className="row modal-p hidden">
+    <div className="col-md-6 col-sm-6">
+      <label htmlFor="status">Status</label>
     </div>
-  );
-};
+    <div className="col-md-6 col-sm-6">
+      <Select
+        id="status"
+        className="form-control"
+        field="status"
+        options={statusOptions}
+        value={item.status}
+      />
+    </div>
+  </article>
+);
 
-const SpecLoading = () => <Loading loading />;
-const NoData = () => <div id="main-pnl" className="pnls">Not found</div>;
+const CompanyTypeSelect = () => (
+  <article className="row modal-p">
+    <div className="col-md-6 col-sm-6"><label>Company Type</label></div>
+    <div className="col-md-6 col-sm-6 radios">
+      <RadioGroup field="companyType">
+        <Radio id="merchantRadio" value="Merchant" />
+        <label htmlFor="merchantRadio">Merchant</label>
+        <Radio id="instRadio" value="Institution" />
+        <label htmlFor="instRadio">Institution</label>
+      </RadioGroup>
+    </div>
+  </article>
+);
 
-export default compose(
-  boundLifecycle({
-    didMount: ({ id, getBusinessUnit, item }) => !item && getBusinessUnit(id)
-  }),
-  branch(({ fetching }) => fetching, renderComponent(SpecLoading)),
-  branch(({ item }) => item == null, renderComponent(NoData))
-)(Component);
+const MerchantSelect = () => (
+  <article id="merchant-div" className="row modal-p">
+    <div className="col-md-6 col-sm-6"><label>Merchant</label></div>
+    <div className="col-md-6 col-sm-6">
+      <Select
+        id="merchant"
+        className="form-control"
+        field="merchantId"
+        options={merchantOptions}
+      />
+    </div>
+  </article>
+);
+
+const InstitutionSelect = () => (
+  <article id="instut-div" className="row modal-p hidden">
+    <div className="col-md-6 col-sm-6"><label>Institution</label></div>
+    <div className="col-md-6 col-sm-6">
+      <Select
+        id="instut"
+        className="form-control"
+        field="institutionId"
+        options={institutionOption}
+      />
+    </div>
+  </article>
+);
+
+const ContentComponent = (props: { formApi: Object, item: Object }) => (
+  <div>
+    <article className="row modal-p">
+      <div className="col-md-6 col-sm-6">
+        <label htmlFor="name">Name:</label>
+      </div>
+      <div className="col-md-6 col-sm-6">
+        <Text
+          id="name"
+          className="form-control"
+          field="name"
+          required
+          placeholder="Business Unit Name"
+        />
+      </div>
+    </article>
+    {props.item.id && <StatusSelect item={props.item} />}
+    {!props.item.id && <CompanyTypeSelect item={props.item} />}
+    {!props.item.id && props.formApi.values.companyType === "Merchant" && <MerchantSelect item={props.item} />}
+    {!props.item.id && props.formApi.values.companyType === "Institution" && <InstitutionSelect item={props.item} />}
+  </div>
+);
+
+export default (props: Props) => (
+  <CRUDForm
+    {...props}
+    save={props.saveBusinessUnit}
+    entityName="business_unit"
+    onClose={props.closeForm}
+    loader={props.getBusinessUnit}
+    preValidate={additinionalValues}
+    validate={validate}
+    component={ContentComponent}
+  />
+);
