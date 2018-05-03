@@ -1,7 +1,5 @@
 //@flow
 
-import Users from "./containers/UsersContainer";
-import UserForm from "./containers/UserFormContainer";
-import UserDetails from "./containers/UserDetailsContainer";
+import Users from "./containers";
 
 export { Users, UserForm, UserDetails };

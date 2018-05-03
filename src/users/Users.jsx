@@ -52,13 +52,9 @@ export default (props: Props) => (
   <CRUD
     title="Back office users"
     createButtonTitle="New user"
-    openForm={props.openForm}
-    filter={props.fetchUserByCriteria}
     filterFields={filterFields(props)}
     defaultFilter={{ criteria: "userName" }}
     columns={columns}
-    showDetails={props.showDetails}
-    entities={props.users}
-    loader={() => props.fetchUsers() && props.fetchBusinessUnits()}
+    {...props}
   />
 );
