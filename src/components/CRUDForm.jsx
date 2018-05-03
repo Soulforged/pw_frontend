@@ -1,7 +1,5 @@
 //@flow
 import * as React from "react";
-import { decamelize } from "humps";
-import S from "string";
 import { Form, Select, Text } from "react-form";
 import { branch, compose, renderComponent } from "recompose";
 import { boundLifecycle } from "src/recompose-ext";
@@ -12,7 +10,7 @@ type Props = {
   save: (Object) => void,
   saving: boolean,
   entityName: string,
-  onClose: () => void,
+  close: () => void,
   fields?: Array<Object>,
   children?: React.Node,
   preValidate?: (Object) => Object,
@@ -48,7 +46,7 @@ const createComponent = ({ type, component }) => (
 const ifOptions = options => (options ? { options } : {});
 
 const createLabel = (name, label) => (
-  label || S(decamelize(name, { separator: " " })).capitalize().s
+  label || name.humanize().capitalize()
 );
 
 const factory = (field) => {
@@ -58,7 +56,7 @@ const factory = (field) => {
       id={field.name}
       field={field.name}
       className="form-control"
-      placeholder={createLabel(field.name, field.label)}
+      placeholder={createLabel(field.name, field.placeholder)}
       {...ifOptions(field.options)}
       required={true && field.required !== false}
     />
@@ -80,7 +78,7 @@ const Component = (props: Props) => (
   <div id="main-pnl" className="pnls">
     <h4 className="form-header trebuchet text-center bold">
       {props.item.id ? `Edit ${props.entityName} ${props.item.id}` : `New ${props.entityName}`}
-      <button className="add-new pointer pull-right bold" onClick={props.onClose}>
+      <button className="add-new pointer pull-right bold" onClick={props.close}>
         <i className="fa fa-close theme" />
       </button>
     </h4>

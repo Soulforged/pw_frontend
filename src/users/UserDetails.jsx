@@ -6,17 +6,17 @@ type Props = {
   id: number,
   item: Object,
   openForm: (number) => void,
-  fetchUser: (number) => void
+  loader: (number) => void
 };
 
 export default ({
-  id, item, openForm, fetchUser
+  id, item, openForm, loader
 }: Props) => (
   <CRUDDetails
     id={id}
     item={item}
     openForm={openForm}
-    loader={fetchUser}
+    loader={loader}
     editButtonTitle="Edit user"
   />
 );

@@ -20,3 +20,11 @@ Object.assign = require('object-assign');
 if (process.env.NODE_ENV === 'test') {
   require('raf').polyfill(global);
 }
+
+const humps = require('humps');
+const S = require('string');
+
+String.prototype.camelize = humps.camelize;
+String.prototype.decamelize = humps.decamelize;
+String.prototype.humanize = function() { return S(this).humanize().s; };
+String.prototype.capitalize = function() { return S(this).capitalize().s; };

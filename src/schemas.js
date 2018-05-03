@@ -1,4 +1,6 @@
 //@flow
+import { schema } from "normalizr";
+
 type Error = {
   status: number,
   description: string
@@ -14,3 +16,9 @@ export const error = (error: Error, status: number) => { //eslint-disable-line
   }
   }
 };
+
+export const list = single => new schema.Entity(
+  "results",
+  { results: [single] },
+  { idAttribute: () => "users" }
+);

@@ -1,7 +1,5 @@
 //@flow
 import * as React from "react";
-import S from "string";
-import { decamelize } from "humps";
 import { Form, Text, Select } from "react-form";
 
 type FilterField = {
@@ -51,7 +49,7 @@ const colSize = (index, rest, length) => (
 );
 
 const createLabel = (name, label) => (
-  label || S(decamelize(name, { separator: " " })).capitalize().s
+  label || name.humanize().capitalize()
 );
 
 const fieldFactory = (f, size) => (

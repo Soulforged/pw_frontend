@@ -40,10 +40,7 @@ const fields = ({ businessUnits, roles }) => [
 
 export default (props: Props) => (
   <CRUDForm
-    save={props.saveUser}
     entityName="user"
-    onClose={props.returnToList}
-    loader={id => props.fetchBusinessUnits() && props.fetchRoles() && id && props.fetchUser(id)}
     fields={fields}
     {...props}
   />

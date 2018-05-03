@@ -1,7 +1,5 @@
 //@flow
 import * as React from "react";
-import S from "string";
-import { decamelize } from "humps";
 import { withHandlers, compose } from "recompose";
 import { boundLifecycle } from "src/recompose-ext";
 
@@ -16,7 +14,7 @@ type Props = {
 const createLabel = (name, field) => (
   field && field.label ?
     field.label
-    : S(decamelize(name, { separator: " " })).capitalize().s
+    : name.humanize().capitalize()
 );
 
 const createContent = (name, item, field) => (

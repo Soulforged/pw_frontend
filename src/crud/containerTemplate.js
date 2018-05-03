@@ -1,16 +1,23 @@
 //@flow
 import { connect } from "react-redux";
+import { matchPath } from "react-router";
 import { push } from "react-router-redux";
 
-export const mainTemplate = (resource, entityName, dispatches) => {
-  const openForm = () => push(`/new/${resource}`);
-  const showDetails = id => push(`/${resource}/${id}`);
-  const mapStateToProps = ({ entities }) => ({ [entityName]: entities[entityName] });
-  const mapDispatchToProps = dispatch => { openForm, showDetails, ...dispatches(dispatch) };
+export const mainTemplate = (resource, entityName, mapState, dispatches) => {
+  const mapStateToProps = ({ entities }) => ({
+    entities: entities[entityName],
+    ...mapState(entities)
+  });
+  const mapDispatchToProps = dispatch => ({
+    openForm: () => dispatch(push(`/new/${resource}`)),
+    showDetails: id => dispatch(push(`/${resource}/${id}`)),
+    ...dispatches(dispatch)
+  }
+  );
   return connect(mapStateToProps, mapDispatchToProps);
 };
 
-export const detailTemplate = (resource, states, dispatches) => {
+export const detailTemplate = (resource, entityName, dispatches) => {
   const mapStateToProps = ({ routing: { location: { pathname } }, entities }) => {
     const match = matchPath(pathname, { path: `/${resource}/:id`, exact: true, strict: true });
     const params = match ? match.params : null;
@@ -28,21 +35,25 @@ export const detailTemplate = (resource, states, dispatches) => {
   return connect(mapStateToProps, mapDispatchToProps);
 };
 
-export const formTemplate = (resource, mapState, dispatches) => {
+export const formTemplate = (resource, entityName, mapState, dispatches) => {
   const mapStateToProps = ({ routing: { location: { pathname } }, entities }) => {
     const entity = entities[entityName];
     const match = matchPath(pathname, { path: `/(edit|new)/${resource}/:id?` });
     const params = match ? match.params : null;
     const id = params ? params.id : null;
     const item = id ? entity.byId && entity.byId[id] : {};
+    const otherState = mapState(entities);
     return {
       id,
       item,
       fetching: entity.fetching,
-      saving: entity.saving
+      saving: entity.saving,
+      ...otherState
     };
   };
-  const closeForm = () => push(`/${resource}`);
-  const mapDispatchToProps = { closeForm, ...dispatches };
+  const mapDispatchToProps = dispatch => ({
+    close: () => dispatch(push(`/${resource}`)),
+    ...dispatches(dispatch)
+  });
   return connect(mapStateToProps, mapDispatchToProps);
 };

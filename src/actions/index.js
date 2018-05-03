@@ -12,11 +12,14 @@ const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGIN_REQUEST = "LOGIN_REQUEST";
 const LOGIN_FAILURE = "LOGIN_FAILURE";
 
-const saveTypes = actionName => [
-  `${ENTITIES}/${SAVE}_${actionName}_${REQ}`,
-  `${ENTITIES}/${SAVE}_${actionName}_${SUCCESS}`,
-  `${ENTITIES}/${SAVE}_${actionName}_${FAIL}`
-];
+const saveTypes = (actionName) => {
+  const normActionName = actionName.toUpperCase();
+  return [
+    `${ENTITIES}/${SAVE}_${normActionName}_${REQ}`,
+    `${ENTITIES}/${SAVE}_${normActionName}_${SUCCESS}`,
+    `${ENTITIES}/${SAVE}_${normActionName}_${FAIL}`
+  ];
+};
 
 const fetchTypes = actionName => [
   `${actionName}_${REQ}`,
@@ -24,7 +27,7 @@ const fetchTypes = actionName => [
   `${actionName}_${FAIL}`
 ];
 
-const fetchEntitiesTypes = actionName => fetchTypes(`${ENTITIES}/${actionName}`);
+const fetchEntitiesTypes = actionName => fetchTypes(`${ENTITIES}/${actionName.toUpperCase()}`);
 
 const login = ({ username, password }: UserInfo) => ({
   [CALL_API]: {
