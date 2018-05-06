@@ -2,14 +2,9 @@
 import React from "react";
 import { CRUD, ActiveCell } from "src/components";
 
-type Props = {
-  openForm: () => void,
-  fetchBusinessUnits: (Object) => void,
-  businessUnits: Object,
-  showDetails: (id: number) => void
-};
+import type { Props as CRUDProps } from "src/components/CRUD";
 
-const columns = [
+const columns: Array<Object> = [
   { Header: "ID", accessor: "id" },
   { Header: "Name", accessor: "name" },
   { Header: "Company Type", accessor: "companyType" },
@@ -24,12 +19,11 @@ const filterFields = [
   }
 ];
 
-export default (props: Props) => (
+export default (props: CRUDProps) => (
   <CRUD
     title="Business unit list"
     createButtonTitle="New business unit"
-    openForm={props.openForm}
-    filterFields={filterFields}
+    fields={filterFields}
     columns={columns}
     {...props}
   />

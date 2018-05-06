@@ -3,25 +3,24 @@ import * as React from "react";
 import CRUDList from "./CRUDList";
 import CRUDFilter from "./CRUDFilter";
 
-type Props = {
+import type { Props as FilterProps } from "./CRUDFilter";
+
+export type Props = {
   title: string,
   createButtonTitle: string,
   openForm: () => void,
   columns: Array<Object>,
   showDetails: (number) => void,
   entities: Object,
-  loader: (Object) => void,
-  filter?: React.Node,
-  filterFields?: Array<Object>,
-  defaultFilter?: Object
-};
+  loader: (Object) => void
+} & FilterProps;
 
 const CRUD = (props: Props) => (
   <div>
     {props.filter && (
       <CRUDFilter
         filter={props.filter}
-        fields={props.filterFields}
+        fields={props.fields}
         defaultFilter={props.defaultFilter}
       />
     )}

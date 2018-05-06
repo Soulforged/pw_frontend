@@ -3,10 +3,14 @@ import { connect } from "react-redux";
 import { matchPath } from "react-router";
 import { push } from "react-router-redux";
 
+import type { DispatchAPI } from "src/types";
+
+type Dispatches = (DispatchAPI<*>) => Object
+
 export default (resource, { entityName } = {}) => {
   const nullSafeEntityName = entityName || resource;
   return {
-    mainTemplate: (mapState, dispatches) => {
+    mainTemplate: (mapState, dispatches: Dispatches) => {
       const mapStateToProps = ({ entities }) => ({
         entities: entities[nullSafeEntityName],
         ...mapState(entities)
@@ -19,7 +23,7 @@ export default (resource, { entityName } = {}) => {
       return connect(mapStateToProps, mapDispatchToProps);
     },
 
-    detailTemplate: (dispatches) => {
+    detailTemplate: (dispatches: Object) => {
       const mapStateToProps = ({ routing: { location: { pathname } }, entities }) => {
         const match = matchPath(pathname, { path: `/${resource}/:id`, exact: true, strict: true });
         const params = match ? match.params : null;
@@ -38,7 +42,7 @@ export default (resource, { entityName } = {}) => {
       return connect(mapStateToProps, mapDispatchToProps);
     },
 
-    formTemplate: (mapState, dispatches) => {
+    formTemplate: (mapState, dispatches: Dispatches) => {
       const mapStateToProps = ({ routing: { location: { pathname } }, entities }) => {
         const entity = entities[nullSafeEntityName];
         const match = matchPath(pathname, { path: `/(edit|new)/${resource}/:id?` });

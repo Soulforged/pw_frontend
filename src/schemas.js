@@ -17,7 +17,7 @@ export const error = (error: Error, status: number) => { //eslint-disable-line
   }
 };
 
-export const list = single => new schema.Entity(
+export const list = (single: schema.Entity) => new schema.Entity(
   "results",
   { results: [single] },
   { idAttribute: () => single.key }

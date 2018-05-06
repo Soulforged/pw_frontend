@@ -2,6 +2,12 @@
 import React from "react";
 import { CRUD, ActiveCell } from "src/components";
 
+import type { Props as CRUDProps } from "src/components/CRUD";
+
+type Props = CRUDProps & {
+  businessUnits: Object
+};
+
 const columns = [
   { Header: "ID", accessor: "id", maxWidth: 50 },
   { Header: "First name", accessor: "firstName" },
@@ -39,11 +45,11 @@ const filterFields = ({ businessUnits }) => [
   }
 ];
 
-export default props => (
+export default (props: Props) => (
   <CRUD
     title="Back office users"
     createButtonTitle="New user"
-    filterFields={filterFields(props)}
+    fields={filterFields(props)}
     defaultFilter={{ criteria: "userName" }}
     columns={columns}
     {...props}

@@ -2,18 +2,9 @@
 import * as React from "react";
 import { Form, Text, Select } from "react-form";
 
-type FilterField = {
-  type: string,
-  name: string,
-  label?: string,
-  options?: Array<any>,
-  state?: string,
-  placeholder?: string
-};
-
-type Props = {
+export type Props = {
   children?: React.Node,
-  fields: Array<FilterField>,
+  fields?: Array<Object>,
   filter: (Object) => void,
   defaultFilter?: Object
 };
@@ -100,7 +91,8 @@ const Filter = (props: Props) => (
 
 Filter.defaultProps = {
   children: false,
-  defaultFilter: {}
+  defaultFilter: {},
+  fields: []
 };
 
 export default Filter;
