@@ -9,5 +9,6 @@ type Params = {
 
 export default actionsTemplate("user", "/user/backofficeuser", user, {
   queryCreator: ({ criteria, filter }: Params) => `/${criteria}/${filter}`,
-  filterSchema: user
+  filterSchema: user,
+  mock: true
 });

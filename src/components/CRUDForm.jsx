@@ -61,42 +61,26 @@ const mapRadioOpts = opts => (
   ))
 );
 
-const ifOptions = opts => (opts ? { options: opts } : {});
-
 const factory = (field) => {
   const Component = createComponent(field);
-  // const computedProps = {
-  //   id: field.name,
-  //   ...ifOptions(field.options),
-  //   field: field.name,
-  //   type: field.type,
-  //   className: "form-control",
-  //   placeholder: createLabel(field.name, field.placeholder),
-  //   required: (true && field.required !== false)
-  // };
+  const computedProps = {
+    id: field.name,
+    options: field.options,
+    field: field.name,
+    type: field.type,
+    className: "form-control",
+    placeholder: createLabel(field.name, field.placeholder),
+    required: (true && field.required !== false)
+  };
   if (field.type === "radio") {
     return (
-      <Component
-        id={field.name}
-        field={field.name}
-        className="form-control"
-        placeholder={createLabel(field.name, field.placeholder)}
-        {...ifOptions(field.options)}
-        required={true && field.required !== false}
-      >
+      <Component {...computedProps}>
         {mapRadioOpts(field.options)}
       </Component>
     );
   }
   return (
-    <Component
-      id={field.name}
-      field={field.name}
-      className="form-control"
-      placeholder={createLabel(field.name, field.placeholder)}
-      {...ifOptions(field.options)}
-      required={true && field.required !== false}
-    />
+    <Component {...computedProps} />
   );
 };
 

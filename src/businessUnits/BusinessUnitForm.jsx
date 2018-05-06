@@ -59,26 +59,25 @@ const fields = () => [
     label: "Merchant",
     type: "select",
     options: merchantOptions,
-    condition: ({ formApi, props }) => !props.item.id && formApi.values.companyType === "Merchant"
+    condition: ({ formApi }) => console.log(formApi.values) && !formApi.values.id && formApi.values.companyType === "Merchant"
   },
   {
     name: "companyId",
     label: "Institution",
     type: "select",
     options: institutionOption,
-    condition: ({ formApi, props }) => !props.item.id && formApi.values.companyType === "Institution"
+    condition: ({ formApi }) => !formApi.values.id && formApi.values.companyType === "Institution"
   }
 ];
 
-const additinionalValues = values => ({ ...values, status: 1, companyId: 1 });
+const additinionalValues = values => ({ ...values, status: !values.id ? 1 : 0 });
+
+const isCompanyIdError = ({ id, companyId }) => !id && !companyId;
 
 const validate = values => (
   {
-    institutionId: {
-      error: values.companyType === "Institution" && !values.companyId && "Institution is required"
-    },
-    merchantId: {
-      error: values.companyType === "Merchant" && !values.companyId && "Merchant is required"
+    companyId: {
+      error: isCompanyIdError(values) && "You've to choose a company"
     }
   }
 );
