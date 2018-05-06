@@ -2,15 +2,6 @@
 import React from "react";
 import { CRUD, ActiveCell } from "src/components";
 
-type Props = {
-  openForm: () => void,
-  users: Object,
-  showDetails: (id: number) => void,
-  fetchUsers: (Object) => void,
-  fetchUserByCriteria: (Object) => void,
-  fetchBusinessUnits: () => void
-}
-
 const columns = [
   { Header: "ID", accessor: "id", maxWidth: 50 },
   { Header: "First name", accessor: "firstName" },
@@ -37,18 +28,18 @@ const filterFields = ({ businessUnits }) => [
     name: "filter",
     label: "User name",
     type: "text",
-    condition: form => form.values.criteria === "userName"
+    condition: ({ formApi }) => formApi.values.criteria === "userName"
   },
   {
     name: "filter",
     label: "Business unit",
     type: "select",
-    condition: form => form.values.criteria === "businessunit",
+    condition: ({ formApi }) => formApi.values.criteria === "businessunit",
     options: businessUnits.ids.map(id => ({ value: id, label: businessUnits.byId[id].name }))
   }
 ];
 
-export default (props: Props) => (
+export default props => (
   <CRUD
     title="Back office users"
     createButtonTitle="New user"

@@ -1,6 +1,6 @@
 //@flow
 import * as React from "react";
-import { Form, Select, Text } from "react-form";
+import { Form, Select, Text, RadioGroup, Radio } from "react-form";
 import { branch, compose, renderComponent } from "recompose";
 import { boundLifecycle } from "src/recompose-ext";
 import { Loading } from "src/components";
@@ -14,7 +14,8 @@ type Props = {
   fields?: Array<Object>,
   children?: React.Node,
   preValidate?: (Object) => Object,
-  validate?: (Object) => Object
+  validate?: (Object) => Object,
+  preSubmit?: (Object) => Object
 };
 
 const ButtonOrLoading = ({ saving }: { saving: boolean }) => (
@@ -23,18 +24,22 @@ const ButtonOrLoading = ({ saving }: { saving: boolean }) => (
 
 type FormApiProps = {
   errors: Object,
-  touched: Object
+  touched: Object,
+  submitted: boolean
 };
 
-const ErrorMessages = ({ errors, touched }: FormApiProps) => (
+const ErrorMessages = ({ errors, touched, submitted }: FormApiProps) => (
   <div>
-    {errors && Object.keys(errors).map(k => touched[k] && <div key={k}>{errors[k]}</div>)}
+    {errors
+      && Object.keys(errors).map(k => (touched[k] || submitted)
+      && <div key={k}>{errors[k]}</div>)}
   </div>
 );
 
 const fieldMap = (type) => {
   switch (type) {
   case "select": return Select;
+  case "radio": return RadioGroup;
   default: return Text;
   }
 };
@@ -43,14 +48,46 @@ const createComponent = ({ type, component }) => (
   component || fieldMap(type)
 );
 
-const ifOptions = options => (options ? { options } : {});
-
 const createLabel = (name, label) => (
   label || name.humanize().capitalize()
 );
 
+const mapRadioOpts = opts => (
+  opts.map(opt => (
+    <div key={opt.value}>
+      <Radio id={opt.label || opt.value} value={opt.value} />
+      <label htmlFor={opt.label || opt.value}>{opt.label || opt.value}</label>
+    </div>
+  ))
+);
+
+const ifOptions = opts => (opts ? { options: opts } : {});
+
 const factory = (field) => {
   const Component = createComponent(field);
+  // const computedProps = {
+  //   id: field.name,
+  //   ...ifOptions(field.options),
+  //   field: field.name,
+  //   type: field.type,
+  //   className: "form-control",
+  //   placeholder: createLabel(field.name, field.placeholder),
+  //   required: (true && field.required !== false)
+  // };
+  if (field.type === "radio") {
+    return (
+      <Component
+        id={field.name}
+        field={field.name}
+        className="form-control"
+        placeholder={createLabel(field.name, field.placeholder)}
+        {...ifOptions(field.options)}
+        required={true && field.required !== false}
+      >
+        {mapRadioOpts(field.options)}
+      </Component>
+    );
+  }
   return (
     <Component
       id={field.name}
@@ -63,16 +100,24 @@ const factory = (field) => {
   );
 };
 
-const fieldFactory = f => (
-  <div className="row modal-p" key={f.name}>
-    <div className="col-md-6 col-sm-6">
-      <label htmlFor={f.name}>{createLabel(f.name, f.label)}</label>
-    </div>
-    <div className="col-md-6 col-sm-6">
-      {factory(f)}
-    </div>
-  </div>
-);
+const fieldFactory = (f, formApi, props) => {
+  const shouldShow = f.condition ? f.condition({ formApi, props }) : true;
+  if (shouldShow) {
+    return (
+      <div className="row modal-p" key={f.name}>
+        <div className="col-md-6 col-sm-6">
+          <label htmlFor={f.name}>{createLabel(f.name, f.label)}</label>
+        </div>
+        <div className="col-md-6 col-sm-6">
+          {factory(f)}
+        </div>
+      </div>
+    );
+  }
+  return false;
+};
+
+const mapFields = (props, formApi) => props.fields(props).map(f => fieldFactory(f, formApi, props));
 
 const Component = (props: Props) => (
   <div id="main-pnl" className="pnls">
@@ -88,13 +133,18 @@ const Component = (props: Props) => (
         defaultValues={props.item}
         preValidate={props.preValidate}
         validate={props.validate}
+        preSubmit={props.preSubmit}
       >
         {formApi => (
-          <form id="user_frm" onSubmit={formApi.submitForm}>
-            {props.fields && props.fields(props).map(fieldFactory)}
+          <form onSubmit={formApi.submitForm}>
+            {props.fields && mapFields(props, formApi)}
             {props.children}
             <hr />
-            <ErrorMessages errors={formApi.errors} touched={formApi.touched} />
+            <ErrorMessages
+              errors={formApi.errors}
+              touched={formApi.touched}
+              submitted={formApi.submitted}
+            />
             <article className="modal-p text-center">
               <ButtonOrLoading saving={props.saving} />
             </article>
@@ -107,6 +157,7 @@ const Component = (props: Props) => (
 
 Component.defaultProps = {
   preValidate: values => values,
+  preSubmit: values => values,
   validate: () => ({}),
   children: false,
   fields: []

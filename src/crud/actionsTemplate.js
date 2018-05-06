@@ -8,10 +8,10 @@ import { list, error } from "src/schemas";
 const { fetchEntitiesTypes, saveTypes } = actions;
 const restPath = body => (body.id ? `/${body.id}` : "");
 
-const fetchAll = (basePath, key, schema, { mock }) => () => ({
+const fetchAll = (basePath, key, schema, { mock, baseQuery = () => "" }) => () => ({
   [CALL_API]: {
     types: fetchEntitiesTypes(key),
-    endpoint: basePath,
+    endpoint: `${basePath}${baseQuery()}`,
     schema: list(schema),
     errorSchema: error,
     key,
@@ -20,7 +20,9 @@ const fetchAll = (basePath, key, schema, { mock }) => () => ({
   }
 });
 
-export const actionsTemplate = (entityName, basePath, schema, { mock, queryCreator }) => { //eslint-disable-line
+export default (entityName, basePath, schema, {
+  mock, queryCreator, baseQuery, filterSchema
+}) => {
   const key = `${entityName}s`;
   return {
     save: (body: User) => ({
@@ -31,7 +33,7 @@ export const actionsTemplate = (entityName, basePath, schema, { mock, queryCreat
         update: body.id != null,
         key,
         errorSchema: error,
-        after: dispatch => dispatch(push(`/${key}`)),
+        after: dispatch => dispatch(push(`/${key.underscore()}`)),
         invalidatesCache: true,
         mock: mock && mocks[entityName]
       }
@@ -46,7 +48,7 @@ export const actionsTemplate = (entityName, basePath, schema, { mock, queryCreat
         mock: mock && mocks[entityName]
       }
     }),
-    fetchAll: fetchAll(basePath, key, schema, { mock }),
+    fetchAll: fetchAll(basePath, key, schema, { mock, baseQuery }),
     filter: (params: Object) => {
       if (!params) {
         return fetchAll();
@@ -54,8 +56,8 @@ export const actionsTemplate = (entityName, basePath, schema, { mock, queryCreat
       return {
         [CALL_API]: {
           types: fetchEntitiesTypes(`${key}_FILTER`),
-          endpoint: `${basePath}/${queryCreator(params)}`,
-          schema,
+          endpoint: `${basePath}${queryCreator(params)}`,
+          schema: filterSchema || list(schema),
           errorSchema: error,
           key,
           invalidatesCache: true,

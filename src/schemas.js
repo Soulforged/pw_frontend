@@ -20,5 +20,5 @@ export const error = (error: Error, status: number) => { //eslint-disable-line
 export const list = single => new schema.Entity(
   "results",
   { results: [single] },
-  { idAttribute: () => "users" }
+  { idAttribute: () => single.key }
 );

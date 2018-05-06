@@ -1,3 +1,5 @@
 //@flow
-export * from "./actionsTemplate";
-export * from "./containerTemplate";
+import actionsTemplate from "./actionsTemplate";
+import containerTemplate from "./containerTemplate";
+
+export { actionsTemplate, containerTemplate };

@@ -1,8 +1,12 @@
 //@flow
 import { Dashboard } from "src/dashboard";
 import { Main as Users, Form as UserForm, Detail as UserDetails } from "src/users";
+import {
+  Main as BusinessUnits,
+  Form as BusinessUnitForm,
+  Detail as BusinessUnitDetail
+} from "src/businessUnits";
 import { Roles, RoleForm, RoleDetails } from "src/roles";
-import { BusinessUnits, BusinessUnitForm, BusinessUnitDetail } from "src/businessUnits";
 
 export default [
   {

@@ -22,7 +22,7 @@ const fields = ({ businessUnits, roles }) => [
   { name: "lastName" },
   { name: "userName" },
   { name: "mobileNumber" },
-  { name: "primaryEmail" },
+  { name: "primaryEmail", type: "email" },
   { name: "status", options: statusOptions },
   {
     name: "businessUnitId",
@@ -39,9 +39,5 @@ const fields = ({ businessUnits, roles }) => [
 ];
 
 export default (props: Props) => (
-  <CRUDForm
-    entityName="user"
-    fields={fields}
-    {...props}
-  />
+  <CRUDForm entityName="user" fields={fields} {...props} />
 );

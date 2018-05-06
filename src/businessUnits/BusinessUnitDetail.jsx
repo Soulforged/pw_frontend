@@ -6,30 +6,14 @@ type Props = {
   id: number,
   item: Object,
   openForm: (number) => void,
-  getBusinessUnit: (number) => void
+  loader: (number) => void
 };
 
-export default ({
-  id, item, openForm, getBusinessUnit
-}: Props) => (
-  <CRUDDetails
-    id={id}
-    item={item}
-    openForm={openForm}
-    loader={getBusinessUnit}
-    editButtonTitle="Edit Business Unit"
-  >
-    {item &&
-    <div className="details">
-      <div className="row">
-        <div className="col-sm-3">Name:</div>
-        <div className="col-sm-3">{item.name}</div>
-      </div>
-      <div className="row">
-        <div className="col-sm-3">Status:</div>
-        <div className="col-sm-3"><ActiveCell value={item.status} /></div>
-      </div>
-    </div>}
+const fields = {
+  name: {},
+  status: { component: item => <ActiveCell value={item.status} /> }
+};
 
-  </CRUDDetails>
+export default (props: Props) => (
+  <CRUDDetails editButtonTitle="Edit Business Unit" {...props} fields={fields} />
 );

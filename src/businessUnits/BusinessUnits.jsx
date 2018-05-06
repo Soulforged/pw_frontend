@@ -1,6 +1,6 @@
 //@flow
 import React from "react";
-import { CRUD, CRUDFilter, ActiveCell } from "src/components";
+import { CRUD, ActiveCell } from "src/components";
 
 type Props = {
   openForm: () => void,
@@ -16,26 +16,21 @@ const columns = [
   { Header: "Status", accessor: "status", Cell: ActiveCell },
 ];
 
-const Filter = ({ fetchBusinessUnits }: { fetchBusinessUnits: (Object) => void }) => (
-  <CRUDFilter filter={fetchBusinessUnits}>
-    <div className="col-md-11 col-sm-11 txt-div">
-      <label htmlFor="filter" className="lbl">
-        Search text
-        <input name="name" className="form-control" placeholder="Text to search" />
-      </label>
-    </div>
-  </CRUDFilter>
-);
+const filterFields = [
+  {
+    name: "name",
+    label: "Search text",
+    placeholder: "Text to search"
+  }
+];
 
 export default (props: Props) => (
   <CRUD
-    title="Business Unit List"
-    createButtonTitle="New Business Unit"
+    title="Business unit list"
+    createButtonTitle="New business unit"
     openForm={props.openForm}
-    filter={<Filter {...props} />}
+    filterFields={filterFields}
     columns={columns}
-    showDetails={props.showDetails}
-    entities={props.businessUnits}
-    loader={props.fetchBusinessUnits}
+    {...props}
   />
 );

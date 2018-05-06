@@ -1,6 +1,5 @@
 //@flow
 import React from "react";
-import { Text, Select, RadioGroup, Radio } from "react-form";
 import { CRUDForm } from "src/components";
 
 const statusOptions = [
@@ -10,11 +9,9 @@ const statusOptions = [
 
 type Props = {
   item: Object,
-  saveBusinessUnit: (Object) => void,
   saving: boolean,
   edition: boolean,
-  closeForm: () => void,
-  getBusinessUnit: (number) => void
+  closeForm: () => void
 };
 
 const institutionOption = [
@@ -37,110 +34,61 @@ const merchantOptions = [
   { value: 5609, label: "r8Merchant Name" }
 ];
 
+const companyTypes = [
+  { value: "Merchant" },
+  { value: "Institution" }
+];
+
+const fields = () => [
+  { name: "name", placeholder: "Business Unit Name" },
+  {
+    name: "companyType",
+    label: "Company type",
+    type: "radio",
+    options: companyTypes,
+    condition: ({ props }) => !props.item.id
+  },
+  {
+    name: "status",
+    type: "select",
+    options: statusOptions,
+    condition: ({ props }) => props.item.id
+  },
+  {
+    name: "companyId",
+    label: "Merchant",
+    type: "select",
+    options: merchantOptions,
+    condition: ({ formApi, props }) => !props.item.id && formApi.values.companyType === "Merchant"
+  },
+  {
+    name: "companyId",
+    label: "Institution",
+    type: "select",
+    options: institutionOption,
+    condition: ({ formApi, props }) => !props.item.id && formApi.values.companyType === "Institution"
+  }
+];
+
 const additinionalValues = values => ({ ...values, status: 1, companyId: 1 });
 
 const validate = values => (
   {
     institutionId: {
-      error: values.companyType === "Institution" && !values.institutionId && "Institution is required"
+      error: values.companyType === "Institution" && !values.companyId && "Institution is required"
     },
     merchantId: {
-      error: values.companyType === "Merchant" && !values.merchantId && "Merchant is required"
+      error: values.companyType === "Merchant" && !values.companyId && "Merchant is required"
     }
   }
-);
-
-const StatusSelect = ({ item }: Item) => (
-  <article className="row modal-p hidden">
-    <div className="col-md-6 col-sm-6">
-      <label htmlFor="status">Status</label>
-    </div>
-    <div className="col-md-6 col-sm-6">
-      <Select
-        id="status"
-        className="form-control"
-        field="status"
-        options={statusOptions}
-        value={item.status}
-      />
-    </div>
-  </article>
-);
-
-const CompanyTypeSelect = () => (
-  <article className="row modal-p">
-    <div className="col-md-6 col-sm-6"><label>Company Type</label></div>
-    <div className="col-md-6 col-sm-6 radios">
-      <RadioGroup field="companyType">
-        <Radio id="merchantRadio" value="Merchant" />
-        <label htmlFor="merchantRadio">Merchant</label>
-        <Radio id="instRadio" value="Institution" />
-        <label htmlFor="instRadio">Institution</label>
-      </RadioGroup>
-    </div>
-  </article>
-);
-
-const MerchantSelect = () => (
-  <article id="merchant-div" className="row modal-p">
-    <div className="col-md-6 col-sm-6"><label>Merchant</label></div>
-    <div className="col-md-6 col-sm-6">
-      <Select
-        id="merchant"
-        className="form-control"
-        field="merchantId"
-        options={merchantOptions}
-      />
-    </div>
-  </article>
-);
-
-const InstitutionSelect = () => (
-  <article id="instut-div" className="row modal-p hidden">
-    <div className="col-md-6 col-sm-6"><label>Institution</label></div>
-    <div className="col-md-6 col-sm-6">
-      <Select
-        id="instut"
-        className="form-control"
-        field="institutionId"
-        options={institutionOption}
-      />
-    </div>
-  </article>
-);
-
-const ContentComponent = (props: { formApi: Object, item: Object }) => (
-  <div>
-    <article className="row modal-p">
-      <div className="col-md-6 col-sm-6">
-        <label htmlFor="name">Name:</label>
-      </div>
-      <div className="col-md-6 col-sm-6">
-        <Text
-          id="name"
-          className="form-control"
-          field="name"
-          required
-          placeholder="Business Unit Name"
-        />
-      </div>
-    </article>
-    {props.item.id && <StatusSelect item={props.item} />}
-    {!props.item.id && <CompanyTypeSelect item={props.item} />}
-    {!props.item.id && props.formApi.values.companyType === "Merchant" && <MerchantSelect item={props.item} />}
-    {!props.item.id && props.formApi.values.companyType === "Institution" && <InstitutionSelect item={props.item} />}
-  </div>
 );
 
 export default (props: Props) => (
   <CRUDForm
     {...props}
-    save={props.saveBusinessUnit}
-    entityName="business_unit"
-    onClose={props.closeForm}
-    loader={props.getBusinessUnit}
+    item={{ ...props.item, companyType: props.item.institutionId ? "Institution" : "Merchant" }}
+    fields={fields}
     preValidate={additinionalValues}
     validate={validate}
-    component={ContentComponent}
   />
 );

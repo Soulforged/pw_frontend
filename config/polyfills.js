@@ -28,3 +28,5 @@ String.prototype.camelize = humps.camelize;
 String.prototype.decamelize = humps.decamelize;
 String.prototype.humanize = function() { return S(this).humanize().s; };
 String.prototype.capitalize = function() { return S(this).capitalize().s; };
+String.prototype.dasherize = function() { return S(this).dasherize().s; };
+String.prototype.underscore = function() { return S(this).underscore().s; };

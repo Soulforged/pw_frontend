@@ -31,6 +31,7 @@ const createComponent = ({ type, component }) => (
 
 const ifOptions = options => (options ? { options } : {});
 
+//TODO all this factory code could be extracted
 const factory = (field) => {
   const Component = createComponent(field);
   return (
@@ -39,7 +40,7 @@ const factory = (field) => {
       field={field.name}
       className="form-control"
       {...ifOptions(field.options)}
-      required={true && field.required !== false}
+      required={field.required}
     />
   );
 };
@@ -61,9 +62,9 @@ const fieldFactory = (f, size) => (
   </div>
 );
 
-const mapReduceFields = (fields, formApi) => {
-  const red = fields.reduce(({ render, rem, visibleLength }, f, index) => {
-    const shouldShow = f.condition ? f.condition(formApi) : true;
+const mapReduceFields = (props, formApi) => {
+  const red = props.fields.reduce(({ render, rem, visibleLength }, f, index) => {
+    const shouldShow = f.condition ? f.condition({ formApi, props }) : true;
     if (shouldShow) {
       const nextColSize = colSize(index, rem, visibleLength);
       return {
@@ -75,7 +76,7 @@ const mapReduceFields = (fields, formApi) => {
     return {
       render, rem, visibleLength: visibleLength - 1
     };
-  }, { render: [], rem: 11, visibleLength: fields.length });
+  }, { render: [], rem: 11, visibleLength: props.fields.length });
   return red.render;
 };
 
@@ -85,7 +86,7 @@ const Filter = (props: Props) => (
       <Form onSubmit={props.filter} defaultValues={props.defaultFilter}>
         {formApi => (
           <form onSubmit={formApi.submitForm} className="row">
-            {props.fields && mapReduceFields(props.fields, formApi)}
+            {props.fields && mapReduceFields(props, formApi)}
             {props.children}
             <div className="col-md-1 col-sm-1 text-right pull-right">
               <button id="filter-btn" className="btn" type="submit">GO</button>

@@ -62,15 +62,15 @@ const handleFetch = (action: EntityAction, entityName, state) => {
   }
   const { entities } = action.response;
   const byId = entities ? entities[entityName] : {};
-  const ids = getIds(action.response, entityName);
-  const ids1 = ids && !(ids instanceof Array) ? [ids] : ids;
+  const ids1 = getIds(action.response, entityName);
+  const ids = ids1 && !(ids1 instanceof Array) ? [ids1] : ids1;
   const newState = { [entityName]: { byId, ids, fetching: false } };
   const merged = merge({}, state, newState);
   const merged1 = {
     ...merged,
     [entityName]: {
       ...merged[entityName],
-      lastResultIds: ids1,
+      lastResultIds: ids,
       error: false,
       valid: true
     }
